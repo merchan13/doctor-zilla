@@ -20,6 +20,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'devise'
 gem 'devise-i18n'
+gem 'twitter-bootstrap-rails'
+gem 'devise-bootstrap-views'
 
 
 group :development, :test do
