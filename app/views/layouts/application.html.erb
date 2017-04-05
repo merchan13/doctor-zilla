@@ -38,21 +38,18 @@
   </head>
   <body>
 
-    <%= render 'layouts/navigation' unless current_page?(controller: 'devise/sessions', action: 'new') %>
+    <%= render 'layouts/navigation' %>
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-md-12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2017</p>
-      </footer>
-
     </div> <!-- /container -->
+
+    <%= render 'layouts/footer'%>
 
   </body>
 </html>

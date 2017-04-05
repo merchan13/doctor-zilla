@@ -1,26 +1,16 @@
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= t('.sign_in', default: 'Sign in') %></h4>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
-      </div>
-      <% if devise_mapping.rememberable? %>
-        <div class="checkbox">
-          <%= f.label :remember_me do %>
-            <%= f.check_box :remember_me %> <%= t('.remember_me', default: 'Remember me') %>
-          <% end %>
-        </div>
-      <% end %>
-      <%= f.submit  t('.sign_in', default: 'Sign in'), class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+<div class="login center">
+  <%= image_tag('logo/png/drzilla_logo_color.png', class: 'login-logo') %>
+  <br>
+  <br>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, class: 'form-control login-input-field', placeholder: "Email"%>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, autocomplete: 'off', class: 'form-control login-input-field', placeholder: "Contraseña"%>
+    </div>
+    <%= f.submit  t('.inicar_sesion', default: 'Iniciar sesión'), class: 'btn btn-primary login-button' %>
+  <% end %>
+  <br>
+  <%= link_to t('.olvido_su_contraseña', default: '¿Olvidó su contraseña?'), new_password_path(resource_name) %><br />
 </div>
-<%= render 'devise/shared/links' %>

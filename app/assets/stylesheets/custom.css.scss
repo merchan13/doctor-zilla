@@ -5,3 +5,88 @@
 body {
   margin: 0;
 }
+
+.center{
+  text-align: center;
+}
+
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.navbar-logo {
+  float: left;
+}
+
+.navbar-logo > img {
+  height: 50px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.login {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.login-logo {
+  height: 120px;
+}
+
+.login-input-field{
+  width: 350px;
+}
+
+.login-button{
+  background-color: #211c5f;
+  border-color: #211c5f;
+  width: 300px;
+}
+
+footer {
+  right: 0;
+  left: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+//HOME
+.home .row {
+  margin: 150px 0 150px 0;
+}
+
+.home a{
+  color: #211c5f;
+}
+
+.home i {
+  font-size: 100pt;
+}
+
+.home .col-md-2 {
+  width: 19%;
+}
