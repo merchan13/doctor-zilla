@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402024759) do
+ActiveRecord::Schema.define(version: 20170406010553) do
+
+  create_table "medical_records", force: :cascade do |t|
+    t.string   "document",                null: false
+    t.string   "document_type",           null: false
+    t.datetime "first_consultation_date", null: false
+    t.string   "name",                    null: false
+    t.string   "last_name",               null: false
+    t.datetime "birth_date",              null: false
+    t.string   "gender",                  null: false
+    t.string   "phone_number"
+    t.string   "cellphone_number"
+    t.text     "address",                 null: false
+    t.string   "email"
+    t.string   "referred_by",             null: false
+    t.string   "profile_picture"
+    t.string   "representative_document"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "user_medical_records", force: :cascade do |t|
+    t.integer  "user_id",           null: false
+    t.integer  "medical_record_id", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
