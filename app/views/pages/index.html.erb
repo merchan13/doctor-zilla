@@ -1,34 +1,34 @@
 <div class="container home center">
   <div class="row align-middle">
     <div class="col-md-2 col-md-offset1">
-      <a href="#">
+      <%= link_to option_path('medical_records') do %>
         <i class="fa fa-users"></i>
         <h4>Historias</h4>
-      </a>
+      <% end %>
     </div>
     <div class="col-md-2">
-      <a href="#">
+      <%= link_to option_path('reports') do %>
         <i class="fa fa-clipboard"></i>
         <h4>Informes</h4>
-      </a>
+      <% end %>
     </div>
     <div class="col-md-2">
-      <a href="#">
+      <%= link_to option_path('prescriptions') do %>
         <i class="fa fa-stethoscope"></i>
         <h4>Récipes</h4>
-      </a>
+      <% end %>
     </div>
     <div class="col-md-2">
-      <a href="#">
+      <%= link_to option_path('budgets') do %>
         <i class="fa fa-hospital-o"></i>
         <h4>Presupuestos</h4>
-      </a>
+      <% end %>
     </div>
     <div class="col-md-2">
-      <a href="#">
+      <%= link_to option_path('operative_notes') do %>
         <i class="fa fa-user-md"></i>
         <h4>Notas operatorias</h4>
-      </a>
+      <% end %>
     </div>
   </div>
 </div>

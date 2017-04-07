@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/:page/home', to: 'pages#home', as: 'option'
+  resources :medical_records
+
 end

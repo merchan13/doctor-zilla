@@ -22,6 +22,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'bootstrap-datepicker-rails'
 
 
 group :development, :test do

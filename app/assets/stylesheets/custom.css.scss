@@ -10,6 +10,10 @@ body {
   text-align: center;
 }
 
+.navbar {
+  //position: fixed;
+}
+
 .navbar-default {
   background-color: #ffffff;
   border-color: #ffffff;
@@ -30,6 +34,8 @@ body {
 .login {
   max-width: 350px;
   margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 180px;
 }
 
 .login-logo {
@@ -89,4 +95,22 @@ footer ul li {
 
 .home .col-md-2 {
   width: 19%;
+}
+
+//NEW MEDICAL RECORD
+.container .new-panel{
+  margin: 5px;
+}
+
+.container .main-panel,
+.container .secondary-panel {
+  border-radius: 25px;
+  border: 2px solid #ededed;
+}
+
+.container .main-panel{
+  width: 80%;
+}
+
+.container .secondary-panel {
 }

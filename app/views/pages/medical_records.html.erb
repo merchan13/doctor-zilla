@@ -1,0 +1,28 @@
+<div class="container home center">
+  <div class="row align-middle">
+    <div class="col-md-3">
+      <%= link_to new_medical_record_path do %>
+        <i class="fa fa-user-plus"></i>
+        <h4>Nueva historia</h4>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to option_path('medical_records') do %>
+        <i class="fa fa-stethoscope"></i>
+        <h4>Nueva consulta</h4>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to option_path('medical_records') do %>
+        <i class="fa fa-pencil-square-o"></i>
+        <h4>Editar historia</h4>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to medical_records_path do %>
+        <i class="fa fa-search-plus"></i>
+        <h4>Buscar historia</h4>
+      <% end %>
+    </div>
+  </div>
+</div>
