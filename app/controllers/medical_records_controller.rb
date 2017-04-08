@@ -37,20 +37,9 @@ class MedicalRecordsController < ApplicationController
 
   private
     def record_params
-      params.require(:medical_record).permit( :document,
-                                              :document_type,
-                                              :first_consultation_date,
-                                              :name,
-                                              :last_name,
-                                              :birth_date,
-                                              :gender,
-                                              :phone_number,
-                                              :cellphone_number,
-                                              :address,
-                                              :email,
-                                              :referred_by,
-                                              :profile_picture,
-                                              :representative_document )
+      params.require(:medical_record).permit( :document, :document_type, :first_consultation_date, :name, :last_name,
+                                              :birth_date, :gender, :phone_number, :cellphone_number, :address, :email,
+                                              :referred_by, :profile_picture, :representative_document )
     end
 
     def set_record
