@@ -2,7 +2,7 @@ class MedicalRecordsController < ApplicationController
   before_action :set_record, only: [:edit, :update, :show]
 
   def index
-    @records = MedicalRecord.paginate(page: params[:page], per_page: 5)
+    @records = MedicalRecord.paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -12,8 +12,13 @@ class MedicalRecordsController < ApplicationController
   def create
     @record = MedicalRecord.new(record_params)
     if @record.save
-      flash[:success] = "Medical record was created successfully"
-      redirect_to medical_records_path
+      @user_record = UserMedicalRecord.new(user_id: current_user.id, medical_record_id: @record.id )
+      if @user_record.save
+        flash[:success] = "Medical record was created successfully"
+        redirect_to medical_records_path
+      else
+        render 'new'
+      end
     else
       render 'new'
     end
