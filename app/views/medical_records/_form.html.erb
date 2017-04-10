@@ -30,9 +30,7 @@
     <div class="form-group row">
       <div class="col-md-4">
         <%= f.label :profesión, class: 'form-control-label' %>
-        <select class="form-control" name="occupation" disabled>
-          <option value="nil">N/A</option>
-        </select>
+        <%= f.select :occupation_id, options_from_collection_for_select(Occupation.all, :id, :name), {include_blank: 'N/A'}, class: 'form-control' %>
       </div>
       <div class="col-md-3">
         <%= f.label :fecha_de_nacimiento, class: 'form-control-label' %>
@@ -83,9 +81,7 @@
       </div>
       <div class="col-md-4">
         <%= f.label :seguro, class: 'form-control-label' %>
-        <select class="form-control" name="insurance" disabled>
-          <option value="nil">N/A</option>
-        </select>
+        <%= f.select :insurance_id, options_from_collection_for_select(Insurance.all, :id, :name), {include_blank: 'N/A'}, class: 'form-control' %>
       </div>
     </div>
 
