@@ -3,6 +3,7 @@ class MedicalRecordsController < ApplicationController
 
   def index
     @records = MedicalRecord.paginate(page: params[:page], per_page: 20)
+    #@records = current_user.medical_records.paginate(page: params[:page], per_page: 20)
   end
 
   def new
