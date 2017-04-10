@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406010553) do
+ActiveRecord::Schema.define(version: 20170410184513) do
+
+  create_table "insurances", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "medical_records", force: :cascade do |t|
     t.string   "document",                null: false
@@ -29,6 +35,16 @@ ActiveRecord::Schema.define(version: 20170406010553) do
     t.string   "representative_document"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "occupation_id"
+    t.integer  "insurance_id"
+    t.index ["insurance_id"], name: "index_medical_records_on_insurance_id"
+    t.index ["occupation_id"], name: "index_medical_records_on_occupation_id"
+  end
+
+  create_table "occupations", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_medical_records", force: :cascade do |t|
