@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412185348) do
+ActiveRecord::Schema.define(version: 20170412215128) do
+
+  create_table "afflictions", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "basic_exams", force: :cascade do |t|
     t.float    "weight",          null: false
@@ -21,6 +28,24 @@ ActiveRecord::Schema.define(version: 20170412185348) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["consultation_id"], name: "index_basic_exams_on_consultation_id"
+  end
+
+  create_table "consultation_afflictions", force: :cascade do |t|
+    t.integer  "consultation_id"
+    t.integer  "affliction_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["affliction_id"], name: "index_consultation_afflictions_on_affliction_id"
+    t.index ["consultation_id"], name: "index_consultation_afflictions_on_consultation_id"
+  end
+
+  create_table "consultation_physical_exams", force: :cascade do |t|
+    t.integer  "consultation_id"
+    t.integer  "physical_exam_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["consultation_id"], name: "index_consultation_physical_exams_on_consultation_id"
+    t.index ["physical_exam_id"], name: "index_consultation_physical_exams_on_physical_exam_id"
   end
 
   create_table "consultation_reasons", force: :cascade do |t|
@@ -88,6 +113,14 @@ ActiveRecord::Schema.define(version: 20170412185348) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "physical_exams", force: :cascade do |t|
+    t.string   "exam_type",   null: false
+    t.string   "url",         null: false
+    t.text     "observation"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reasons", force: :cascade do |t|
