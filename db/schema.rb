@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412215128) do
+ActiveRecord::Schema.define(version: 20170413034303) do
 
   create_table "afflictions", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string   "background_type", null: false
+    t.text     "description",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "basic_exams", force: :cascade do |t|
@@ -37,6 +44,24 @@ ActiveRecord::Schema.define(version: 20170412215128) do
     t.datetime "updated_at",      null: false
     t.index ["affliction_id"], name: "index_consultation_afflictions_on_affliction_id"
     t.index ["consultation_id"], name: "index_consultation_afflictions_on_consultation_id"
+  end
+
+  create_table "consultation_backgrounds", force: :cascade do |t|
+    t.integer  "consultation_id"
+    t.integer  "background_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["background_id"], name: "index_consultation_backgrounds_on_background_id"
+    t.index ["consultation_id"], name: "index_consultation_backgrounds_on_consultation_id"
+  end
+
+  create_table "consultation_diagnostics", force: :cascade do |t|
+    t.integer  "consultation_id"
+    t.integer  "diagnostic_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["consultation_id"], name: "index_consultation_diagnostics_on_consultation_id"
+    t.index ["diagnostic_id"], name: "index_consultation_diagnostics_on_diagnostic_id"
   end
 
   create_table "consultation_physical_exams", force: :cascade do |t|
@@ -62,6 +87,12 @@ ActiveRecord::Schema.define(version: 20170412215128) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["medical_record_id"], name: "index_consultations_on_medical_record_id"
+  end
+
+  create_table "diagnostics", force: :cascade do |t|
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "evolutions", force: :cascade do |t|

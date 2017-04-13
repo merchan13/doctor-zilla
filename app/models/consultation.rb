@@ -13,4 +13,10 @@ class Consultation < ApplicationRecord
   # Examen fisico
   has_many :consultation_physical_exams
   has_many :physical_exams, through: :consultation_physical_exams
+  # Diagnóstico
+  has_many :consultation_diagnostics
+  has_many :diagnostics, through: :consultation_diagnostics
+  # Antecedentes
+  has_many :consultation_backgrounds
+  has_many :backgrounds, through: :consultation_backgrounds
 end
