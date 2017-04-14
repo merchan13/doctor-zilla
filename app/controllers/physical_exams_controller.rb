@@ -1,0 +1,2 @@
+class PhysicalExamsController < ApplicationController
+end

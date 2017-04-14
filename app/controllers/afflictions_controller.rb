@@ -1,0 +1,2 @@
+class AfflictionsController < ApplicationController
+end

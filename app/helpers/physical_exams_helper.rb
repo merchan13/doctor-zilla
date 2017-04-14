@@ -1,0 +1,2 @@
+module PhysicalExamsHelper
+end

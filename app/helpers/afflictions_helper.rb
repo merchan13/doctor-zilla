@@ -1,0 +1,2 @@
+module AfflictionsHelper
+end
