@@ -2,7 +2,14 @@ class MedicalRecordsController < ApplicationController
   before_action :set_record, only: [:edit, :update, :show]
 
   def index
-    @records = current_user.medical_records.paginate(page: params[:page], per_page: 20)
+    if current_user.role == "Doctor"
+      @records = current_user.medical_records.paginate(page: params[:page], per_page: 20)
+    elsif current_user.role == "Ayudante"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      @records = doctor.medical_records.paginate(page: params[:page], per_page: 20)
+    elsif current_user.role == "Administrador"
+      @records = MedicalRecord.all.paginate(page: params[:page], per_page: 20)
+    end
   end
 
   def new

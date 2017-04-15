@@ -7,16 +7,16 @@
       <% end %>
     </div>
     <div class="col-md-3">
-      <%= link_to option_path('medical_records') do %>
+      <a href="#" data-toggle="modal" data-target="#nueva-consulta-modal">
         <i class="fa fa-stethoscope"></i>
         <h4>Nueva consulta</h4>
-      <% end %>
+      </a>
     </div>
     <div class="col-md-3">
-      <%= link_to option_path('medical_records') do %>
+      <a href="#" data-toggle="modal" data-target="#editar-historia-modal">
         <i class="fa fa-pencil-square-o"></i>
         <h4>Editar historia</h4>
-      <% end %>
+      </a>
     </div>
     <div class="col-md-3">
       <%= link_to medical_records_path do %>
@@ -25,4 +25,43 @@
       <% end %>
     </div>
   </div>
+
+  <!-- Modal, nueva consulta -->
+  <div class="modal fade" id="nueva-consulta-modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Nueva Consulta</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal, editar historia -->
+  <div class="modal fade" id="editar-historia-modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar Historia</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

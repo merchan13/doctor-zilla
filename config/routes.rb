@@ -12,6 +12,18 @@ Rails.application.routes.draw do
   end
 
   get '/:page/home', to: 'pages#home', as: 'option'
-  resources :medical_records
+
+  resources :medical_records,   except: :destroy
+  resources :occupations,       except: [:destroy, :edit, :update]
+  resources :insurances,        except: [:destroy, :edit, :update]
+  resources :consultations,     except: :destroy
+  resources :reasons,           except: [:destroy, :edit, :update]
+  resources :affections,        except: :destroy
+  resources :backgrounds,       except: :destroy
+  resources :basic_exams,       except: :destroy
+  resources :physical_exams,    except: :destroy
+  resources :evolutions,        except: :destroy
+  resources :notes,             except: :destroy
+  resources :diagnostics,       except: [:destroy, :edit, :update]
 
 end
