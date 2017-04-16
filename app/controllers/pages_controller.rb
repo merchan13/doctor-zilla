@@ -8,4 +8,9 @@ class PagesController < ApplicationController
     render template: "pages/#{params[:page]}"
   end
 
+  def search
+    @model = params[:model]
+    @filter = params[:filter]
+  end
+
 end

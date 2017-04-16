@@ -26,4 +26,7 @@ Rails.application.routes.draw do
   resources :notes,             except: :destroy
   resources :diagnostics,       except: [:destroy, :edit, :update]
 
+  get 'search', to: 'pages#search'
+  get 'search_records', to: 'medical_records#search'
+
 end

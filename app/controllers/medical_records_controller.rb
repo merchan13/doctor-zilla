@@ -42,6 +42,16 @@ class MedicalRecordsController < ApplicationController
     # @record_x = @record.x.paginate(page: params[:page], per_page: 5)
   end
 
+  def search
+    @filter = params[:filter]
+    @records = current_user.medical_records.search(params[:search_param])
+    if @records
+      render partial: "medical_records/lookup"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
+
   private
     def record_params
       params.require(:medical_record).permit( :document, :document_type, :first_consultation_date, :name, :last_name,
