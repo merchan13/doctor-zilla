@@ -1,0 +1,28 @@
+<%= render 'shared/errors', obj: @consultation %>
+<div class="col-md-9 new-panel main-panel">
+  <%= form_for(@consultation, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
+
+    <input type="hidden" name="record" value="<%= @record.id %>">
+
+    <div class="form-group row">
+      <div class="col-md-4">
+        <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
+        <%= f.select :reasons, options_from_collection_for_select(Reason.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group center'>
+      <div class='col-md-offset-4 col-md-4'>
+        <%= f.submit class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-2 new-panel secondary-panel">
+  <p>Perfil paciente</p>
+</div>
+
+<div class="col-xs-4 col-xs-offset-4">
+  [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
+</div>

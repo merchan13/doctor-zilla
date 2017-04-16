@@ -19,4 +19,33 @@ class Consultation < ApplicationRecord
   # Antecedentes
   has_many :consultation_backgrounds
   has_many :backgrounds, through: :consultation_backgrounds
+
+  def add_reason(reason)
+    self.reasons << Reason.find(reason)
+  end
+
+  def add_affliction(affliction)
+    # ...
+  end
+
+  def add_physical_exam(physical_exam)
+    # ...
+  end
+
+  def add_diagnostic(diagnostic)
+    # ...
+  end
+
+  def add_basic_exam(basic_exam)
+    # ...
+  end
+
+  def add_evolution(evolution)
+    # ...
+  end
+
+  def add_background(background)
+    # ...
+  end
+
 end
