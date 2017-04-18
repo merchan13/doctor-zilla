@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416052437) do
-
-  create_table "afflictions", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+ActiveRecord::Schema.define(version: 20170418033157) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,26 +28,6 @@ ActiveRecord::Schema.define(version: 20170416052437) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "basic_exams", force: :cascade do |t|
-    t.float    "weight",          null: false
-    t.float    "height",          null: false
-    t.float    "temperature",     null: false
-    t.string   "pressure"
-    t.integer  "consultation_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["consultation_id"], name: "index_basic_exams_on_consultation_id"
-  end
-
-  create_table "consultation_afflictions", force: :cascade do |t|
-    t.integer  "consultation_id"
-    t.integer  "affliction_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["affliction_id"], name: "index_consultation_afflictions_on_affliction_id"
-    t.index ["consultation_id"], name: "index_consultation_afflictions_on_consultation_id"
-  end
-
   create_table "consultation_backgrounds", force: :cascade do |t|
     t.integer  "consultation_id"
     t.integer  "background_id"
@@ -64,52 +37,28 @@ ActiveRecord::Schema.define(version: 20170416052437) do
     t.index ["consultation_id"], name: "index_consultation_backgrounds_on_consultation_id"
   end
 
-  create_table "consultation_diagnostics", force: :cascade do |t|
-    t.integer  "consultation_id"
-    t.integer  "diagnostic_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["consultation_id"], name: "index_consultation_diagnostics_on_consultation_id"
-    t.index ["diagnostic_id"], name: "index_consultation_diagnostics_on_diagnostic_id"
-  end
-
-  create_table "consultation_physical_exams", force: :cascade do |t|
-    t.integer  "consultation_id"
-    t.integer  "physical_exam_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["consultation_id"], name: "index_consultation_physical_exams_on_consultation_id"
-    t.index ["physical_exam_id"], name: "index_consultation_physical_exams_on_physical_exam_id"
-  end
-
-  create_table "consultation_reasons", force: :cascade do |t|
-    t.integer  "consultation_id"
-    t.integer  "reason_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["consultation_id"], name: "index_consultation_reasons_on_consultation_id"
-    t.index ["reason_id"], name: "index_consultation_reasons_on_reason_id"
-  end
-
   create_table "consultations", force: :cascade do |t|
     t.integer  "medical_record_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.text     "evolution"
+    t.text     "note"
+    t.text     "affliction"
+    t.float    "weight"
+    t.float    "height"
+    t.float    "temperature"
+    t.string   "pressure"
+    t.integer  "diagnostic_id"
+    t.integer  "reason_id"
+    t.index ["diagnostic_id"], name: "index_consultations_on_diagnostic_id"
     t.index ["medical_record_id"], name: "index_consultations_on_medical_record_id"
+    t.index ["reason_id"], name: "index_consultations_on_reason_id"
   end
 
   create_table "diagnostics", force: :cascade do |t|
     t.string   "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "evolutions", force: :cascade do |t|
-    t.text     "description",     null: false
-    t.integer  "consultation_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["consultation_id"], name: "index_evolutions_on_consultation_id"
   end
 
   create_table "insurances", force: :cascade do |t|
@@ -139,14 +88,6 @@ ActiveRecord::Schema.define(version: 20170416052437) do
     t.integer  "insurance_id"
     t.index ["insurance_id"], name: "index_medical_records_on_insurance_id"
     t.index ["occupation_id"], name: "index_medical_records_on_occupation_id"
-  end
-
-  create_table "notes", force: :cascade do |t|
-    t.text     "description",     null: false
-    t.integer  "consultation_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["consultation_id"], name: "index_notes_on_consultation_id"
   end
 
   create_table "occupations", force: :cascade do |t|
