@@ -11,11 +11,6 @@ class Consultation < ApplicationRecord
   # Diagnóstico
   belongs_to :diagnostic, optional: true
 
-
-  def add_reason(reason)
-    self.reasons << Reason.find(reason)
-  end
-
   # Recibo un array con todos los examenes fisicos.
   def add_physical_exam(physical_exam)
     # ...

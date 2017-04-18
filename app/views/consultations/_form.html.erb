@@ -7,7 +7,7 @@
     <div class="form-group row">
       <div class="col-md-4">
         <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
-        <%= f.select :reasons, options_from_collection_for_select(Reason.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
+        <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
       </div>
     </div>
 

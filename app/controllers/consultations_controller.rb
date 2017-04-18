@@ -10,15 +10,8 @@ class ConsultationsController < ApplicationController
   end
 
   def create
-    #error = false
-    @consultation = @record.consultations.create()
+    @consultation = @record.consultations.create(consultation_params)
     if @consultation.save
-      @consultation.add_reason(params[:consultation][:reasons])
-      #@consultation.add_x(params[:consultation][:x])
-      #@consultation.add_x(params[:consultation][:x])
-      #@consultation.add_x(params[:consultation][:x])
-      #@consultation.add_x(params[:consultation][:x])
-      #@consultation.add_x(params[:consultation][:x])
       #@consultation.add_x(params[:consultation][:x])
       flash[:success] = "Medical consultation was created successfully"
       redirect_to medical_records_path
@@ -38,7 +31,8 @@ class ConsultationsController < ApplicationController
 
   private
     def consultation_params
-      params.require(:consultation).permit( :reason )
+      params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :temperature, :pressure,
+                                            :diagnostic_id, :reason_id )
     end
 
     def set_consultation
