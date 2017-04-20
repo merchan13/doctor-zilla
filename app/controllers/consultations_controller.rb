@@ -10,13 +10,15 @@ class ConsultationsController < ApplicationController
   end
 
   def create
-    @consultation = @record.consultations.create(consultation_params)
-    if @consultation.save
-      #@consultation.add_x(params[:consultation][:x])
-      flash[:success] = "Medical consultation was created successfully"
-      redirect_to medical_records_path
-    else
-      render 'new'
+    Consultation.transaction do
+      @consultation = @record.consultations.create(consultation_params)
+      @consultation.add_backgrounds(params[:background])
+      if @consultation.save
+        flash[:success] = "Medical consultation was created successfully"
+        redirect_to medical_records_path
+      else
+        render 'new'
+      end
     end
   end
 
@@ -31,8 +33,12 @@ class ConsultationsController < ApplicationController
 
   private
     def consultation_params
-      params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :temperature, :pressure,
-                                            :diagnostic_id, :reason_id )
+      params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :temperature, :pressure_s,
+                                            :pressure_d, :diagnostic_id, :reason_id )
+    end
+
+    def background_params
+      # params.require.(:background).permit( :family, :allergy, :diabetes, :asma, :heart, :medicine, :surgical, :other )
     end
 
     def set_consultation

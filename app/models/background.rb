@@ -1,6 +1,5 @@
 class Background < ApplicationRecord
-  has_many :consultation_backgrounds
-  has_many :consultations, through: :consultation_backgrounds
+  belongs_to :consultation
 
   validates_presence_of :background_type, :description
 end
