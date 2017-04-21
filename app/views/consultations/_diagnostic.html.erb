@@ -1,0 +1,6 @@
+<div class="form-group col-md-12">
+  <div class="col-md-12">
+    <%= f.label :Diagnóstico, class: 'form-control-label' %>
+    <%= f.select :diagnostic_id, options_from_collection_for_select(Diagnostic.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
+  </div>
+</div>

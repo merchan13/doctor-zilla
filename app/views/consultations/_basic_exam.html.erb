@@ -1,0 +1,28 @@
+<div class="form-group col-md-12">
+  <h4><i>Examen Básico</i></h4>
+  <div class="col-md-3">
+    <%= f.label :Peso, class: 'form-control-label' %> (kg)
+    <%= f.number_field :weight, in: 1.00..300.00, step: 0.50, class: 'form-control' %>
+  </div>
+  <div class="col-md-3">
+    <%= f.label :Talla, class: 'form-control-label' %> (cm)
+    <%= f.text_field :height, in: 1.00..300.00, step: 0.50, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <label for="imc">IMC</label> (kg/m&#178;)
+    <h5>Peso/Talla&#178; = X</h5>
+  </div>
+  <div class="col-md-4">
+    <div class="col-md-12">
+      <%= f.label :Tensión, class: 'form-control-label' %> (mmHg)
+    </div>
+    <div class="col-md-6">
+      <small><strong>Sistólica</strong></small>
+      <%= f.text_field :pressure_s, value: nil, class: 'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <small><strong>Diástolica</strong></small>
+      <%= f.text_field :pressure_d, value: nil, class: 'form-control' %>
+    </div>
+  </div>
+</div>

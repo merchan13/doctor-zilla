@@ -9,112 +9,34 @@
 
     <input type="hidden" name="record" value="<%= @record.id %>">
 
-    <!-- BASICO: Motivo de consulta y enfermedad actual. -->
-    <div class="form-group col-md-12">
-      <div class="col-md-4">
-        <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
-        <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
-      </div>
-      <div class="col-md-8">
-        <%= f.label :Enfermedad_Actual, class: 'form-control-label' %>
-        <%= f.text_area :affliction, rows: '3', value: nil, class: 'form-control' %>
-      </div>
-    </div>
+    <!-- INFO BASICA (motivo de consulta y enfermedad actual). -->
+    <%= render partial: 'basic_info', locals: { f: f } %>
 
     <div class="col-md-12"><hr></div>
 
     <!-- ANTECEDENTES. -->
-    <div class="form-group col-md-12">
-      <h4><i>Antecedentes</i></h4>
-      <div class="col-md-4">
-        <%= f.label :Familiares, class: 'form-control-label' %>
-        <%= text_area(:background, :family, rows: '3', class: 'form-control') %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :Alergias, class: 'form-control-label' %>
-        <%= text_area(:background, :allergy, rows: '3', class: 'form-control') %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :Diábetes, class: 'form-control-label' %>
-        <%= text_area(:background, :diabetes, rows: '3', class: 'form-control') %>
-      </div>
-    </div>
-    <div class="form-group col-md-12">
-      <div class="col-md-4">
-        <%= f.label :Asma, class: 'form-control-label' %>
-        <%= text_area(:background, :asthma, rows: '3', class: 'form-control') %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :Cardiopatías, class: 'form-control-label' %>
-        <%= text_area(:background, :heart, rows: '3', class: 'form-control') %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :Medicamentos, class: 'form-control-label' %>
-        <%= text_area(:background, :medicine, rows: '3', class: 'form-control') %>
-      </div>
-    </div>
-    <div class="form-group col-md-12">
-      <div class="col-md-6">
-        <%= f.label :Quirúrgicos, class: 'form-control-label' %>
-        <%= text_area(:background, :surgical, rows: '3', class: 'form-control') %>
-      </div>
-      <div class="col-md-6">
-        <%= f.label :Otros, class: 'form-control-label' %>
-        <%= text_area(:background, :other, rows: '3', class: 'form-control') %>
-      </div>
-    </div>
+    <%= render partial: 'backgrounds', locals: { f: f } %>
 
     <div class="col-md-12"><hr></div>
 
-    <!-- Examen Básico. -->
-    <div class="form-group col-md-12">
-      <h4><i>Examen Básico</i></h4>
-      <div class="col-md-3">
-        <%= f.label :Peso, class: 'form-control-label' %> (kg)
-        <%= f.number_field :weight, in: 1.00..300.00, step: 0.50, class: 'form-control' %>
-      </div>
-      <div class="col-md-3">
-        <%= f.label :Talla, class: 'form-control-label' %> (cm)
-        <%= f.text_field :height, in: 1.00..300.00, step: 0.50, class: 'form-control' %>
-      </div>
-      <div class="col-md-2">
-        <label for="imc">IMC</label> (kg/m&#178;)
-        <h5>Peso/Talla&#178; = X</h5>
-      </div>
-      <div class="col-md-4">
-        <div class="col-md-12">
-          <%= f.label :Tensión, class: 'form-control-label' %> (mmHg)
-        </div>
-        <div class="col-md-6">
-          <small><strong>Sistólica</strong></small>
-          <%= f.text_field :pressure_s, value: nil, class: 'form-control' %>
-        </div>
-        <div class="col-md-6">
-          <small><strong>Diástolica</strong></small>
-          <%= f.text_field :pressure_d, value: nil, class: 'form-control' %>
-        </div>
-      </div>
-    </div>
+    <!-- EXAMEN BÁSICO. -->
+    <%= render partial: 'basic_exam', locals: { f: f } %>
+
+    <div class="col-md-12"><hr></div>
+
+    <!-- EXAMEN FÍSICO -->
+    <%= render partial: 'physical_exam', locals: { f: f } %>
 
     <div class="col-md-12"><hr></div>
 
     <!-- EVOLUCIÓN. -->
-    <div class="form-group col-md-12">
-        <%= f.label :Evolución, class: 'form-control-label' %>
-        <%= f.text_area :evolution, rows: '3', value: nil, class: 'form-control' %>
-    </div>
+    <%= render partial: 'evolution', locals: { f: f } %>
 
     <!-- NOTAS. -->
-    <div class="form-group col-md-12">
-        <%= f.label :Notas, class: 'form-control-label' %>
-        <%= f.text_area :note, rows: '3', value: nil, class: 'form-control' %>
-    </div>
+    <%= render partial: 'note', locals: { f: f } %>
 
     <!-- DIAGNOSTICO. -->
-    <div class="form-group col-md-12">
-      <%= f.label :Diagnóstico, class: 'form-control-label' %>
-      <%= f.select :diagnostic_id, options_from_collection_for_select(Diagnostic.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
-    </div>
+    <%= render partial: 'diagnostic', locals: { f: f } %>
 
     <div class="col-md-12"><hr></div>
 

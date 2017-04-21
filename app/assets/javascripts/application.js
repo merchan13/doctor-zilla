@@ -31,3 +31,11 @@ var hide_spinner = function(){
 var show_spinner = function(){
   $('#spinner').show();
 }
+
+function normalAbnormalCheck(system) {
+    if (document.getElementById(system + '_abnormal').checked) {
+        document.getElementById('if_'+ system +'_abnormal').style.display = 'block';
+    }
+    else document.getElementById('if_'+ system +'_abnormal').style.display = 'none';
+
+}

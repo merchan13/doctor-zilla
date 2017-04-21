@@ -1,22 +1,33 @@
 <%= render 'shared/errors', obj: @record %>
 <div class="col-md-9 new-panel main-panel">
+
+  <h3 align="center"><strong>Nueva Historia</strong></h3>
+
+  <div class="col-md-12"><hr></div>
+
   <%= form_for(@record, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
 
     <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
 
-    <div class="form-group row">
-      <div class="col-md-4">
+    <!-- IDENTIFICACIÓN -->
+    <div class="form-group col-md-12">
+      <div class="col-md-12">
         <%= f.label :identificación, class: 'form-control-label' %>
+      </div>
+      <div class="col-md-1">
         <select class="form-control" name="medical_record[document_type]" id="medical_record_document_type">
           <option value="V">V</option>
           <option value="E">E</option>
           <option value="P">P</option>
         </select>
+      </div>
+      <div class="col-md-3">
         <%= f.text_field :document, class: 'form-control', placeholder: 'Número de identificación', autofocus: true %>
       </div>
     </div>
 
-    <div class="form-group row">
+    <!-- NOMBRES -->
+    <div class="form-group col-md-12">
       <div class="col-md-4">
         <%= f.label :nombres, class: 'form-control-label' %>
         <%= f.text_field :name, class: 'form-control', placeholder: 'Nombres del paciente', autofocus: true %>
@@ -27,7 +38,8 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <!-- PROFESION / FECHA DE NACIMIENTO -->
+    <div class="form-group col-md-12">
       <div class="col-md-4">
         <%= f.label :profesión, class: 'form-control-label' %>
         <%= f.select :occupation_id, options_from_collection_for_select(Occupation.all, :id, :name), {include_blank: 'N/A'}, class: 'form-control' %>
@@ -36,23 +48,31 @@
         <%= f.label :fecha_de_nacimiento, class: 'form-control-label' %>
         <%= f.text_field :birth_date, class: 'form-control', "data-provide" => 'datepicker', "data-date-format" => 'yyyy/mm/dd' %>
       </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-4">
-        <%= f.label :sexo, class: 'form-control-label' %>
-        <div class="form-check">
-          <%= f.radio_button :gender, 'masculine', class: 'form-check-input' , :checked => true %>
-          <%= label :gender_masc, 'Masculino', class: 'form-check-label' %>
-        </div>
-        <div class="form-check">
-          <%= f.radio_button :gender, 'femenine', class: 'form-check-input' %>
-          <%= label :gender_fem, 'Femenino', class: 'form-check-label' %>
-        </div>
+      <div class="col-md-5">
+        <%= f.label :edad, class: 'form-control-label' %>
+        <p>XX Años</p>
       </div>
     </div>
 
-    <div class="form-group row">
+    <!-- SEXO -->
+    <div class="form-group col-md-12">
+      <div class="col-md-12">
+        <%= f.label :sexo, class: 'form-control-label' %>
+      </div>
+      <div class="form-check col-md-2">
+        <%= f.radio_button :gender, 'masculine', class: 'form-check-input' , :checked => true %>
+        <small><strong>Masculino</strong></small>
+      </div>
+      <div class="form-check col-md-2">
+        <%= f.radio_button :gender, 'femenine', class: 'form-check-input' %>
+        <small><strong>Femenino</strong></small>
+      </div>
+    </div>
+
+    <div class="col-md-12"><hr></div>
+
+    <!-- TELÉFONOS / EMAIL -->
+    <div class="form-group col-md-12">
       <div class="col-md-4">
         <%= f.label :teléfono_casa, class: 'form-control-label' %>
         <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Teléfono fijo del paciente', autofocus: true %>
@@ -67,14 +87,18 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <!-- DIRECCIÓN -->
+    <div class="form-group col-md-12">
       <div class="col-md-12">
         <%= f.label :dirección_de_habitación, class: 'form-control-label' %>
         <%= f.text_field :address, class: 'form-control', placeholder: 'Dirección completa del paciente' %>
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="col-md-12"><hr></div>
+
+    <!-- REFERENCIA / SEGURO -->
+    <div class="form-group col-md-12">
       <div class="col-md-4">
         <%= f.label :referido_por, class: 'form-control-label' %>
         <%= f.text_field :referred_by, class: 'form-control', placeholder: 'Persona que refirió al paciente' %>

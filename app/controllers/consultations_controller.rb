@@ -13,6 +13,7 @@ class ConsultationsController < ApplicationController
     Consultation.transaction do
       @consultation = @record.consultations.create(consultation_params)
       @consultation.add_backgrounds(params[:background])
+      @consultation.add_physical_exams(params[:physical], params[:physical_description])
       if @consultation.save
         flash[:success] = "Medical consultation was created successfully"
         redirect_to medical_records_path

@@ -1,0 +1,254 @@
+<div class="form-group col-md-12">
+  <h4><i>Examen Físico</i></h4>
+
+  <!-- CABEZA Y CUELLO -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :Cabeza_y_Cuello, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="cc_normal" name="physical[cc]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('cc');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="cc_abnormal" name="physical[cc]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('cc');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_cc_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :cc, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :cc, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- TORAX -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :Torax, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="tx_normal" name="physical[tx]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('tx');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="tx_abnormal" name="physical[tx]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('tx');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_tx_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :tx, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :tx, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- ABDOMEN -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :Abdomen, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="ab_normal" name="physical[ab]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('ab');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="ab_abnormal" name="physical[ab]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('ab');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_ab_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :ab, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :ab, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- GENITALES -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :genitales, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="gn_normal" name="physical[gn]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('gn');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="gn_abnormal" name="physical[gn]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('gn');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_gn_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :gn, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :gn, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- PARTES BLANDAS -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :partes_Blandas, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="pb_normal" name="physical[pb]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('pb');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="pb_abnormal" name="physical[pb]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('pb');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_pb_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :pb, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :pb, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- EXTREMIDADES -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :extremidades, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="ex_normal" name="physical[ex]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('ex');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="ex_abnormal" name="physical[ex]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('ex');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_ex_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :ex, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :ex, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- VASCULAR -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :vascular, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="vs_normal" name="physical[vs]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('vs');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="vs_abnormal" name="physical[vs]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('vs');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_vs_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :vs, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :vs, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- PIEL -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :piel, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="pl_normal" name="physical[pl]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('pl');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="pl_abnormal" name="physical[pl]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('pl');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_pl_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :pl, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :pl, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- MAMAS -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :mamas, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="mm_normal" name="physical[mm]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('mm');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="mm_abnormal" name="physical[mm]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('mm');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_mm_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :mm, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :mamas, class: 'form-control') %>
+    </div>
+  </div>
+
+  <!-- OTROS -->
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <%= f.label :otros, class: 'form-control-label' %>
+    </div>
+    <!-- check normalidad -->
+    <div class="col-md-3">
+      <input id="otros_normal" name="physical[otros]" type="radio" value="0" checked="true" onclick="javascript:normalAbnormalCheck('otros');" />
+      <span>Normal</span>
+    </div>
+    <div class="col-md-3">
+      <input id="otros_abnormal" name="physical[otros]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('otros');" />
+      <span>Anormal</span>
+    </div>
+  </div>
+  <!-- descripcion + esquema -->
+  <div id="if_otros_abnormal" class="col-md-12" style="display:none">
+    <div class="col-md-6">
+      <%= text_area(:physical_description, :otros, rows: '3', class: 'form-control') %>
+    </div>
+    <div class="col-md-6">
+      <%= file_field(:physical_scheme, :otros, class: 'form-control') %>
+    </div>
+  </div>
+
+</div>
