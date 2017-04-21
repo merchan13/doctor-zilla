@@ -29,12 +29,12 @@
               aria-expanded="false"><%= current_user.full_name + " (#{current_user.role})" %> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Ver mi perfil</a></li>
+              <li><%= link_to "Ver mi perfil", edit_user_registration_path %></li>
               <% if current_user.role == "Doctor" || current_user.role == "Administrador" %>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">Administración</a></li>
                 <li><a href="#">Resumen de actividades</a></li>
-              <% end %>  
+              <% end %>
               <li role="separator" class="divider"></li>
               <li><a href="#">Ayuda</a></li>
               <li><%= link_to 'Cerrar sesión',  destroy_user_session_path, method: :delete %></li>
