@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419224459) do
+ActiveRecord::Schema.define(version: 20170421193415) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170419224459) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "auth_token"
+    t.string   "avatar"
     t.index ["auth_token"], name: "index_users_on_auth_token"
     t.index ["document"], name: "index_users_on_document", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
