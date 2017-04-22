@@ -10,15 +10,11 @@ class Consultation < ApplicationRecord
   # Diagnóstico
   belongs_to :diagnostic, optional: true
 
-
-
   # Recibo un array con todos los examenes fisicos.
   def add_physical_exams(physical_exams, exams_descriptions)
     physical_exams.each do |exam|
       if physical_exams[exam] == '1'
-        self.physical_exams << PhysicalExam.create( exam_type: white_list_exam_type(exam),
-                                                    url: 'physical_exams/xxx.png',
-                                                    observation: exams_descriptions[exam] )
+        self.physical_exams << PhysicalExam.create( exam_type: white_list_exam_type(exam), url: 'physical_exams/xxx.png', observation: exams_descriptions[exam] )
       end
     end
   end
