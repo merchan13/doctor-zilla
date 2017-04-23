@@ -32,7 +32,7 @@
               <li><%= link_to "Ver mi perfil", edit_user_registration_path %></li>
               <% if current_user.role == "Doctor" || current_user.role == "Administrador" %>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Administración</a></li>
+                <li><%= link_to "Administración", administration_path %></li>
                 <li><a href="#">Resumen de actividades</a></li>
               <% end %>
               <li role="separator" class="divider"></li>

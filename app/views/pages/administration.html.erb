@@ -1,0 +1,47 @@
+<h1 align="center">Administración</h1>
+
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Identificación</th>
+        <th>Nombre(s)</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @assistants.each do |assistant| %>
+        <tr>
+          <th scope="row"><%= link_to "#{assistant.id}", users_admin_path(assistant) %></th>
+            <td><%= "#{assistant.document}" %></td>
+            <td><%= "#{assistant.full_name}" %></td>
+            <td><%= "#{assistant.role}" %></td>
+            <td>
+              <%= link_to users_admin_path(assistant) do%>
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18pt;"></i>
+              <% end %>
+              <%= link_to admin_destroy_user_path(assistant), method: :delete, data: { confirm: "You sure?" } do%>
+                <i class="fa fa-trash" aria-hidden="true" style="font-size:18pt;"></i>
+              <% end %>
+              <a class="yellow-text"><i class="fa fa-ban" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="center">
+    <%= will_paginate @assistants %>
+  </div>
+  <div class="col-md-12">
+    <%= link_to new_users_admin_path do %>
+      <div class="col-md-1 col-md-offset-4">
+        <i class="fa fa-user-plus" aria-hidden="true" style="font-size:30pt;"></i>
+      </div>
+      <div class="col-md-3">
+        <h4>Agregar Personal</h4>
+      </div>
+    <% end %>
+  </div>
+</div>

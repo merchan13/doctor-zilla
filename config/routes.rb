@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  resources :users_admin, only: [:show, :new, :create], :controller => 'users'
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   devise_scope :user do
     authenticated do
@@ -18,15 +20,12 @@ Rails.application.routes.draw do
   resources :insurances,        except: [:destroy, :edit, :update]
   resources :consultations,     except: :destroy
   resources :reasons,           except: [:destroy, :edit, :update]
-  resources :affections,        except: :destroy
   resources :backgrounds,       except: :destroy
-  resources :basic_exams,       except: :destroy
   resources :physical_exams,    except: :destroy
-  resources :evolutions,        except: :destroy
-  resources :notes,             except: :destroy
   resources :diagnostics,       except: [:destroy, :edit, :update]
 
   get 'search', to: 'pages#search'
   get 'search_records', to: 'medical_records#search'
+  get 'administration', to: 'pages#administration'
 
 end

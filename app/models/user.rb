@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :assistants, through: :assistantships
 
   def full_name
-    return "#{name.split(' ')[0]} #{lastname.split(' ')[0]}".strip if (name || lastname)
+    return "#{name.split(' ')[0]} #{lastname}".strip if (name || lastname)
     "Anonymous"
   end
 
