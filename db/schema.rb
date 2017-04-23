@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421193415) do
+ActiveRecord::Schema.define(version: 20170423024248) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 20170421193415) do
     t.integer  "reason_id"
     t.string   "pressure_s"
     t.string   "pressure_d"
+    t.integer  "plan_id"
     t.index ["diagnostic_id"], name: "index_consultations_on_diagnostic_id"
     t.index ["medical_record_id"], name: "index_consultations_on_medical_record_id"
+    t.index ["plan_id"], name: "index_consultations_on_plan_id"
     t.index ["reason_id"], name: "index_consultations_on_reason_id"
   end
 
@@ -89,6 +91,15 @@ ActiveRecord::Schema.define(version: 20170421193415) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "operative_notes", force: :cascade do |t|
+    t.text     "description", null: false
+    t.text     "find"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "plan_id"
+    t.index ["plan_id"], name: "index_operative_notes_on_plan_id"
+  end
+
   create_table "physical_exams", force: :cascade do |t|
     t.string   "exam_type",       null: false
     t.string   "url",             null: false
@@ -97,6 +108,34 @@ ActiveRecord::Schema.define(version: 20170421193415) do
     t.datetime "updated_at",      null: false
     t.integer  "consultation_id"
     t.index ["consultation_id"], name: "index_physical_exams_on_consultation_id"
+  end
+
+  create_table "plan_procedures", force: :cascade do |t|
+    t.integer  "plan_id"
+    t.integer  "procedure_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["plan_id"], name: "index_plan_procedures_on_plan_id"
+    t.index ["procedure_id"], name: "index_plan_procedures_on_procedure_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.text     "description",       null: false
+    t.boolean  "emergency"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "consultation_id"
+    t.integer  "operative_note_id"
+    t.index ["consultation_id"], name: "index_plans_on_consultation_id"
+    t.index ["operative_note_id"], name: "index_plans_on_operative_note_id"
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "description", null: false
+    t.float    "cost"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reasons", force: :cascade do |t|

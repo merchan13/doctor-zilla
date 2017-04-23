@@ -9,6 +9,8 @@ class Consultation < ApplicationRecord
   belongs_to :reason, optional: true
   # Diagnóstico
   belongs_to :diagnostic, optional: true
+  # Plan
+  has_one :plan
 
   # Recibo un array con todos los examenes fisicos.
   def add_physical_exams(physical_exams, exams_descriptions)
