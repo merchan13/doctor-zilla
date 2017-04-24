@@ -1,0 +1,45 @@
+<!-- REASON MODAL -->
+<div class="modal fade" id="new-reason-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Motivo de Consulta</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@reason, remote: true) do |r| %>
+          <%= r.label :Motivo_De_Consulta, class: 'form-control-label' %>
+          <%= r.text_field :description, value: nil, class: 'form-control' %>
+          <%= r.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSTIC MODAL-->
+<div class="modal fade" id="new-diagnostic-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Diagnóstico</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@diagnostic, remote: true) do |d| %>
+          <%= d.label :Diagnóstico, class: 'form-control-label' %>
+          <%= d.text_field :description, value: nil, class: 'form-control' %>
+          <%= d.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
