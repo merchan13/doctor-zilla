@@ -1,7 +1,9 @@
 class MedicalRecord < ApplicationRecord
   has_many :user_medical_records
-  has_many  :users, through: :user_medical_records
+  has_many :users, through: :user_medical_records
   has_many :consultations
+  has_many :prescriptions
+  has_many :attachments
 
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true

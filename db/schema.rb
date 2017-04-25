@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425195741) do
+ActiveRecord::Schema.define(version: 20170425211533) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20170425195741) do
     t.datetime "updated_at",   null: false
     t.index ["assistant_id"], name: "index_assistantships_on_assistant_id"
     t.index ["user_id"], name: "index_assistantships_on_user_id"
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.text     "description",       null: false
+    t.string   "url",               null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "medical_record_id"
+    t.index ["medical_record_id"], name: "index_attachments_on_medical_record_id"
   end
 
   create_table "backgrounds", force: :cascade do |t|
@@ -85,6 +94,20 @@ ActiveRecord::Schema.define(version: 20170425195741) do
     t.index ["occupation_id"], name: "index_medical_records_on_occupation_id"
   end
 
+  create_table "medicines", force: :cascade do |t|
+    t.string   "comercial_name",    null: false
+    t.string   "generic_name",      null: false
+    t.string   "dose_way"
+    t.float    "dose_quantity",     null: false
+    t.float    "interval_quantity", null: false
+    t.float    "duration_quantity", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "dose_unit",         null: false
+    t.string   "interval_unit",     null: false
+    t.string   "duration_unit",     null: false
+  end
+
   create_table "occupations", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -128,6 +151,23 @@ ActiveRecord::Schema.define(version: 20170425195741) do
     t.integer  "operative_note_id"
     t.index ["consultation_id"], name: "index_plans_on_consultation_id"
     t.index ["operative_note_id"], name: "index_plans_on_operative_note_id"
+  end
+
+  create_table "prescription_medicines", force: :cascade do |t|
+    t.integer  "prescription_id"
+    t.integer  "medicine_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["medicine_id"], name: "index_prescription_medicines_on_medicine_id"
+    t.index ["prescription_id"], name: "index_prescription_medicines_on_prescription_id"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.string   "note"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "medical_record_id"
+    t.index ["medical_record_id"], name: "index_prescriptions_on_medical_record_id"
   end
 
   create_table "procedures", force: :cascade do |t|
