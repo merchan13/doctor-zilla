@@ -53,6 +53,17 @@ class Consultation < ApplicationRecord
     end
   end
 
+  def add_plan(plan)
+    Plan.create(description: plan[:description])
+    self.plan = Plan.last
+  end
+
+  def add_procedure(procedures)
+    procedures.each do |p|
+      self.plan.procedures << Procedure.find(p)
+    end
+  end
+
   def imc(weight, height)
     result = weight/(height ** 2)
   end

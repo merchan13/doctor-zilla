@@ -19,6 +19,13 @@ class ConsultationsController < ApplicationController
       @consultation.add_backgrounds(params[:background])
       @consultation.add_physical_exams(params[:physical], params[:physical_description])
 
+      if !params[:plan][:description].blank?
+        @consultation.add_plan(params[:plan])
+        if params[:procedures_ids].present?
+          @consultation.add_procedure(params[:procedures_ids])
+        end
+      end
+
       if @consultation.save
         flash[:success] = "Medical consultation was created successfully"
         redirect_to medical_records_path

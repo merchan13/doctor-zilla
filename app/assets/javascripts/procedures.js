@@ -10,7 +10,7 @@ update_procedures = function() {
   });
 
   $('#new-procedure-form').on('ajax:success', function(event, data, status){
-    $('.tramboliko').last().append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
+    $('#procedures').last().append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
     $('#new-procedure-form').modal('hide');
   });
 }
