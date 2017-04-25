@@ -9,6 +9,7 @@ class ConsultationsController < ApplicationController
     @consultation = @record.consultations.new
     @reason = Reason.new
     @diagnostic = Diagnostic.new
+    @procedure = Procedure.new
   end
 
   def create

@@ -41,6 +41,16 @@
     <div class="col-md-12"><hr></div>
 
     <!-- PLAN. -->
+    <div class="form-group col-md-12">
+      <h4><i>Plan</i></h4>
+      <div class="col-md-12">
+        <%= f.label :Descripción, class: 'form-control-label' %>
+        <%= text_area(:plan, :description, rows: '4', class: 'form-control') %>
+        <%= select_tag "procedures[]", options_from_collection_for_select(Procedure.all, :id, :name), include_blank: 'N/A', class: 'form-control tramboliko' %>
+        <%= select_tag "procedures[]", options_from_collection_for_select(Procedure.all, :id, :name), include_blank: 'N/A', class: 'form-control tramboliko' %>
+        <a href="#" data-toggle="modal" data-target="#new-procedure-form">Agrear nuevo</a>
+      </div>
+    </div>
     <!-- OPERACIONES. -->
 
     <div class='form-group center'>
