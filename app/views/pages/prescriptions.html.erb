@@ -1,1 +1,22 @@
-<h1>Prescriptions home</h1>
+<div class="container home center">
+  <div class="row align-middle">
+    <div class="col-md-4">
+      <%= link_to search_path(model: 'medical_record', filter:'new_prescription') do %>
+        <i class="fa fa-stethoscope"></i>
+        <h4>Nuevo récipe</h4>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to search_path(model: 'prescription', filter:'edit_prescription') do %>
+        <i class="fa fa-pencil-square-o"></i>
+        <h4>Editar récipe</h4>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to prescriptions_path do %>
+        <i class="fa fa-search-plus"></i>
+        <h4>Buscar récipe</h4>
+      <% end %>
+    </div>
+  </div>
+</div>

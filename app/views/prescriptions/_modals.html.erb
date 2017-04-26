@@ -1,0 +1,25 @@
+<!-- MEDICINE MODAL-->
+<div class="modal fade" id="new-medicine-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Medicamento</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@medicine, remote: true) do |p| %>
+          <h5>Nombre genérico</h5>
+          <%= p.text_field :generic_name, value: nil, placeholder: 'Introduzca el nombre genérico', class: 'form-control' %>
+          <h5>Nombre comercial</h5>
+          <%= p.text_field :comercial_name, value: nil, placeholder: 'Introduzca el nombre comercial', class: 'form-control' %>
+          <br>
+          <%= p.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

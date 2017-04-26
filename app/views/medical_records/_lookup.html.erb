@@ -3,6 +3,8 @@
     <h3>Nueva Consulta - <small>Buscar historia</small></h3>
   <% elsif @filter == 'edit_record'%>
     <h3>Editar Historia - <small>Buscar historia</small></h3>
+  <% elsif @filter == 'new_prescription'%>
+    <h3>Nuevo Récipe - <small>Buscar historia</small></h3>
   <% end %>
   <%= form_tag search_records_path(filter: @filter), remote: true, method: :get, id: 'record-lookup-form' do %>
     <div class="form-group row no-padding text-center col-md-12">
@@ -39,6 +41,8 @@
                     <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-xs btn-success modal-link' %>
                   <% elsif @filter == 'edit_record'%>
                     <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-xs btn-success modal-link' %>
+                  <% elsif @filter == 'new_prescription'%>
+                    <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-xs btn-success modal-link' %>
                   <% end %>
                 </td>
               </tr>
