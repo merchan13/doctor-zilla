@@ -1,5 +1,7 @@
 class MedicalRecordsController < ApplicationController
   before_action :set_record, only: [:edit, :update, :show]
+  before_action :set_others, only: [:edit, :update, :new, :create]
+  before_action :set_attachments, only: [:edit, :update]
 
   def index
     if current_user.role == "Doctor"
@@ -14,8 +16,6 @@ class MedicalRecordsController < ApplicationController
 
   def new
     @record = current_user.medical_records.new
-    @occupation = Occupation.new
-    @insurance = Insurance.new
   end
 
   def create
@@ -24,28 +24,25 @@ class MedicalRecordsController < ApplicationController
       flash[:success] = "Medical record was created successfully"
       redirect_to medical_records_path
     else
-      @occupation = Occupation.new
-      @insurance = Insurance.new
       render 'new'
     end
   end
 
   def edit
+    # ...
   end
 
   def update
     if @record.update(record_params)
       flash[:success] = "Medical record data was successfully updated"
-      redirect_to medical_record_path(@record)
+      #redirect_to medical_record_path(@record)
     else
-      @occupation = Occupation.new
-      @insurance = Insurance.new
       render 'edit'
     end
   end
 
   def show
-    # @record_x = @record.x.paginate(page: params[:page], per_page: 5)
+    # ...
   end
 
   def search
@@ -61,13 +58,23 @@ class MedicalRecordsController < ApplicationController
   private
     def record_params
       params.require(:medical_record).permit( :document, :document_type, :first_consultation_date, :name, :last_name,
-                                              :birth_date, :gender, :phone_number, :cellphone_number, :address, :email,
+                                              :birthday, :gender, :phone_number, :cellphone_number, :address, :email,
                                               :referred_by, :profile_picture, :representative_document, :occupation_id,
-                                              :insurance_id )
+                                              :insurance_id, :profile_picture_cache, :remove_profile_picture )
     end
 
     def set_record
       @record = current_user.medical_records.find(params[:id])
+    end
+
+    def set_others
+      @occupation = Occupation.new
+      @insurance = Insurance.new
+      @attachment = Attachment.new
+    end
+
+    def set_attachments
+      @my_attachments = @record.attachments.paginate(page: params[:page], per_page: 20)
     end
 
 end

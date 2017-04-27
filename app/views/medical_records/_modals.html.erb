@@ -15,7 +15,7 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -38,7 +38,63 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATTACHMENT MODAL -->
+<div class="modal fade" id="new-attachment-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Anexos</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@attachment, remote: true) do |m| %>
+          <h5>Nombre del archivo</h5>
+          <%= m.text_field :description, value: nil, placeholder: 'Introduzca descripción del anexo', class: 'form-control' %>
+          <h5><br></h5>
+          <%= m.file_field :url, class: 'form-control' %>
+          <%= m.hidden_field :medical_record_id, value: @record.id %>
+          <br>
+          <%= m.submit class: 'btn btn-primary' %>
+        <% end %>
+        <hr>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @record.attachments.each do |attachment| %>
+              <tr>
+                <td><%= "#{attachment.id}" %></td>
+                <td><%= "#{attachment.description}" %></td>
+                <td>
+                  <%= link_to attachment_path(attachment.id) do%>
+                    <i class="fa fa-search" aria-hidden="true" style="font-size:18pt;"></i>
+                  <% end %>
+                  <%= link_to attachments_path(attachment.id), method: :delete, data: { confirm: "You sure?" } do%>
+                    <i class="fa fa-trash" aria-hidden="true" style="font-size:18pt;"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="center">
+          <%= will_paginate @my_attachments %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,11 @@
 class MedicalRecord < ApplicationRecord
+  mount_uploader :profile_picture, AvatarUploader
+
+  # User Avatar Validation
+  validates_integrity_of  :profile_picture
+  validates_processing_of :profile_picture
+
+
   has_many :user_medical_records
   has_many :users, through: :user_medical_records
   has_many :consultations
@@ -8,7 +15,7 @@ class MedicalRecord < ApplicationRecord
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true
 
-  validates_presence_of :document, :document_type, :first_consultation_date, :name, :last_name, :birth_date, :gender,
+  validates_presence_of :document, :document_type, :first_consultation_date, :name, :last_name, :birthday, :gender,
                         :phone_number, :address
 
   def full_name
@@ -19,6 +26,12 @@ class MedicalRecord < ApplicationRecord
   def full_id
     return "#{document_type}-#{document}".strip if (document_type || document)
     "Anonymous"
+  end
+
+  def age
+    dob = self.birthday
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
   def self.search(param)

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :procedures,        except: [:destroy, :edit, :update]
   resources :prescriptions,     except: :destroy
   resources :medicines,         except: [:destroy, :edit, :update]
+  resources :attachments,       except: [:edit, :update]
 
   get 'search', to: 'pages#search'
   get 'search_records', to: 'medical_records#search'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427032735) do
+ActiveRecord::Schema.define(version: 20170427191857) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20170427032735) do
     t.datetime "first_consultation_date", null: false
     t.string   "name",                    null: false
     t.string   "last_name",               null: false
-    t.datetime "birth_date",              null: false
     t.string   "gender",                  null: false
     t.string   "phone_number"
     t.string   "cellphone_number"
@@ -90,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170427032735) do
     t.datetime "updated_at",              null: false
     t.integer  "occupation_id"
     t.integer  "insurance_id"
+    t.date     "birthday"
     t.index ["insurance_id"], name: "index_medical_records_on_insurance_id"
     t.index ["occupation_id"], name: "index_medical_records_on_occupation_id"
   end
