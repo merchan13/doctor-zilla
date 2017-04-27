@@ -43,6 +43,7 @@
       <div class="col-md-4">
         <%= f.label :profesión, class: 'form-control-label' %>
         <%= f.select :occupation_id, options_from_collection_for_select(Occupation.all, :id, :name), {include_blank: 'N/A'}, class: 'form-control' %>
+        <a href="#" data-toggle="modal" data-target="#new-occupation-form">Agrear nuevo</a>
       </div>
       <div class="col-md-3">
         <%= f.label :fecha_de_nacimiento, class: 'form-control-label' %>
@@ -106,6 +107,7 @@
       <div class="col-md-4">
         <%= f.label :seguro, class: 'form-control-label' %>
         <%= f.select :insurance_id, options_from_collection_for_select(Insurance.all, :id, :name), {include_blank: 'N/A'}, class: 'form-control' %>
+        <a href="#" data-toggle="modal" data-target="#new-insurance-form">Agrear nuevo</a>
       </div>
     </div>
 
@@ -124,3 +126,5 @@
 <div class="col-xs-4 col-xs-offset-4">
   [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
 </div>
+
+<%= render 'modals' %>

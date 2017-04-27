@@ -14,6 +14,8 @@ class MedicalRecordsController < ApplicationController
 
   def new
     @record = current_user.medical_records.new
+    @occupation = Occupation.new
+    @insurance = Insurance.new
   end
 
   def create
@@ -22,6 +24,8 @@ class MedicalRecordsController < ApplicationController
       flash[:success] = "Medical record was created successfully"
       redirect_to medical_records_path
     else
+      @occupation = Occupation.new
+      @insurance = Insurance.new
       render 'new'
     end
   end
@@ -34,6 +38,8 @@ class MedicalRecordsController < ApplicationController
       flash[:success] = "Medical record data was successfully updated"
       redirect_to medical_record_path(@record)
     else
+      @occupation = Occupation.new
+      @insurance = Insurance.new
       render 'edit'
     end
   end

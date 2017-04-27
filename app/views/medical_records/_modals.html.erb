@@ -1,0 +1,45 @@
+<!-- OCCUPATION MODAL -->
+<div class="modal fade" id="new-occupation-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nueva Profesión</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@occupation, remote: true) do |o| %>
+          <%= o.label :Profesión, class: 'form-control-label' %>
+          <%= o.text_field :name, value: nil, class: 'form-control' %>
+          <%= o.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSURANCE MODAL -->
+<div class="modal fade" id="new-insurance-form" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Seguro</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@insurance, remote: true) do |i| %>
+          <%= i.label :Seguro, class: 'form-control-label' %>
+          <%= i.text_field :name, value: nil, class: 'form-control' %>
+          <%= i.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
