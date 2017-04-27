@@ -8,13 +8,13 @@
           <h4 class="modal-title">Agregar Nuevo Medicamento</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@medicine, remote: true) do |p| %>
+        <%= form_for(@medicine, remote: true) do |m| %>
           <h5>Nombre genérico</h5>
-          <%= p.text_field :generic_name, value: nil, placeholder: 'Introduzca el nombre genérico', class: 'form-control' %>
+          <%= m.text_field :generic_name, value: nil, placeholder: 'Introduzca el nombre genérico', class: 'form-control' %>
           <h5>Nombre comercial</h5>
-          <%= p.text_field :comercial_name, value: nil, placeholder: 'Introduzca el nombre comercial', class: 'form-control' %>
+          <%= m.text_field :comercial_name, value: nil, placeholder: 'Introduzca el nombre comercial', class: 'form-control' %>
           <br>
-          <%= p.submit class: 'btn btn-primary' %>
+          <%= m.submit class: 'btn btn-primary' %>
         <% end %>
       </div>
       <div class="modal-footer">

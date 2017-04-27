@@ -1,4 +1,4 @@
-<%= render 'shared/errors', obj: @prescription %>
+<%= render 'shared/errors', obj: @complete_prescription %>
 <div class="col-md-9 new-panel main-panel">
 
   <h3 align="center"><strong>Nuevo Récipe</strong></h3>
@@ -9,116 +9,124 @@
 
     <input type="hidden" name="record" value="<%= @record.id %>">
 
-    <div class="form-group col-md-12">
-      <h4><i>Medicamento</i></h4>
-      <div class="col-md-8">
-        <%= select_tag "prescription[medicine_id][]", options_from_collection_for_select(Medicine.all, :id, :generic_name), include_blank: '-Seleccione una opción-', class: 'form-control' %>
-      </div>
-      <div class="col-md-12">
-        <a href="#" data-toggle="modal" data-target="#new-medicine-form">Agrear nuevo medicamento</a>
-      </div>
-    </div>
+    <div class="clone-test" id="clone-test">
+        <!-- MEDICAMENTO -->
+        <div class="form-group col-md-12">
+          <h4><i>Medicamento</i></h4>
+          <div class="col-md-8">
+            <%= select_tag "prescription[][medicine_id]", options_from_collection_for_select(Medicine.all, :id, :generic_name), include_blank: '-Seleccione una opción-', class: 'form-control medicine_form' %>
+          </div>
+          <div class="col-md-12">
+            <a href="#" data-toggle="modal" data-target="#new-medicine-form">Agrear nuevo medicamento</a>
+          </div>
+        </div>
 
-    <!-- DOSIS -->
-    <div class="form-group col-md-12">
-      <h4><i>Dósis</i></h4>
-      <div class="col-md-3">
-        <small>Vía de administración</small>
-        <select class="form-control" name="prescription[dose_way][]" id="">
-          <option value="">- Seleccione una opción -</option>
-          <option value="Tabletas">Topico</option>
-          <option value="Tabletas">Oral</option>
-          <option value="Tabletas">Subcutaneo</option>
-          <option value="Tabletas">Intramuscular</option>
-          <option value="Tabletas">Intravenoso</option>
-          <option value="Tabletas">Rectal</option>
-          <option value="Tabletas">Sublingual</option>
-        </select>
+      <!-- INDICACION Y DOSIS -->
+      <div class="form-group col-md-7">
+        <h4><i>Administración</i></h4>
+        <div class="col-md-6">
+          <small>Vía de administración</small>
+          <select class="form-control" name="prescription[][dose_way]" id="">
+            <option value="">- Seleccione una opción -</option>
+            <option value="Tópico">Tópico</option>
+            <option value="Oral">Oral</option>
+            <option value="Subcutáneo">Subcutáneo</option>
+            <option value="Intramuscular">Intramuscular</option>
+            <option value="Intravenoso">Intravenoso</option>
+            <option value="Rectal">Rectal</option>
+            <option value="Sublingual">Sublingual</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <small>Presentación</small>
+          <select class="form-control" name="prescription[][dose_presentation]" id="">
+            <option value="">-Seleccione una opción-</option>
+            <option value="Tabletas">Tabletas</option>
+            <option value="Comprimidos">Comprimidos</option>
+            <option value="Grajeas">Grajeas</option>
+            <option value="Cápsula">Capsula</option>
+            <option value="Sobre">Sobre</option>
+            <option value="Ampollas">Ampollas</option>
+            <option value="Vial">Vial</option>
+            <option value="Gotas">Gotas</option>
+            <option value="Ungüento">Ungüento</option>
+            <option value="Supositorio">Supositorio</option>
+            <option value="Jarabe">Jarabe</option>
+            <option value="Parche">Parche</option>
+          </select>
+        </div>
       </div>
-      <div class="col-md-3">
-        <small>Presentación</small>
-        <select class="form-control" name="prescription[dose_way][]" id="">
-          <option value="">-Seleccione una opción-</option>
-          <option value="Tabletas">Tabletas</option>
-          <option value="Tabletas">Comprimidos</option>
-          <option value="Tabletas">Grajeas</option>
-          <option value="Tabletas">Capsula</option>
-          <option value="Tabletas">Sobre</option>
-          <option value="Tabletas">Ampollas</option>
-          <option value="Tabletas">Vial</option>
-          <option value="Tabletas">Gotas</option>
-          <option value="Tabletas">Ungüento</option>
-          <option value="Tabletas">Supositorio</option>
-          <option value="Tabletas">Jarabe</option>
-          <option value="Tabletas">Parche</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <small>Cantidad</small>
-        <input type="number" name="prescription[dose_quantity][]" value="" placeholder="" class="form-control">
-      </div>
-      <div class="col-md-2">
-        <small>Unidades</small>
-        <select class="form-control" name="prescription[dose_unit][]" id="">
-          <option value="">-Seleccione una opción-</option>
-          <option value="cc">cc</option>
-          <option value="mgr">mgr</option>
-          <option value="micro_gramo">μgr</option>
-          <option value="gr">gr</option>
-          <option value="lt">lt</option>
-        </select>
-      </div>
-    </div>
 
-    <!-- INTERVALO -->
-    <div class="form-group col-md-4">
-      <h4><i>Intérvalo</i></h4>
-      <div class="col-md-5">
-        <small>Cantidad</small>
-        <input type="number" name="prescription[interval_quantity][]" value="" class="form-control">
+      <div class="form-group col-md-5">
+          <h4><i>Dósis</i></h4>
+        <div class="col-md-4">
+          <small>Cantidad</small>
+          <input type="number" name="prescription[][dose_quantity]" value="" placeholder="" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <small>Unidades</small>
+          <select class="form-control" name="prescription[][dose_unit]" id="">
+            <option value="">-Seleccione una opción-</option>
+            <option value="cc">cc</option>
+            <option value="mgr">mg</option>
+            <option value="micro_gramo">μg</option>
+            <option value="gr">gr</option>
+            <option value="ml">ml</option>
+            <option value="l">l</option>
+          </select>
+        </div>
       </div>
-      <div class="col-md-5">
-        <small>Unidades</small>
-        <select class="form-control" name="prescription[interval_unit][]" id="">
-          <option value="">-Seleccione una opción-</option>
-          <option value="Horas">Horas</option>
-          <option value="Veces">Veces</option>
-        </select>
-      </div>
-    </div>
 
-    <!-- DURACION -->
-    <div class="form-group col-md-4">
-      <h4><i>Duración</i></h4>
-      <div class="col-md-5">
-        <small>Cantidad</small>
-        <input type="number" name="prescription[duration_quantity][]" value="" class="form-control">
+      <!-- INTERVALO -->
+      <div class="form-group col-md-5">
+        <h4><i>Intérvalo</i></h4>
+        <div class="col-md-4">
+          <small>Cantidad</small>
+          <input type="number" name="prescription[][interval_quantity]" value="" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <small>Tiempo</small>
+          <input type="number" name="prescription[][interval_time]" value="" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <small>Unidades</small>
+          <select class="form-control" name="prescription[][interval_unit]" id="">
+            <option value="">-Seleccione una opción-</option>
+            <option value="Horas">Horas</option>
+            <option value="Veces">Veces</option>
+          </select>
+        </div>
       </div>
-      <div class="col-md-6">
-        <small>Unidades</small>
-        <select class="form-control" name="prescription[duration_unit][]" id="">
-          <option value="">-Seleccione una opción-</option>
-          <option value="Días">Días</option>
-          <option value="Semanas">Semanas</option>
-          <option value="Meses">Meses</option>
-        </select>
+
+      <!-- DURACION -->
+      <div class="form-group col-md-4">
+        <h4><i>Duración</i></h4>
+        <div class="col-md-5">
+          <small>Cantidad</small>
+          <input type="number" name="prescription[][duration_quantity]" value="" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <small>Unidades</small>
+          <select class="form-control" name="prescription[][duration_unit]" id="">
+            <option value="">-Seleccione una opción-</option>
+            <option value="Días">Días</option>
+            <option value="Semanas">Semanas</option>
+            <option value="Meses">Meses</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <!-- OBSERVACION -->
-    <div class="form-group col-md-5">
-      <h4><i>Observación</i></h4>
-      <br>
-      <textarea name="prescription[note][]" rows="3" class="form-control"></textarea>
-    </div>
-
-    <div class="medicines_wrap">
-      <!-- inputs -->
+      <!-- OBSERVACION -->
+      <div class="form-group col-md-4">
+        <h4><i>Observación</i></h4>
+        <br>
+        <textarea name="prescription[][note]" rows="4" class="form-control"></textarea>
+      </div>
     </div>
 
     <div class='form-group center'>
       <div class='col-md-4 col-md-offset-4 '>
-        <button type="button" name="button" class="btn btn-info">Agregar medicamento<br>al récipe</button>
+        <button type="button" name="button" class="btn btn-info add_medicine_button">Agregar medicamento<br>al récipe</button>
       </div>
     </div>
 
@@ -143,5 +151,5 @@
   [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
 </div>
 
-<!-- EXAMEN FÍSICO -->
-<%= render 'modals'%>
+<!-- MEDICINA -->
+<%= render 'modals' %>
