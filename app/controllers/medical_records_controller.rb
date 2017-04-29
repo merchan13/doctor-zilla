@@ -2,6 +2,7 @@ class MedicalRecordsController < ApplicationController
   before_action :set_record, only: [:edit, :update, :show]
   before_action :set_others, only: [:edit, :update, :new, :create]
   before_action :set_attachments, only: [:edit, :update]
+  before_action :set_consultations, only: [:show]
 
   def index
     if current_user.role == "Doctor"
@@ -75,6 +76,10 @@ class MedicalRecordsController < ApplicationController
 
     def set_attachments
       @my_attachments = @record.attachments.paginate(page: params[:page], per_page: 20)
+    end
+
+    def set_consultations
+      @consultations = @record.consultations
     end
 
 end

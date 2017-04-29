@@ -28,7 +28,7 @@ class ConsultationsController < ApplicationController
 
       if @consultation.save
         flash[:success] = "Medical consultation was created successfully"
-        redirect_to medical_records_path
+        redirect_to medical_record_path(@consultation.medical_record)
       else
         render 'new'
       end

@@ -25,13 +25,55 @@ class MedicalRecord < ApplicationRecord
 
   def full_id
     return "#{document_type}-#{document}".strip if (document_type || document)
-    "Anonymous"
   end
 
   def age
-    dob = self.birthday
-    now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    if self.birthday.present?
+      dob = self.birthday
+      now = Time.now.utc.to_date
+      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    end
+  end
+
+  def backgrounds
+    backgrounds =  Hash.new
+    backgrounds = { "family" => [], "allergy" => [], "diabetes" => [], "asthma" => [], "heart" => [],
+                    "medicine" => [], "surgical" => [], "other" => []}
+
+    self.consultations.each do |c|
+      c.backgrounds.each do |b|
+        backgrounds[b.background_type] << b.description
+      end
+    end
+
+    backgrounds["Familiares"] = backgrounds.delete("family")
+    backgrounds["Alérgias"] = backgrounds.delete("allergy")
+    backgrounds["Diábetes"] = backgrounds.delete("diabetes")
+    backgrounds["Asma"] = backgrounds.delete("asthma")
+    backgrounds["Cardiopatías"] = backgrounds.delete("heart")
+    backgrounds["Medicamentos"] = backgrounds.delete("medicine")
+    backgrounds["Quirúrgicos"] = backgrounds.delete("surgical")
+    backgrounds["Otros"] = backgrounds.delete("other")
+
+    return backgrounds
+  end
+
+  def physic_data
+    physics =  Hash.new
+    physics = { "height" => "", "weight" => "", "pressure_d" => "", "pressure_s" => ""}
+
+    self.consultations.each do |c|
+      physics["height"] = c.height if c.height != nil
+      physics["weight"] = c.weight if c.weight != nil
+      physics["pressure_d"] = c.pressure_d if c.pressure_d != ""
+      physics["pressure_s"] = c.pressure_s if c.pressure_s != ""
+    end
+
+    return physics
+  end
+
+  def imc
+    imc = physic_data["weight"]/((physic_data["height"]/100) ** 2)
   end
 
   def self.search(param)

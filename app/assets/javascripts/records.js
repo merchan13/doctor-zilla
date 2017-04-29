@@ -1,4 +1,5 @@
 var init_record_lookup;
+var show_consultation;
 
 init_record_lookup = function() {
   $('#record-lookup-form').on('ajax:before', function(event, data, status){
@@ -21,6 +22,14 @@ init_record_lookup = function() {
   });
 }
 
+show_consultation = function() {
+  $(".consultation-button").click(function(){
+    var data = $.parseJSON($(this).attr('data-button'));
+    $("#consultation"+data).toggle();
+  });
+}
+
 $(document).ready(function functionName() {
   init_record_lookup();
+  show_consultation();
 })

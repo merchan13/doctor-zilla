@@ -90,7 +90,7 @@
           </tbody>
         </table>
         <div class="center">
-          <%= will_paginate @my_attachments %>
+          <%= will_paginate @my_attachments if @my_attachments.present? %>
         </div>
       </div>
       <div class="modal-footer">
