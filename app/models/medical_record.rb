@@ -60,7 +60,7 @@ class MedicalRecord < ApplicationRecord
 
   def physic_data
     physics =  Hash.new
-    physics = { "height" => "", "weight" => "", "pressure_d" => "", "pressure_s" => ""}
+    physics = { "height" => 0, "weight" => 0, "pressure_d" => "?", "pressure_s" => "?"}
 
     self.consultations.each do |c|
       physics["height"] = c.height if c.height != nil
@@ -73,7 +73,11 @@ class MedicalRecord < ApplicationRecord
   end
 
   def imc
-    imc = physic_data["weight"]/((physic_data["height"]/100) ** 2)
+    if physic_data["weight"] != 0 && physic_data["height"] != 0
+      imc = physic_data["weight"]/((physic_data["height"]/100) ** 2)
+    else
+      imc = 0
+    end
   end
 
   def self.search(param)
