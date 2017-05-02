@@ -1,6 +1,8 @@
 class ConsultationsController < ApplicationController
-  before_action :set_medical_record, only: [:new, :create]
+  before_action :set_medical_record, only: [:new, :create, :edit, :update]
   before_action :set_consultation, only: [:edit, :update, :show]
+  before_action :set_others, only: [:edit, :update, :new, :create]
+  before_action :set_attachments, only: [:edit, :update]
 
   def index
   end
@@ -36,12 +38,20 @@ class ConsultationsController < ApplicationController
   end
 
   def edit
+    # ...
   end
 
   def update
+    if @consultation.update(record_params)
+      flash[:success] = "Consultation data was successfully updated"
+      redirect_to medical_record_path(@record)
+    else
+      render 'edit'
+    end
   end
 
   def show
+    # ...
   end
 
   private
@@ -56,6 +66,17 @@ class ConsultationsController < ApplicationController
 
     def set_medical_record
       @record = MedicalRecord.find(params[:record])
+    end
+
+    def set_others
+      @reason = Reason.new
+      @diagnostic = Diagnostic.new
+      @procedure = Procedure.new
+      @attachment = Attachment.new
+    end
+
+    def set_attachments
+      @my_attachments = @record.attachments.paginate(page: params[:page], per_page: 20)
     end
 
 end

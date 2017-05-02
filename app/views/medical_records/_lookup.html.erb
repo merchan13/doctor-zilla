@@ -38,11 +38,11 @@
                 <td><%= record.full_name %></td>
                 <td>
                   <% if @filter == 'new_consultation' %>
-                    <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-xs btn-success modal-link' %>
+                    <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'edit_record'%>
-                    <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-xs btn-success modal-link' %>
+                    <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'new_prescription'%>
-                    <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-xs btn-success modal-link' %>
+                    <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-success modal-link' %>
                   <% end %>
                 </td>
               </tr>

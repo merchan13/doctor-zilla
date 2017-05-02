@@ -1,11 +1,11 @@
 <div class="form-group col-md-12">
   <div class="col-md-4">
     <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
-    <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :description), {include_blank: 'N/A'}, class: 'form-control' %>
+    <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :description, @consultation.reason_id), {include_blank: 'N/A'}, class: 'form-control' %>
     <a href="#" data-toggle="modal" data-target="#new-reason-form">Agrear nuevo</a>
   </div>
   <div class="col-md-8">
     <%= f.label :Enfermedad_Actual, class: 'form-control-label' %>
-    <%= f.text_area :affliction, rows: '3', value: nil, class: 'form-control' %>
+    <%= f.text_area :affliction, rows: '3', class: 'form-control' %>
   </div>
 </div>

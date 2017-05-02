@@ -1,0 +1,121 @@
+<div class="col-md-12">
+  <h4>Consultas médicas</h4>
+  <% consultations.each do |consultation| %>
+    <div class="row">
+      <button type="button" name="button" class="consultation-button btn btn-link" data-button='<%= consultation.id %>'>
+        <%= consultation.created_at.strftime('%d %b %Y') %>
+      </button>
+      <div class="col-md-12" id="consultation<%= consultation.id %>" style="display:none">
+        <div class="well well-lg col-md-12">
+          <div class="col-md-12">
+            <%= link_to "Editar", edit_consultation_path(consultation, record: @record) , class: 'btn btn-warning btn-xs', style: 'float:right;margin-bottom:20px;'  %>
+          </div>
+
+          <!-- Motivo de consulta -->
+          <% if consultation.reason.present?  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Motivo de consulta:<br></strong></u></i><%= consultation.reason.description %></p>
+            </div>
+          <% end %>
+
+          <!-- Enfermedad actúal -->
+          <% if consultation.affliction.present?  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Enfermedad actúal:<br></strong></u></i><%= consultation.affliction %></p>
+            </div>
+          <% end %>
+
+          <!-- Datos físicos -->
+          <% if consultation.weight.present? || consultation.height.present? || (!consultation.pressure_d.blank? && !consultation.pressure_s.blank?)  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Datos clínicos</strong></u></i></p>
+              <% if consultation.weight.present? %>
+                <p><strong>Peso: </strong><small><%= consultation.weight %> kg.</small></p>
+              <% end %>
+              <% if consultation.height.present? %>
+                <p><strong>Talla: </strong><small><%= consultation.height %> m.</small></p>
+              <% end %>
+              <% if consultation.weight.present? && consultation.height.present? %>
+                <p><strong>IMC: </strong><small><%= consultation.imc.round(2) %></small></p>
+              <% end %>
+              <% if !consultation.pressure_d.blank? && !consultation.pressure_s.blank? %>
+                <p><strong>Tensión: </strong><small><%= "#{consultation.pressure_s}/#{consultation.pressure_d}" %> mm Hg.</small></p>
+              <% end %>
+            </div>
+          <% end %>
+
+          <!-- Antecedentes -->
+          <% if consultation.backgrounds.present?  %>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+            <div class="col-md-12">
+              <p><i><u><strong>Antecedentes</strong></u></i></p>
+              <% consultation.backgrounds.each do |b| %>
+                <div class="col-md-4">
+                  <p><strong><%= "#{b.type_es}:" if !b.description.blank?%></strong></p>
+                  <p><small><%= b.description %></small></p>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+          <% end %>
+
+          <!--Examen Físico -->
+          <% if consultation.physical_exams.present?  %>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+            <div class="col-md-12">
+              <p><i><u><strong>Exámen físico</strong></u></i></p>
+              <% consultation.physical_exams.each do |pe| %>
+                <div class="col-md-4">
+                  <p><strong><%= "#{pe.type_es}:" if !pe.observation.blank?%></strong></p>
+                  <p><small><%= pe.observation %></small></p>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+          <% end %>
+
+          <!-- Evolución -->
+          <% if !consultation.evolution.blank?  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Evolución:<br></strong></u></i><%= consultation.evolution %></p>
+            </div>
+          <% end %>
+
+          <!-- Notas -->
+          <% if !consultation.note.blank?  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Notas:<br></strong></u></i><%= consultation.note %></p>
+            </div>
+          <% end %>
+
+          <!-- Diagnóstico -->
+          <% if consultation.diagnostic.present?  %>
+            <div class="col-md-4">
+              <p><i><u><strong>Diagnóstico:<br></strong></u></i><%= consultation.diagnostic.description %></p>
+            </div>
+          <% end %>
+
+          <!-- Plan -->
+          <% if consultation.plan.present?  %>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+            <div class="col-md-12">
+              <p><i><u><strong>Plan</strong></u></i></p>
+              <p><%= consultation.plan.description %></p>
+              <% if consultation.plan.procedures.present? %>
+                <p><strong>Procedimientos: </strong></p>
+                <% consultation.plan.procedures.each do |p| %>
+                  <div class="col-md-12">
+                    <p><strong><%= "#{p.name}: " if !p.name.blank? %></strong><small><%= p.description if !p.description.blank? %></small></p>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
+          <% end %>
+
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

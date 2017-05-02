@@ -19,13 +19,10 @@
             <td><%= "#{assistant.full_name}" %></td>
             <td><%= "#{assistant.role}" %></td>
             <td>
-              <%= link_to users_admin_path(assistant) do%>
-                <i class="fa fa-user" aria-hidden="true" style="font-size:18pt;"></i>
-              <% end %>
-              <%= link_to admin_destroy_user_path(assistant), method: :delete, data: { confirm: "You sure?" } do%>
-                <i class="fa fa-trash" aria-hidden="true" style="font-size:18pt;"></i>
-              <% end %>
-              <a class="yellow-text"><i class="fa fa-ban" aria-hidden="true"></i></a>
+
+              <%= link_to "Ver", users_admin_path(assistant), class: 'btn btn-primary' %>
+              <%= link_to "Eliminar", admin_destroy_user_path(assistant), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
+              <a class="btn btn-warning">Bloquear</a>
             </td>
         </tr>
       <% end %>

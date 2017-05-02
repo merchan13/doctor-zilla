@@ -36,7 +36,7 @@ class MedicalRecordsController < ApplicationController
   def update
     if @record.update(record_params)
       flash[:success] = "Medical record data was successfully updated"
-      #redirect_to medical_record_path(@record)
+      redirect_to medical_record_path(@record)
     else
       render 'edit'
     end

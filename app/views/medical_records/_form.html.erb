@@ -86,7 +86,7 @@
     <div class="col-md-3">
       <%= f.label :Foto_del_paciente, class: 'form-control-label' %>
       <% if @record.profile_picture.url.present? %>
-        <%= image_tag(@record.profile_picture.url, class: 'img-responsive img-circle') %>
+        <%#= image_tag(@record.profile_picture.url, class: 'img-responsive img-circle') %>
         <%= f.label :remove_profile_picture do %>
           <small>Borrar foto </small><%= f.check_box :remove_profile_picture %>
         <% end %>

@@ -1,0 +1,44 @@
+<!-- Examen basico -->
+<div class="col-md-6">
+  <h4>Datos clínicos</h4>
+  <% if record.physic_data.present? %>
+    <div class="col-md-2">
+      <i><strong>Peso:</strong></i>
+    </div>
+    <div class="col-md-10">
+      <p><%= record.physic_data["weight"] if record.physic_data["weight"] > 0 %> kg.</p>
+    </div>
+    <div class="col-md-2">
+      <i><strong>Talla:</strong></i>
+    </div>
+    <div class="col-md-10">
+      <p><%= record.physic_data["height"]/100 if record.physic_data["height"] > 0 %> m.</p>
+    </div>
+    <div class="col-md-2">
+      <i><strong>IMC:</strong></i>
+    </div>
+    <div class="col-md-10">
+      <p><%= record.imc.round(2) if record.imc > 0 %>.</p>
+    </div>
+    <div class="col-md-2">
+      <i><strong>Tensión:</strong></i>
+    </div>
+    <div class="col-md-10">
+      <p><%= "#{record.physic_data["pressure_s"]}/#{record.physic_data["pressure_d"]}" %> mm Hg</p>
+    </div>
+  <% end %>
+</div>
+<!-- Antecedentes -->
+<div class="col-md-6">
+  <h4>Antecedentes</h4>
+  <% record.backgrounds.each do |b| %>
+    <div class="col-md-4">
+      <i><strong><%= "#{b[0]}:" if !b[1].empty?%></strong></i>
+    </div>
+    <div class="col-md-8">
+      <% b[1].each do |bb| %>
+        <p><%= bb %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

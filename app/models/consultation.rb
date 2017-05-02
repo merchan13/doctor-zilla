@@ -16,7 +16,7 @@ class Consultation < ApplicationRecord
   def add_physical_exams(physical_exams, exams_descriptions)
     physical_exams.each do |exam|
       if physical_exams[exam] == '1'
-        self.physical_exams << PhysicalExam.create( exam_type: white_list_exam_type(exam), url: 'physical_exams/xxx.png', observation: exams_descriptions[exam] )
+        self.physical_exams << PhysicalExam.create( exam_type: white_list_exam_type(exam), url: 'unknown', observation: exams_descriptions[exam] )
       end
     end
   end
@@ -64,8 +64,8 @@ class Consultation < ApplicationRecord
     end
   end
 
-  def imc(weight, height)
-    result = weight/(height ** 2)
+  def imc
+    result = self.weight/((self.height/100) ** 2)
   end
 
 end

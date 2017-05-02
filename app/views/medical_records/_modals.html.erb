@@ -78,12 +78,8 @@
                 <td><%= "#{attachment.id}" %></td>
                 <td><%= "#{attachment.description}" %></td>
                 <td>
-                  <%= link_to attachment_path(attachment.id) do%>
-                    <i class="fa fa-search" aria-hidden="true" style="font-size:18pt;"></i>
-                  <% end %>
-                  <%= link_to attachments_path(attachment.id), method: :delete, data: { confirm: "You sure?" } do%>
-                    <i class="fa fa-trash" aria-hidden="true" style="font-size:18pt;"></i>
-                  <% end %>
+                  <%= link_to "Ver", attachment_path(attachment.id), class: 'btn btn-info' %>
+                  <%= link_to "Borrar", attachments_path(attachment.id), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
                 </td>
               </tr>
             <% end %>

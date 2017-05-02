@@ -1,7 +1,11 @@
 <%= render 'shared/errors', obj: @consultation %>
 <div class="col-md-9 new-panel main-panel">
 
-  <h3 align="center"><strong>Consulta Médica</strong></h3>
+  <% if params[:action] == 'edit' %>
+    <h3 align="center"><strong>Editar Consulta Médica</strong></h3>
+  <% elsif params[:action] == 'new' %>
+    <h3 align="center"><strong>Consulta Médica</strong></h3>
+  <% end %>
 
   <div class="col-md-12"><hr></div>
 
@@ -45,8 +49,11 @@
       <h4><i>Plan</i></h4>
       <div class="col-md-12">
         <%= f.label :Descripción_del_plan, class: 'form-control-label' %>
-        <%= text_area(:plan, :description, rows: '4', class: 'form-control') %>
-
+        <% if @consultation.plan.present? %>
+          <%= text_area(:plan, :description, rows: '4', class: 'form-control', value: @consultation.plan.description) %>
+        <% else %>
+          <%= text_area(:plan, :description, rows: '4', class: 'form-control') %>
+        <% end %>
         <div class="col-md-10">
           <%= label(:procedure, :title, "Procedimiento(s)", class: 'form-control-label') %>
           <%= select_tag "procedures", options_from_collection_for_select(Procedure.all, :id, :name), include_blank: 'N/A', class: 'form-control' %>
@@ -61,14 +68,27 @@
 
         <div class="procedures_data_wrap">
           <!-- hidden inputs -->
+          <% if @consultation.plan.present? %>
+            <% if @consultation.plan.procedures.present? %>
+              <% @consultation.plan.procedures.each do |p| %>
+                <input type='hidden' name='procedures_ids[]' value='<%= p.id %>' class='form-control'>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
         <div class="col-md-10 procedures_wrap">
           <!-- inputs -->
+          <% if @consultation.plan.present? %>
+            <% if @consultation.plan.procedures.present? %>
+              <% @consultation.plan.procedures.each do |p| %>
+                <input type='text' name='procedures_name[]' value='<%= p.name %>' class='form-control' disabled>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
 
       </div>
     </div>
-    <!-- OPERACIONES. -->
 
     <div class='form-group center'>
       <div class='col-md-offset-4 col-md-4'>
@@ -78,9 +98,7 @@
   <% end %>
 </div>
 
-<div class="col-md-2 new-panel secondary-panel">
-  <p>Perfil paciente</p>
-</div>
+<%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
 
 <div class="col-xs-4 col-xs-offset-4">
   [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]

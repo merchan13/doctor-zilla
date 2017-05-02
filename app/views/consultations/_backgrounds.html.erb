@@ -2,38 +2,70 @@
   <h4><i>Antecedentes</i></h4>
   <div class="col-md-4">
     <%= f.label :Familiares, class: 'form-control-label' %>
-    <%= text_area(:background, :family, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'family').present? %>
+      <%= text_area(:background, :family, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'family').description) %>
+    <% else %>
+      <%= text_area(:background, :family, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= f.label :Alergias, class: 'form-control-label' %>
-    <%= text_area(:background, :allergy, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'allergy').present? %>
+      <%= text_area(:background, :allergy, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'allergy').description) %>
+    <% else %>
+      <%= text_area(:background, :allergy, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= f.label :Diábetes, class: 'form-control-label' %>
-    <%= text_area(:background, :diabetes, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'diabetes').present? %>
+      <%= text_area(:background, :diabetes, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'diabetes').description) %>
+    <% else %>
+      <%= text_area(:background, :diabetes, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-4">
     <%= f.label :Asma, class: 'form-control-label' %>
-    <%= text_area(:background, :asthma, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'asthma').present? %>
+      <%= text_area(:background, :asthma, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'asthma').description) %>
+    <% else %>
+      <%= text_area(:background, :asthma, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= f.label :Cardiopatías, class: 'form-control-label' %>
-    <%= text_area(:background, :heart, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'heart').present? %>
+      <%= text_area(:background, :heart, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'heart').description) %>
+    <% else %>
+      <%= text_area(:background, :heart, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= f.label :Medicamentos, class: 'form-control-label' %>
-    <%= text_area(:background, :medicine, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'medicine').present? %>
+      <%= text_area(:background, :medicine, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'medicine').description) %>
+    <% else %>
+      <%= text_area(:background, :medicine, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-6">
     <%= f.label :Quirúrgicos, class: 'form-control-label' %>
-    <%= text_area(:background, :surgical, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'surgical').present? %>
+      <%= text_area(:background, :surgical, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'surgical').description) %>
+    <% else %>
+      <%= text_area(:background, :surgical, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
   <div class="col-md-6">
     <%= f.label :Otros, class: 'form-control-label' %>
-    <%= text_area(:background, :other, rows: '3', class: 'form-control') %>
+    <% if @consultation.backgrounds.find_by(background_type: 'other').present? %>
+      <%= text_area(:background, :other, rows: '3', class: 'form-control', value: @consultation.backgrounds.find_by(background_type: 'other').description) %>
+    <% else %>
+      <%= text_area(:background, :other, rows: '3', class: 'form-control') %>
+    <% end %>
   </div>
 </div>
