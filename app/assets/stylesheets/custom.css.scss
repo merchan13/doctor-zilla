@@ -29,10 +29,20 @@ textarea {
 
 .navbar-logo {
   float: left;
+  margin: 0 30px;
 }
 
 .navbar-logo > img {
   height: 50px;
+}
+
+#nav-inicio-link a {
+  color: #211c5f;
+  text-decoration: underline;
+}
+
+#nav-inicio-link a:hover {
+  color: red;
 }
 
 .pull-right {

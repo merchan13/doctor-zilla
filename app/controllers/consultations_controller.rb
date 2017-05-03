@@ -42,9 +42,9 @@ class ConsultationsController < ApplicationController
   end
 
   def update
-    if @consultation.update(record_params)
+    if @consultation.update(consultation_params)
       flash[:success] = "Consultation data was successfully updated"
-      redirect_to medical_record_path(@record)
+      redirect_to medical_record_path(@consultation.medical_record)
     else
       render 'edit'
     end

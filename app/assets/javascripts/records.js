@@ -25,6 +25,13 @@ init_record_lookup = function() {
 show_consultation = function() {
   $(".consultation-button").click(function(){
     var data = $.parseJSON($(this).attr('data-button'));
+
+    if ($("#consultation"+data).is(':visible')) {
+      $(this).text('[ Ver más... ]');
+    } else {
+      $(this).text('[ Ver menos ]');
+    }
+
     $("#consultation"+data).toggle();
   });
 }

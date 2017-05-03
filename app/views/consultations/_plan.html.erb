@@ -1,0 +1,41 @@
+<div class="form-group col-md-12">
+
+  <h4><i>Plan</i></h4>
+
+  <div class="col-md-12">
+    <%= f.label :Descripción_del_plan, class: 'form-control-label' %>
+    <% if consultation.plan.present? %>
+      <%= text_area(:plan, :description, rows: '4', class: 'form-control', value: consultation.plan.description) %>
+    <% else %>
+      <%= text_area(:plan, :description, rows: '4', class: 'form-control') %>
+    <% end %>
+  </div>
+
+  <div class="col-md-12"><br></div>
+
+  <div class="col-md-12">
+    <p><i>Agregar un procedimiento</i></p>
+    <div class="col-md-10">
+      <%= select_tag "procedures", options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name), include_blank: 'N/A', class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-info add_select_button">Agregar</button>
+    </div>
+    <div class="col-md-12">
+      <a href="#" data-toggle="modal" data-target="#new-procedure-form">Agrear nuevo procedimiento</a>
+    </div>
+  </div>
+
+  <div class="col-md-12"><br></div>
+
+  <div class="col-md-12">
+    <div class="procedures_data_wrap">
+      <!-- hidden inputs -->
+    </div>
+    <div class="col-md-10 procedures_wrap">
+      <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+      <!-- inputs -->
+    </div>
+  </div>
+
+</div>

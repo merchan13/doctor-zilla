@@ -1,17 +1,17 @@
 class MedicalRecordsController < ApplicationController
   before_action :set_record, only: [:edit, :update, :show]
-  before_action :set_others, only: [:edit, :update, :new, :create]
-  before_action :set_attachments, only: [:edit, :update]
+  before_action :set_others, only: [:edit, :update, :new, :create, :show]
+  before_action :set_attachments, only: [:edit, :update, :show]
   before_action :set_consultations, only: [:show]
 
   def index
     if current_user.role == "Doctor"
-      @records = current_user.medical_records.paginate(page: params[:page], per_page: 20)
+      @records = current_user.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
     elsif current_user.role == "Ayudante"
       doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
-      @records = doctor.medical_records.paginate(page: params[:page], per_page: 20)
+      @records = doctor.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
     elsif current_user.role == "Administrador"
-      @records = MedicalRecord.all.paginate(page: params[:page], per_page: 20)
+      #@records = MedicalRecord.all.paginate(page: params[:page], per_page: 20)
     end
   end
 
@@ -20,12 +20,14 @@ class MedicalRecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.medical_records.create(record_params)
-    if @record.save
-      flash[:success] = "Medical record was created successfully"
-      redirect_to medical_records_path
-    else
-      render 'new'
+    MedicalRecord.transaction do
+      @record = current_user.medical_records.create(record_params)
+      if @record.save
+        flash[:success] = "Medical record was created successfully"
+        redirect_to medical_records_path
+      else
+        render 'new'
+      end
     end
   end
 
@@ -79,7 +81,7 @@ class MedicalRecordsController < ApplicationController
     end
 
     def set_consultations
-      @consultations = @record.consultations
+      @consultations = @record.consultations.order(created_at: :desc)
     end
 
 end

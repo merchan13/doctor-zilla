@@ -102,7 +102,7 @@
                 <td><%= "#{attachment.id}" %></td>
                 <td><%= "#{attachment.description}" %></td>
                 <td>
-                  <%= link_to "Ver", attachment_path(attachment.id), class: 'btn btn-info' %>
+                  <a href="<%= attachment.url%>" target="_blank", class="btn btn-info">Ver</a>
                   <%= link_to "Borrar", attachments_path(attachment.id), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
                 </td>
               </tr>

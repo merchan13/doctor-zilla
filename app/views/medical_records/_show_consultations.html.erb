@@ -2,9 +2,13 @@
   <h4>Consultas médicas</h4>
   <% consultations.each do |consultation| %>
     <div class="row">
-      <button type="button" name="button" class="consultation-button btn btn-link" data-button='<%= consultation.id %>'>
-        <%= consultation.created_at.strftime('%d %b %Y') %>
-      </button>
+      <div class="col-md-12">
+        <span><%= consultation.created_at.strftime('%d %b %Y') %></span>
+        <button type="button" name="button" class="consultation-button btn btn-link" data-button='<%= consultation.id %>'>
+          [ Ver más... ]
+        </button>
+      </div>
+
       <div class="col-md-12" id="consultation<%= consultation.id %>" style="display:none">
         <div class="well well-lg col-md-12">
           <div class="col-md-12">

@@ -29,8 +29,13 @@
     <!-- CONSULTAS -->
     <%= render partial: 'show_consultations', locals: { consultations: @consultations } %>
 
+    <div class="col-md-12"><hr></div>
+
   </div>
 
   <!-- MENU LATERAL -->
   <%= render partial: 'side_menu', locals: { record: @record } %>
+
+  <%= render 'modals' %>
+
 </div>
