@@ -56,7 +56,7 @@ class ConsultationsController < ApplicationController
 
   private
     def consultation_params
-      params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :temperature, :pressure_s,
+      params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :pressure_s,
                                             :pressure_d, :diagnostic_id, :reason_id )
     end
 
