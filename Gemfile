@@ -27,7 +27,7 @@ gem 'bootstrap-will_paginate'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
+#gem 'fog'
 gem 'fog-aws'
 gem 'figaro'
 
