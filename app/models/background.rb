@@ -8,8 +8,8 @@ class Background < ApplicationRecord
 
     es = case en
       when "family" then "Familiares"
-      when "allergy" then "Alérgias"
-      when "diabetes" then "Diabetes"
+      when "allergy" then "Alergias"
+      when "diabetes" then "Diábetes"
       when "asthma" then "Asma"
       when "heart" then "Cardiopatías"
       when "medicine" then "Medicamentos"
@@ -20,5 +20,5 @@ class Background < ApplicationRecord
 
     return es
   end
-  
+
 end
