@@ -47,7 +47,7 @@ class MedicalRecord < ApplicationRecord
     end
 
     backgrounds["Familiares"] = backgrounds.delete("family")
-    backgrounds["Alérgias"] = backgrounds.delete("allergy")
+    backgrounds["Alergias"] = backgrounds.delete("allergy")
     backgrounds["Diábetes"] = backgrounds.delete("diabetes")
     backgrounds["Asma"] = backgrounds.delete("asthma")
     backgrounds["Cardiopatías"] = backgrounds.delete("heart")

@@ -11,8 +11,10 @@
 
   <%= form_for(@record, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
 
-    <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
-
+    <% if params[:action] == 'new' %>
+      <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
+    <% end %>
+  
     <!-- IDENTIFICACIÓN -->
     <div class="form-group col-md-5">
       <div class="col-md-12">
