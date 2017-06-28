@@ -5,6 +5,8 @@
     <h3>Editar Historia - <small>Buscar historia</small></h3>
   <% elsif @filter == 'new_prescription'%>
     <h3>Nuevo Récipe - <small>Buscar historia</small></h3>
+  <% elsif @filter == 'new_operative_note'%>
+    <h3>Nota Operatoria - <small>Buscar historia</small></h3>
   <% end %>
   <%= form_tag search_records_path(filter: @filter), remote: true, method: :get, id: 'record-lookup-form' do %>
     <div class="form-group row no-padding text-center col-md-12">

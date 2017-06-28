@@ -1,5 +1,5 @@
 <% if @model == 'medical_record' %>
   <%= render 'medical_records/lookup' %>
-<% elsif @model == 'prescription' %>
-  <% # render a different partial per model. %>
+<% elsif @model == 'operative_note' %>
+  <%= render 'plans/lookup' %>
 <% end %>

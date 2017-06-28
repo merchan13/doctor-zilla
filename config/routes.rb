@@ -13,23 +13,25 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:page/home', to: 'pages#home', as: 'option'
+  get '/:page/home',      to: 'pages#home', as: 'option'
 
-  resources :medical_records,   except: :destroy
-  resources :occupations,       except: [:destroy, :edit, :update]
-  resources :insurances,        except: [:destroy, :edit, :update]
-  resources :consultations,     except: :destroy
-  resources :reasons,           except: [:destroy, :edit, :update]
-  resources :backgrounds,       except: :destroy
-  resources :physical_exams,    except: :destroy
-  resources :diagnostics,       except: [:destroy, :edit, :update]
-  resources :procedures,        except: [:destroy, :edit, :update]
-  resources :prescriptions,     except: :destroy
-  resources :medicines,         except: [:destroy, :edit, :update]
   resources :attachments,       except: [:edit, :update]
+  resources :backgrounds,       except: :destroy
+  resources :consultations,     except: :destroy
+  resources :diagnostics,       except: [:destroy, :edit, :update]
+  resources :insurances,        except: [:destroy, :edit, :update]
+  resources :medical_records,   except: :destroy
+  resources :medicines,         except: [:destroy, :edit, :update]
+  resources :occupations,       except: [:destroy, :edit, :update]
+  resources :operative_notes,   except: [:destroy, :edit, :update]
+  resources :physical_exams,    except: :destroy
+  resources :prescriptions,     except: [:destroy, :edit, :update]
+  resources :procedures,        except: [:destroy, :edit, :update]
+  resources :reasons,           except: [:destroy, :edit, :update]
 
-  get 'search', to: 'pages#search'
-  get 'search_records', to: 'medical_records#search'
-  get 'administration', to: 'pages#administration'
+  get 'search',           to: 'pages#search'
+  get 'search_records',   to: 'medical_records#search'
+  get 'search_plans',     to: 'plans#search'
+  get 'administration',   to: 'pages#administration'
 
 end

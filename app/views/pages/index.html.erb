@@ -13,7 +13,7 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= link_to option_path('prescriptions') do %>
+      <%= link_to search_path(model: 'medical_record', filter:'new_prescription') do %>
         <i class="fa fa-stethoscope"></i>
         <h4>Récipes</h4>
       <% end %>
@@ -25,7 +25,7 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= link_to option_path('operative_notes') do %>
+      <%= link_to search_path(model: 'operative_note', filter:'new_operative_note') do %>
         <i class="fa fa-user-md"></i>
         <h4>Notas operatorias</h4>
       <% end %>
