@@ -18,7 +18,7 @@
   <%= render 'common/spinner' %>
   <% if @plans %>
     <% if @plans.size > 0 %>
-      <div id="record-lookup-results" class="results-block col-md-10">
+      <div id="record-lookup-results" class="results-block col-md-12">
         <table class="table table-hover col-md-12">
           <thead>
             <tr>
@@ -31,11 +31,15 @@
           <tbody>
             <% @plans.each do |plan| %>
               <tr>
-                <td><%= plan.consultation.medical_record.full_id %></td>
-                <td><%= plan.consultation.medical_record.full_name %></td>
-                <td><%= plan.description %></td>
-                <td>
-                  <%= link_to "Crear Nota Operatoria", new_operative_note_path(plan: plan), class: 'btn btn-success modal-link' %>
+                <td class="col-md-2"><%= plan.consultation.medical_record.full_id %></td>
+                <td class="col-md-3"><%= plan.consultation.medical_record.full_name %></td>
+                <td class="col-md-5"><%= plan.description %></td>
+                <td class="col-md-2">
+                  <% if plan.operative_note.nil? %>
+                    <%= link_to "Crear Nota Operatoria", new_operative_note_path(plan: plan), class: 'btn btn-success modal-link' %>
+                  <% else %>
+                    <%= link_to "Ver Nota Operatoria", operative_note_path(plan), class: 'btn btn-primary modal-link' %>
+                  <% end %>
                 </td>
               </tr>
             <% end #@plans.each do |record|%>

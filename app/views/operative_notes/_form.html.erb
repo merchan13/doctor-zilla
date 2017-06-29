@@ -1,0 +1,87 @@
+<%= render 'shared/errors', obj: @operative_note %>
+<div class="col-md-9 new-panel main-panel">
+
+  <h3 align="center"><strong>Nueva Nota Operatoria</strong></h3>
+
+  <h4 align="left"><%= @plan.description %></h4>
+
+  <div class="col-md-12"><hr></div>
+
+  <%= form_for(@operative_note, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
+
+    <input type="hidden" name="plan" value="<%= @plan.id %>">
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
+        <% @procedures.each do |p| %>
+          <div class="">
+            <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-12"><hr></div>
+
+      <div class="col-md-12">
+        <h4>Si se realizaron otros procedimientos por favor agréguelos:</h4>
+        <div class="col-md-10">
+          <%= select_tag "procedures_select", options_from_collection_for_select((Procedure.all - @procedures).sort_by! do |p| p[:name] end, :id, :name), include_blank: 'N/A', class: 'form-control' %>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-info opnts_add_select_button">Agregar</button>
+        </div>
+        <div class="col-md-12">
+          <a href="#" data-toggle="modal" data-target="#new-procedure-form">Agrear nuevo procedimiento</a>
+        </div>
+      </div>
+
+      <div class="col-md-12"><br></div>
+
+      <div class="col-md-12">
+        <div class="opnts_procedures_data_wrap">
+          <!-- hidden inputs -->
+        </div>
+        <div class="col-md-10 opnts_procedures_wrap">
+          <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+          <!-- inputs -->
+        </div>
+      </div>
+
+      <div class="col-md-12"><br></div>
+
+      <div class="col-md-12">
+        <h4>Texto 1</h4>
+        <textarea rows="3" class="form-control" name="operative_note[texto]"></textarea>
+      </div>
+
+      <div class="col-md-12">
+        <h4>Descripcion</h4>
+        <textarea rows="3" class="form-control" name="operative_note[description]"></textarea>
+      </div>
+
+      <div class="col-md-12">
+        <h4>Hallazgos</h4>
+          <textarea rows="3" class="form-control" name="operative_note[find]"></textarea>
+      </div>
+
+    </div>
+
+    <div class='form-group center'>
+      <div class='col-md-4'>
+        <%= f.submit class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-2 new-panel secondary-panel">
+  <p>Perfil paciente</p>
+</div>
+
+<div class="col-xs-4 col-xs-offset-4">
+  [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
+</div>
+
+<!-- PROCEDIMIENTOS -->
+<%= render 'modals'%>
