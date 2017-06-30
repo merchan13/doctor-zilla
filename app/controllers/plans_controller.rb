@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
 
   def search
+    @filter = params[:filter]
     @plans = Plan.search(params[:search_param], current_user.medical_records)
     if @plans
       render partial: "plans/lookup"

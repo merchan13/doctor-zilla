@@ -45,6 +45,8 @@
                     <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'new_prescription'%>
                     <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-success modal-link' %>
+                  <% elsif @filter == 'new_operative_note'%>
+                    <%= link_to "Plan de emergencia", new_operative_note_path(record: record), class: 'btn btn-danger modal-link' %>
                   <% end %>
                 </td>
               </tr>

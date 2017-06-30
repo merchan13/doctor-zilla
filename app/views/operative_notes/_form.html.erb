@@ -3,30 +3,42 @@
 
   <h3 align="center"><strong>Nueva Nota Operatoria</strong></h3>
 
-  <h4 align="left"><%= @plan.description %></h4>
+  <% if !@plan.nil? %>
+    <h4 align="left"><%= @plan.description %></h4>
+  <% end %>
 
   <div class="col-md-12"><hr></div>
 
   <%= form_for(@operative_note, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
 
-    <input type="hidden" name="plan" value="<%= @plan.id %>">
+    <% if !@plan.nil? %>
+      <input type="hidden" name="plan" value="<%= @plan.id %>">
+    <% else %>
+      <input type="hidden" name="record" value="<%= @record.id %>">
+    <% end %>
 
     <div class="form-group">
-      <div class="col-md-12">
-        <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
-        <% @procedures.each do |p| %>
-          <div class="">
-            <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
-          </div>
-        <% end %>
-      </div>
+      <% if !@plan.nil? %>
+        <div class="col-md-12">
+          <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
+          <% @procedures.each do |p| %>
+            <div class="">
+              <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
+            </div>
+          <% end %>
+        </div>
 
-      <div class="col-md-12"><hr></div>
+        <div class="col-md-12"><hr></div>
+      <% end %>
 
       <div class="col-md-12">
         <h4>Si se realizaron otros procedimientos por favor agréguelos:</h4>
         <div class="col-md-10">
-          <%= select_tag "procedures_select", options_from_collection_for_select((Procedure.all - @procedures).sort_by! do |p| p[:name] end, :id, :name), include_blank: 'N/A', class: 'form-control' %>
+          <% if !@plan.nil? %>
+            <%= select_tag "procedures_select", options_from_collection_for_select((Procedure.all - @procedures).sort_by! do |p| p[:name] end, :id, :name), include_blank: 'N/A', class: 'form-control' %>
+          <% else %>
+            <%= select_tag "procedures_select", options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name), include_blank: 'N/A', class: 'form-control' %>
+          <% end %>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-info opnts_add_select_button">Agregar</button>

@@ -1,0 +1,50 @@
+<div class="col-md-12">
+  <h1><%= "Historia ##{@record.id}" %></h1>
+  <!-- HISTORIA -->
+  <div class="col-md-9 new-panel main-panel">
+
+    <div class="col-md-12">
+      <h2>Nota operatoria [ <%= @operative_note.created_at.strftime("%Y-%b-%d") %> ]</h2>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Plan</h3>
+      <h4 align="left"><%= @plan.description %></h4>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Descripción</h3>
+      <p><%= @operative_note.description %></p>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Hallazgos</h3>
+      <% if @operative_note.find.nil? %>
+        <p>No se poseen hallazgos.</p>
+      <% else %>
+        <p><%= @operative_note.find %></p>
+      <% end %>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Procedimientos</h3>
+      <div class="col-md-12">
+        <% @procedures.each do |p| %>
+          <h4><%= p.name %></h4>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Descripcion</h3>
+      <p>-preguntar que va aqui-</p>
+    </div>
+
+    <div class="col-md-12"><hr></div>
+
+  </div>
+
+  <!-- MENU LATERAL -->
+  <%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
+
+</div>

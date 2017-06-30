@@ -38,7 +38,7 @@
                   <% if plan.operative_note.nil? %>
                     <%= link_to "Crear Nota Operatoria", new_operative_note_path(plan: plan), class: 'btn btn-success modal-link' %>
                   <% else %>
-                    <%= link_to "Ver Nota Operatoria", operative_note_path(plan), class: 'btn btn-primary modal-link' %>
+                    <%= link_to "Ver Nota Operatoria", operative_note_path(plan.operative_note), class: 'btn btn-primary modal-link' %>
                   <% end %>
                 </td>
               </tr>
@@ -50,5 +50,12 @@
       <p class="lead col-md-12">Ninguna historia que coincida con el criterio de búsqueda posee un plan.</p>
     <% end #if @plans.size > 0%>
   <% end #if @plans%>
+  <div class="col-md-12">
+    <br>
+    <br>
+    <%= link_to "Nota Operatoria de Emergencia", search_path(model: 'medical_record', filter:'new_operative_note'), class: 'btn btn-lg btn-danger modal-link' %>
+    <br>
+    <br>
+  </div>
   <div id="record-lookup-errors" class=""></div>
 </div>
