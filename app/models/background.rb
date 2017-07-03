@@ -1,5 +1,5 @@
 class Background < ApplicationRecord
-  belongs_to :consultation
+  belongs_to :medical_record
 
   validates_presence_of :background_type, :description
 

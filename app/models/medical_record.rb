@@ -5,9 +5,9 @@ class MedicalRecord < ApplicationRecord
   validates_integrity_of  :profile_picture
   validates_processing_of :profile_picture
 
-
   has_many :user_medical_records
   has_many :users, through: :user_medical_records
+  has_many :backgrounds
   has_many :consultations
   has_many :prescriptions
   has_many :attachments
@@ -33,29 +33,6 @@ class MedicalRecord < ApplicationRecord
       now = Time.now.utc.to_date
       now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
     end
-  end
-
-  def backgrounds
-    backgrounds =  Hash.new
-    backgrounds = { "family" => [], "allergy" => [], "diabetes" => [], "asthma" => [], "heart" => [],
-                    "medicine" => [], "surgical" => [], "other" => []}
-
-    self.consultations.each do |c|
-      c.backgrounds.each do |b|
-        backgrounds[b.background_type] << b.description
-      end
-    end
-
-    backgrounds["Familiares"] = backgrounds.delete("family")
-    backgrounds["Alergias"] = backgrounds.delete("allergy")
-    backgrounds["Diábetes"] = backgrounds.delete("diabetes")
-    backgrounds["Asma"] = backgrounds.delete("asthma")
-    backgrounds["Cardiopatías"] = backgrounds.delete("heart")
-    backgrounds["Medicamentos"] = backgrounds.delete("medicine")
-    backgrounds["Quirúrgicos"] = backgrounds.delete("surgical")
-    backgrounds["Otros"] = backgrounds.delete("other")
-
-    return backgrounds
   end
 
   def physic_data

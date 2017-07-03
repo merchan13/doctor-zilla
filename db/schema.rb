@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616050041) do
+ActiveRecord::Schema.define(version: 20170703164840) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20170616050041) do
   end
 
   create_table "backgrounds", force: :cascade do |t|
-    t.string   "background_type", null: false
-    t.text     "description",     null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "consultation_id"
-    t.index ["consultation_id"], name: "index_backgrounds_on_consultation_id"
+    t.string   "background_type",   null: false
+    t.text     "description",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "medical_record_id"
+    t.index ["medical_record_id"], name: "index_backgrounds_on_medical_record_id"
   end
 
   create_table "consultations", force: :cascade do |t|

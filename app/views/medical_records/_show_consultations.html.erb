@@ -48,21 +48,6 @@
             </div>
           <% end %>
 
-          <!-- Antecedentes -->
-          <% if consultation.backgrounds.present?  %>
-            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
-            <div class="col-md-12">
-              <p><i><u><strong>Antecedentes</strong></u></i></p>
-              <% consultation.backgrounds.each do |b| %>
-                <div class="col-md-4">
-                  <p><strong><%= "#{b.type_es}:" if !b.description.blank?%></strong></p>
-                  <p><small><%= b.description %></small></p>
-                </div>
-              <% end %>
-            </div>
-            <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
-          <% end %>
-
           <!--Examen Físico -->
           <% if consultation.physical_exams.present?  %>
             <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
@@ -116,7 +101,6 @@
             </div>
             <div class="col-md-12"><hr style="border-top: 1px solid #add8e6;"></div>
           <% end %>
-
 
         </div>
       </div>

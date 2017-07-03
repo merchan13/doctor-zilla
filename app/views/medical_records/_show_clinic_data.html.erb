@@ -33,12 +33,10 @@
   <h4>Antecedentes</h4>
   <% record.backgrounds.each do |b| %>
     <div class="col-md-4">
-      <i><strong><%= "#{b[0]}:" if !b[1].empty?%></strong></i>
+      <i><strong><%= "#{b.type_es}:"%></strong></i>
     </div>
     <div class="col-md-8">
-      <% b[1].each do |bb| %>
-        <p><%= bb %></p>
-      <% end %>
+      <p><%= b.description %></p>
     </div>
   <% end %>
 </div>
