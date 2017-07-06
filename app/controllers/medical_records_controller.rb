@@ -36,11 +36,22 @@ class MedicalRecordsController < ApplicationController
   end
 
   def update
-    if @record.update(record_params)
-      flash[:success] = "Medical record data was successfully updated"
-      redirect_to medical_record_path(@record)
-    else
-      render 'edit'
+    MedicalRecord.transaction do
+      @record.update_background("family", params["bg_family"])
+      @record.update_background("allergy", params["bg_allergy"])
+      @record.update_background("diabetes", params["bg_diabetes"])
+      @record.update_background("asthma", params["bg_asthma"])
+      @record.update_background("heart", params["bg_heart"])
+      @record.update_background("medicine", params["bg_medicine"])
+      @record.update_background("surgical", params["bg_surgical"])
+      @record.update_background("other", params["bg_other"])
+
+      if @record.update(record_params)
+        flash[:success] = "Medical record data was successfully updated"
+        redirect_to medical_record_path(@record)
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -83,5 +94,4 @@ class MedicalRecordsController < ApplicationController
     def set_consultations
       @consultations = @record.consultations.order(created_at: :desc)
     end
-
 end

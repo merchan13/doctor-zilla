@@ -14,7 +14,7 @@
     <% if params[:action] == 'new' %>
       <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
     <% end %>
-  
+
     <!-- IDENTIFICACIÓN -->
     <div class="form-group col-md-5">
       <div class="col-md-12">
@@ -141,6 +141,15 @@
         <a href="#" data-toggle="modal" data-target="#new-insurance-form">Agrear nuevo</a>
       </div>
     </div>
+
+    <div class="col-md-12">
+      <br>
+    </div>
+
+    <!-- ANTECEDENTES. -->
+    <% if params[:action] == 'edit' %>
+      <%= render partial: 'backgrounds', locals: { f: f, record: @record } %>
+    <% end %>
 
     <div class='form-group center'>
       <div class='col-md-offset-4 col-md-4'>

@@ -35,6 +35,24 @@ class MedicalRecord < ApplicationRecord
     end
   end
 
+  def backgrounds_dict
+    bgs =  Hash.new
+    bgs = { "family" => "",
+            "allergy" => "",
+            "diabetes" => "",
+            "asthma" => "",
+            "heart" => "",
+            "medicine" => "",
+            "surgical" => "",
+            "other" => ""}
+
+    self.backgrounds.each do |bg|
+      bgs[bg.background_type] = bg.description
+    end
+
+    bgs
+  end
+
   def physic_data
     physics =  Hash.new
     physics = { "height" => 0, "weight" => 0, "pressure_d" => "?", "pressure_s" => "?"}
@@ -47,6 +65,20 @@ class MedicalRecord < ApplicationRecord
     end
 
     return physics
+  end
+
+  def update_background (type, description)
+    bg = self.backgrounds.where(background_type: type).first
+    if bg.nil?
+      self.backgrounds.create(background_type: type, description: description)
+    else
+      if description == ""
+        bg.delete
+      else
+        bg.description = description
+      end
+      bg.save
+    end
   end
 
   def imc
