@@ -7,7 +7,7 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= link_to option_path('reports') do %>
+      <%= link_to search_path(model: 'medical_record', filter:'new_report') do %>
         <i class="fa fa-clipboard"></i>
         <h4>Informes</h4>
       <% end %>

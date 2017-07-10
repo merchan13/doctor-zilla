@@ -11,6 +11,7 @@ class MedicalRecord < ApplicationRecord
   has_many :consultations
   has_many :prescriptions
   has_many :attachments
+  has_many :reports
 
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true
@@ -79,6 +80,55 @@ class MedicalRecord < ApplicationRecord
       end
       bg.save
     end
+  end
+
+  def report_info_dictionary
+    info = Hash.new
+
+    info = {  "operative_notes" => self.operative_notes,
+              "physical_exams" => self.physical_exams,
+              "plans" => self.plans
+            }
+
+    info
+  end
+
+  def operative_notes
+    op_notes = Array.new
+
+    self.consultations.each do |c|
+      if !c.plan.nil?
+        if !c.plan.operative_note.nil?
+          op_notes << c.plan.operative_note
+        end
+      end
+    end
+
+    op_notes
+  end
+
+  def physical_exams
+    pe = Array.new
+
+    self.consultations.each do |c|
+      c.physical_exams.each do  |p|
+        pe << p
+      end
+    end
+
+    pe
+  end
+
+  def plans
+    plns = Array.new
+
+    self.consultations.each do |c|
+      if !c.plan.nil?
+        plns << c.plan
+      end
+    end
+
+    plns
   end
 
   def imc
