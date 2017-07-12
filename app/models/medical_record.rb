@@ -71,14 +71,16 @@ class MedicalRecord < ApplicationRecord
   def update_background (type, description)
     bg = self.backgrounds.where(background_type: type).first
     if bg.nil?
-      self.backgrounds.create(background_type: type, description: description)
+      if description != ""
+        self.backgrounds.create(background_type: type, description: description)
+      end
     else
-      if description == ""
+      if description == "" || description == " "
         bg.delete
       else
         bg.description = description
+        bg.save
       end
-      bg.save
     end
   end
 

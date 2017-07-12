@@ -29,6 +29,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'figaro'
+gem 'responders'
+gem 'htmltoword'
 
 
 group :development, :test do

@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <h1><%= "Historia ##{@record.id}" %></h1>
+  <!-- INFORME -->
+  <div class="col-md-9 new-panel main-panel">
+
+    <div class="col-md-12">
+      <h2>Informe médico [ <%= @report.created_at.strftime("%d-%b-%Y") %> ]</h2>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Descripción</h3>
+      <p><%= @report.description.gsub(/\r\n/, '<br>').html_safe %></p>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+      <%= link_to "Descargar .docx", download_report_path(@report), class: 'btn btn-lg btn-primary' %>
+    </div>
+
+    <div class="col-md-12"><hr></div>
+
+  </div>
+
+  <!-- MENU LATERAL -->
+  <%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
+
+</div>

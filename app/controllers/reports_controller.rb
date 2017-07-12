@@ -1,7 +1,8 @@
 class ReportsController < ApplicationController
   before_action :set_medical_record, only: [:new, :create, :select_data]
   before_action :set_selected_options, only: [:new]
-  before_action :set_report, only: [:show]
+  before_action :set_report, only: [:show, :download]
+  respond_to :docx
 
   def new
     @report = @record.reports.new
@@ -10,10 +11,10 @@ class ReportsController < ApplicationController
 
   def create
     Report.transaction do
-      @report = @record.reports.create(report_params)
+      @report = @record.reports.create(description: params[:description], report_type: 'Informe Médico')
       if @report.save
         flash[:success] = "New Report added"
-        redirect_to root_path
+        redirect_to report_path(@report)
       else
         render 'select_data'
       end
@@ -21,10 +22,18 @@ class ReportsController < ApplicationController
   end
 
   def show
-    # ...
+    @record = @report.medical_record
   end
 
   def select_data
+  end
+
+  def download
+    respond_to do |format|
+      format.docx do
+        render docx: 'download', filename: "informe_#{@report.medical_record.last_name.strip}_#{@report.id}.docx"
+      end
+    end
   end
 
   private

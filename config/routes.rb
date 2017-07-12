@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   get 'select_data',      to: 'reports#select_data'
   get 'administration',   to: 'pages#administration'
 
+  get 'reports/download/:id', to: 'reports#download', as: 'download_report', format: 'docx'
+
 end
