@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
   def download
     respond_to do |format|
       format.docx do
-        render docx: 'download', filename: "informe_#{@report.medical_record.last_name.strip}_#{@report.id}.docx"
+        render docx: 'download', filename: "informe_#{@report.medical_record.last_name.gsub(/ /, "")}_#{@report.id}.docx"
       end
     end
   end
@@ -106,30 +106,52 @@ class ReportsController < ApplicationController
     end
 
     def set_description_text(data)
-      basic = "Información básica:\n #{@record.full_name}, cédula de identidad: #{@record.full_id}, #{@record.age} años de edad.\n"
+      description = ""
 
-      weight = "Peso: #{@record.physic_data["weight"] if @record.physic_data["weight"] > 0}kg\n"
+      if @options['basic'] == true
+        description += "Información básica:\n #{@record.full_name}, cédula de identidad: #{@record.full_id}, #{@record.age} años de edad.\n"
+      end
 
-      height = "Talla: #{@record.physic_data["height"] if @record.physic_data["height"] > 0}m\n"
+      if @options['weight'] == true
+        description += " Peso: #{@record.physic_data["weight"]}kg\n"
+      end
 
-      pressure = "Tensión: #{@record.physic_data["pressure_s"]}/#{@record.physic_data["pressure_d"]}mm Hg\n"
+      if @options['height'] == true
+        description += " Talla: #{@record.physic_data["height"]}m\n"
+      end
 
-      consultation = "Consulta médica:
-      Motivo de consulta: #{@record.consultations.last.reason.description}
-      Enfermedad actual: #{@record.consultations.last.affliction}
-      Evolución: #{@record.consultations.last.evolution}
-      Diagnóstico: #{@record.consultations.last.diagnostic.description if !@record.consultations.last.diagnostic.nil?}\n\n"
+      if @options['pressure'] == true
+        description += " Tensión: #{@record.physic_data["pressure_s"]}/#{@record.physic_data["pressure_d"]}mm Hg\n"
+      end
+
+      description += "\n"
+
+      if @options['last_consultation'] == true
+        description += "Consulta médica:
+        Motivo de consulta: #{@record.consultations.last.reason.description}
+        Enfermedad actual: #{@record.consultations.last.affliction}
+        Evolución: #{@record.consultations.last.evolution}
+        Diagnóstico: #{@record.consultations.last.diagnostic.description if !@record.consultations.last.diagnostic.nil?}\n\n"
+      end
 
       backgrounds = set_bg_descriptions
+      if backgrounds.length != 15
+        description += backgrounds
+      end
 
       physical_exams = set_pe_descriptions
+      if physical_exams.length != 16
+        description += physical_exams
+      end
 
-      plan ="Plan: #{@record.plans.last.description}\n\n"
+      if @options['plan'] == true
+        description += "Plan: #{@record.plans.last.description}\n\n"
+      end
 
-      operative_note = "Nota operatoria: #{@record.operative_notes.last.description}, hallazgos: #{@record.operative_notes.last.find}\n\n"
+      if @options['operative_note'] == true
+        operative_note = "Nota operatoria: #{@record.operative_notes.last.description}, hallazgos: #{@record.operative_notes.last.find}\n\n"
+      end
 
-      # arreglar este desastre!
-      description = "#{basic if @options['basic'] == true} #{weight if @options['weight'] == true} #{height if @options['height'] == true} #{pressure if @options['pressure'] == true}\n#{consultation if @options['last_consultation'] == true}#{backgrounds if backgrounds.length != 15}#{physical_exams if physical_exams.length != 16}#{plan if @options['plan'] == true}#{operative_note if @options['operative_note'] == true}"
       description
     end
 
@@ -138,35 +160,35 @@ class ReportsController < ApplicationController
       backgrounds = "Antecedentes:\n"
 
       if @options['family_bg'] == true
-        backgrounds += " Familiares: #{@record.backgrounds.where(background_type: 'family').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'family').first.nil?}\n"
+        backgrounds += " Familiares: #{@record.backgrounds.where(background_type: 'family').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['allergy_bg'] == true
-        backgrounds += " Alergias: #{@record.backgrounds.where(background_type: 'allergy').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'allergy').first.nil?}\n"
+        backgrounds += " Alergias: #{@record.backgrounds.where(background_type: 'allergy').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['diabetes_bg'] == true
-        backgrounds += " Diábetes: #{@record.backgrounds.where(background_type: 'diabetes').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'diabetes').first.nil?}\n"
+        backgrounds += " Diábetes: #{@record.backgrounds.where(background_type: 'diabetes').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['asthma_bg'] == true
-        backgrounds += " Asma: #{@record.backgrounds.where(background_type: 'asthma').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'asthma').first.nil?}\n"
+        backgrounds += " Asma: #{@record.backgrounds.where(background_type: 'asthma').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['heart_bg'] == true
-        backgrounds += " Cardiopatías: #{@record.backgrounds.where(background_type: 'heart').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'heart').first.nil?}\n"
+        backgrounds += " Cardiopatías: #{@record.backgrounds.where(background_type: 'heart').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['medicine_bg'] == true
-        backgrounds += " Medciamentos: #{@record.backgrounds.where(background_type: 'medicine').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'medicine').first.nil?}\n"
+        backgrounds += " Medciamentos: #{@record.backgrounds.where(background_type: 'medicine').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['surgical_bg'] == true
-        backgrounds += " Quirúrgicos: #{@record.backgrounds.where(background_type: 'surgical').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'surgical').first.nil?}\n"
+        backgrounds += " Quirúrgicos: #{@record.backgrounds.where(background_type: 'surgical').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['other_bg'] == true
-        backgrounds += " Otros: #{@record.backgrounds.where(background_type: 'other').first.description.gsub(/\r\n/, ' ') if !@record.backgrounds.where(background_type: 'other').first.nil?}\n"
+        backgrounds += " Otros: #{@record.backgrounds.where(background_type: 'other').first.description.gsub(/\r\n/, ' ')}\n"
       end
 
       backgrounds += "\n"
@@ -177,43 +199,43 @@ class ReportsController < ApplicationController
       physical_exams = "Exámen físico:\n"
 
       if @options['head_neck_pe'] == true
-        head_neck_pe = " Cabeza y cuello: #{@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.nil?}\n"
+        head_neck_pe = " Cabeza y cuello: #{@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['chest_pe'] == true
-        chest_pe = " Torax: #{@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.nil?}\n"
+        chest_pe = " Torax: #{@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['abdomen_pe'] == true
-        abdomen_pe = " Adbomen: #{@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.nil?}\n"
+        abdomen_pe = " Adbomen: #{@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['genitals_pe'] == true
-        genitals_pe = " Genitales: #{@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.nil?}\n"
+        genitals_pe = " Genitales: #{@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['soft_parts_pe'] == true
-        soft_parts_pe = " Partes blandas: #{@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.nil?}\n"
+        soft_parts_pe = " Partes blandas: #{@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['extremities_pe'] == true
-        extremities_pe = " Extremidades: #{@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.nil?}\n"
+        extremities_pe = " Extremidades: #{@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['vascular_pe'] == true
-        vascular_pe = " Vascular: #{@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.nil?}\n"
+        vascular_pe = " Vascular: #{@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['skin_pe'] == true
-        skin_pe = " Piel: #{@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.nil?}\n"
+        skin_pe = " Piel: #{@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['mamma_pe'] == true
-        mamma_pe = " Mamas: #{@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.nil?}\n"
+        mamma_pe = " Mamas: #{@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['others_pe'] == true
-        others_pe = " Otros: #{@record.consultations.last.physical_exams.where(exam_type: 'Others').first.observation.gsub(/\r\n/, ' ') if !@record.consultations.last.physical_exams.where(exam_type: 'Others').first.nil?}\n"
+        others_pe = " Otros: #{@record.consultations.last.physical_exams.where(exam_type: 'Others').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       physical_exams += "\n"

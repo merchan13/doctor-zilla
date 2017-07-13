@@ -13,134 +13,182 @@
       <%= label_tag(:basic, "Datos básicos") %>
     </div>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:last_consultation) %>
-      <%= label_tag(:last_consultation, "Última consulta (#{@record.consultations.last.reason.description})") %>
-    </div>
+    <% if @record.consultations.count > 0 %>
+      <div class="col-md-12">
+        <%= check_box_tag(:last_consultation) %>
+        <%= label_tag(:last_consultation, "Última consulta (#{@record.consultations.last.reason.description})") %>
+      </div>
+    <% end %>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:weight) %>
-      <%= label_tag(:weight, "Peso") %>
-    </div>
+    <% if @record.physic_data["weight"] > 0 %>
+      <div class="col-md-12">
+        <%= check_box_tag(:weight) %>
+        <%= label_tag(:weight, "Peso") %>
+      </div>
+    <% end %>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:height) %>
-      <%= label_tag(:height, "Talla") %>
-    </div>
+    <% if @record.physic_data["height"] > 0 %>
+      <div class="col-md-12">
+        <%= check_box_tag(:height) %>
+        <%= label_tag(:height, "Talla") %>
+      </div>
+    <% end %>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:pressure) %>
-      <%= label_tag(:pressure, "Tensión") %>
-    </div>
+    <% if (!@record.physic_data["pressure_s"].nil? ) && (!@record.physic_data["pressure_d"].nil? ) %>
+      <div class="col-md-12">
+        <%= check_box_tag(:pressure) %>
+        <%= label_tag(:pressure, "Tensión") %>
+      </div>
+    <% end %>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:plan) %>
-      <%= label_tag(:plan, "Plan") %>
-    </div>
+    <% if @record.plans.count > 0 %>
+      <div class="col-md-12">
+        <%= check_box_tag(:plan) %>
+        <%= label_tag(:plan, "Plan") %>
+      </div>
+    <% end %>
 
-    <div class="col-md-12">
-      <%= check_box_tag(:operative_note) %>
-      <%= label_tag(:operative_note, "Nota Operatoria") %>
-    </div>
+    <% if @record.operative_notes.count > 0 %>
+      <div class="col-md-12">
+        <%= check_box_tag(:operative_note) %>
+        <%= label_tag(:operative_note, "Nota Operatoria") %>
+      </div>
+    <% end %>
 
     <div class="col-md-12"><hr></div>
 
     <p>ANTECEDENTES</p>
     <div class="col-md-12">
-      <div class="col-md-2">
-        <%= check_box_tag(:family_bg) %>
-        <%= label_tag(:family_bg, "Familiares", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'family').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:family_bg) %>
+          <%= label_tag(:family_bg, "Familiares", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:allergy_bg) %>
-        <%= label_tag(:allergy_bg, "Alergias", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'allergy').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:allergy_bg) %>
+          <%= label_tag(:allergy_bg, "Alergias", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:diabetes_bg) %>
-        <%= label_tag(:diabetes_bg, "Diábetes", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'diabetes').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:diabetes_bg) %>
+          <%= label_tag(:diabetes_bg, "Diábetes", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:asthma_bg) %>
-        <%= label_tag(:asthma_bg, "Asma", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'asthma').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:asthma_bg) %>
+          <%= label_tag(:asthma_bg, "Asma", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:heart_bg) %>
-        <%= label_tag(:heart_bg, "Cardiopatías", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'heart').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:heart_bg) %>
+          <%= label_tag(:heart_bg, "Cardiopatías", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:medicine_bg) %>
-        <%= label_tag(:medicine_bg, "Medicamentos", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'medicine').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:medicine_bg) %>
+          <%= label_tag(:medicine_bg, "Medicamentos", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:surgical_bg) %>
-        <%= label_tag(:surgical_bg, "Quirúrgicos", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'surgical').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:surgical_bg) %>
+          <%= label_tag(:surgical_bg, "Quirúrgicos", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:other_bg) %>
-        <%= label_tag(:other_bg, "Otros", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.backgrounds.where(background_type: 'other').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:other_bg) %>
+          <%= label_tag(:other_bg, "Otros", style: "margin-right:25px") %>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-12"><hr></div>
 
     <p>EXÁMENES FÍSICOS</p>
     <div class="col-md-12">
-      <div class="col-md-2">
-        <%= check_box_tag(:head_neck_pe) %>
-        <%= label_tag(:head_neck_pe, "Cabeza y cuello", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:head_neck_pe) %>
+          <%= label_tag(:head_neck_pe, "Cabeza y cuello", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:chest_pe) %>
-        <%= label_tag(:chest_pe, "Tórax", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:chest_pe) %>
+          <%= label_tag(:chest_pe, "Tórax", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:abdomen_pe) %>
-        <%= label_tag(:abdomen_pe, "Abdomen", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:abdomen_pe) %>
+          <%= label_tag(:abdomen_pe, "Abdomen", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:genitals_pe) %>
-        <%= label_tag(:genitals_pe, "Genitales", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:genitals_pe) %>
+          <%= label_tag(:genitals_pe, "Genitales", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.nil? %>
       <div class="col-md-2">
         <%= check_box_tag(:soft_parts_pe) %>
         <%= label_tag(:soft_parts_pe, "Partes blandas", style: "margin-right:25px") %>
       </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:extremities_pe) %>
-        <%= label_tag(:extremities_pe, "Extremidades", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:extremities_pe) %>
+          <%= label_tag(:extremities_pe, "Extremidades", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:vascular_pe) %>
-        <%= label_tag(:vascular_pe, "Vascular", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:vascular_pe) %>
+          <%= label_tag(:vascular_pe, "Vascular", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:skin_pe) %>
-        <%= label_tag(:skin_pe, "Piel", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:skin_pe) %>
+          <%= label_tag(:skin_pe, "Piel", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:mamma_pe) %>
-        <%= label_tag(:mamma_pe, "Mamas", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:mamma_pe) %>
+          <%= label_tag(:mamma_pe, "Mamas", style: "margin-right:25px") %>
+        </div>
+      <% end %>
 
-      <div class="col-md-2">
-        <%= check_box_tag(:others_pe) %>
-        <%= label_tag(:others_pe, "Otros", style: "margin-right:25px") %>
-      </div>
+      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Others').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:others_pe) %>
+          <%= label_tag(:others_pe, "Otros", style: "margin-right:25px") %>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-12"><hr></div>
