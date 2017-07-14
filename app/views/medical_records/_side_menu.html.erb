@@ -22,12 +22,15 @@
   <div class="col-md-12 center">
     <h4><a href="#" data-toggle="modal" data-target="#new-attachment-form">Anexos </a>(<%= record.attachments.count %>)</h4>
     <hr>
-    <h4><a href="#" data-toggle="modal" data-target="#">Nota<br>Operatoria </a></h4>
+    <h4><a href="#" data-toggle="modal" data-target="#"> Crear Nota<br>Operatoria </a></h4>
     <hr>
-    <h4><a href="#" data-toggle="modal" data-target="#">Informe </a></h4>
+    <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
     <hr>
-    <h4><a href="#" data-toggle="modal" data-target="#">Récipe </a></h4>
+    <h4><a href="#" data-toggle="modal" data-target="#">Récipe </a>(<%= record.prescriptions.count %>)</h4>
+    <!--
     <hr>
     <h4><a href="#" data-toggle="modal" data-target="#">Exámenes de<br>Laboratorio </a></h4>
+    -->
+    <br>
   </div>
 </div>

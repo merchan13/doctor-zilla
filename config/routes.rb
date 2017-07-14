@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :physical_exams,    except: :destroy
   resources :prescriptions,     except: [:destroy, :edit, :update]
   resources :procedures,        except: [:destroy, :edit, :update]
-  resources :reports,            except: [:destroy, :edit, :update]
+  resources :reports,           except: [:destroy, :edit, :update]
   resources :reasons,           except: [:destroy, :edit, :update]
 
   get 'search',           to: 'pages#search'

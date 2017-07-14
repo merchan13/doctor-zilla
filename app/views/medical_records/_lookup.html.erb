@@ -38,9 +38,9 @@
           <tbody>
             <% @records.each do |record| %>
               <tr>
-                <td><%= record.full_id %></td>
-                <td><%= record.full_name %></td>
-                <td>
+                <td class="col-md-3"><%= record.full_id %></td>
+                <td class="col-md-5"><%= record.full_name %></td>
+                <td class="col-md-4">
                   <% if @filter == 'new_consultation' %>
                     <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'edit_record'%>
@@ -51,6 +51,9 @@
                     <%= link_to "Plan de emergencia", new_operative_note_path(record: record), class: 'btn btn-danger modal-link' %>
                   <% elsif @filter == 'new_report'%>
                     <%= link_to "Nuevo informe", select_data_path(record: record), class: 'btn btn-success modal-link' %>
+                    <% if record.reports.count > 0 %>
+                      <%= link_to "Ver informes (#{record.reports.count})", reports_path(record: record), class: 'btn btn-primary modal-link' %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

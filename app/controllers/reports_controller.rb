@@ -1,8 +1,12 @@
 class ReportsController < ApplicationController
-  before_action :set_medical_record, only: [:new, :create, :select_data]
+  before_action :set_medical_record, only: [:new, :create, :select_data, :index]
   before_action :set_selected_options, only: [:new]
   before_action :set_report, only: [:show, :download]
   respond_to :docx
+
+  def index
+    @reports = @record.reports.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
+  end
 
   def new
     @report = @record.reports.new
