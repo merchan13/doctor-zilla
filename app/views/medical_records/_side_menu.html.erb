@@ -8,25 +8,40 @@
   <div class="col-md-12"><hr></div>
 
   <div class="col-md-12">
-    <p><%= record.last_name %></p>
+    <h5><%= record.last_name %></h5>
   </div>
   <div class="col-md-12">
-    <p><%= record.full_id %></p>
+    <h5><%= record.full_id %></h5>
   </div>
   <div class="col-md-12">
-    <p><%= record.age.to_s + ' años' if record.birthday.present? %></p>
+    <h5><%= record.age.to_s + ' años' if record.birthday.present? %></h5>
   </div>
 
   <div class="col-md-12"><hr></div>
 
   <div class="col-md-12 center">
-    <h4><a href="#" data-toggle="modal" data-target="#new-attachment-form">Anexos </a>(<%= record.attachments.count %>)</h4>
-    <hr>
-    <h4><a href="#" data-toggle="modal" data-target="#"> Crear Nota<br>Operatoria </a></h4>
-    <hr>
-    <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
-    <hr>
-    <h4><a href="#" data-toggle="modal" data-target="#">Récipe </a>(<%= record.prescriptions.count %>)</h4>
+    <% if params[:action] != 'new' %>
+      <h4><%= link_to "Historia", medical_record_path(record)%></h4>
+      <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#new-attachment-form">Anexos </a>(<%= record.attachments.count %>)</h4>
+      <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#">Notas<br>Operatorias </a>(<%= record.operative_notes.count %>)</h4>
+      <hr>
+      <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
+      <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#">Récipes </a>(<%= record.prescriptions.count %>)</h4>
+    <% else %>
+      <h4>Historia</h4>
+      <hr>
+      <h4>Anexos</h4>
+      <hr>
+      <h4>Notas<br>Operatorias</h4>
+      <hr>
+      <h4>Informes</h4>
+      <hr>
+      <h4>Récipes</h4>
+    <% end %>
+
     <!--
     <hr>
     <h4><a href="#" data-toggle="modal" data-target="#">Exámenes de<br>Laboratorio </a></h4>
