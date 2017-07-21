@@ -20,17 +20,7 @@
   <div class="col-md-12"><hr></div>
 
   <div class="col-md-12 center">
-    <% if params[:action] != 'new' %>
-      <h4><%= link_to "Historia", medical_record_path(record)%></h4>
-      <hr>
-      <h4><a href="#" data-toggle="modal" data-target="#new-attachment-form">Anexos </a>(<%= record.attachments.count %>)</h4>
-      <hr>
-      <h4><a href="#" data-toggle="modal" data-target="#">Notas<br>Operatorias </a>(<%= record.operative_notes.count %>)</h4>
-      <hr>
-      <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
-      <hr>
-      <h4><a href="#" data-toggle="modal" data-target="#">Récipes </a>(<%= record.prescriptions.count %>)</h4>
-    <% else %>
+    <% if params[:controller] == 'medical_records' && params[:action] == 'new' %>
       <h4>Historia</h4>
       <hr>
       <h4>Anexos</h4>
@@ -40,6 +30,16 @@
       <h4>Informes</h4>
       <hr>
       <h4>Récipes</h4>
+    <% else %>
+      <h4><%= link_to "Historia", medical_record_path(record)%></h4>
+      <hr>
+      <h4><%= link_to "Anexos ", attachments_path(record: record) %>(<%= record.attachments.count %>)</h4>
+      <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#">Notas<br>Operatorias </a>(<%= record.operative_notes.count %>)</h4>
+      <hr>
+      <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
+      <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#">Récipes </a>(<%= record.prescriptions.count %>)</h4>
     <% end %>
 
     <!--
