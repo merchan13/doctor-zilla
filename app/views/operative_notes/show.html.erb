@@ -9,21 +9,7 @@
 
     <div class="col-md-12">
       <h3>Plan</h3>
-      <h4 align="left"><%= @plan.description %></h4>
-    </div>
-
-    <div class="col-md-12">
-      <h3>Descripción</h3>
-      <p><%= @operative_note.description %></p>
-    </div>
-
-    <div class="col-md-12">
-      <h3>Hallazgos</h3>
-      <% if @operative_note.find.nil? %>
-        <p>No se poseen hallazgos.</p>
-      <% else %>
-        <p><%= @operative_note.find %></p>
-      <% end %>
+      <p align="left"><%= @plan.description %></p>
     </div>
 
     <div class="col-md-12">
@@ -36,8 +22,22 @@
     </div>
 
     <div class="col-md-12">
-      <h3>Descripcion</h3>
-      <p>-preguntar que va aqui-</p>
+      <h3>Hallazgos</h3>
+      <% if @operative_note.find.nil? %>
+        <p>No se poseen hallazgos.</p>
+      <% else %>
+        <p><%= @operative_note.find %></p>
+      <% end %>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Descripción</h3>
+      <p><%= @operative_note.description %></p>
+    </div>
+
+    <div class="col-md-12">
+      <h3>Diagnóstico</h3>
+      <p><%= @operative_note.diagnostic %></p>
     </div>
 
     <div class="col-md-12"><hr></div>

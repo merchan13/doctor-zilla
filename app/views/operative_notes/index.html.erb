@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <h1><%= "Historia ##{@record.id}" %></h1>
+
+  <div class="col-md-9 new-panel main-panel">
+
+    <h3 align="center">Notas Operatorias</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha de creación</th>
+          <th>Plan</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @operative_notes.each do |operative_note| %>
+        <tr>
+            <th scope="row" class="col-md-1"><%= operative_note.id %></th>
+            <td class="col-md-2"><%= "#{operative_note.created_at.strftime("%d-%b-%Y")}" %></td>
+            <td class="col-md-7"><%= operative_note.plan.description %></td>
+            <td class="col-md-2"><%= link_to "Ver", operative_note_path(operative_note), class: 'btn btn-info' %></td>
+        </tr>
+        <p></p>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="col-md-6 col-md-offset-3">
+      <%= link_to "Nuevo nota operatoria", plans_path(record: @record), class: 'btn btn-success modal-link' %>
+      <%= link_to "Nota Operatoria de Emergencia", new_operative_note_path(record: @record), class: 'btn btn-danger modal-link' %>
+    </div>
+
+    <div class="col-md-12"><hr></div>
+
+  </div>
+
+  <!-- MENU LATERAL -->
+  <%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
+</div>

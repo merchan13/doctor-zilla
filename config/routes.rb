@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :occupations,       except: [:destroy, :edit, :update]
   resources :operative_notes,   except: [:destroy, :edit, :update]
   resources :physical_exams,    except: :destroy
+  resources :plans,             only:   :index
   resources :prescriptions,     except: [:destroy, :edit, :update]
   resources :procedures,        except: [:destroy, :edit, :update]
   resources :reports,           except: [:destroy, :edit, :update]

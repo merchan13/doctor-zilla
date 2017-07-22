@@ -1,4 +1,9 @@
 class PlansController < ApplicationController
+  before_action :set_medical_record, only: [:index]
+
+  def index
+    @plans = @record.plans.sort! {|a,b| a.created_at <=> b.created_at}.reverse
+  end
 
   def search
     @filter = params[:filter]
@@ -10,4 +15,12 @@ class PlansController < ApplicationController
     end
   end
 
+  private
+    def set_plan
+      @plan = Plan.find(params[:id])
+    end
+
+    def set_medical_record
+      @record = MedicalRecord.find(params[:record])
+    end
 end

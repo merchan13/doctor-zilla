@@ -1,7 +1,11 @@
 class OperativeNotesController < ApplicationController
   before_action :set_operative_note, only: [:show]
   before_action :set_plan, only: [:new, :create]
-  before_action :set_medical_record, only: [:new, :create]
+  before_action :set_medical_record, only: [:new, :create, :index]
+
+  def index
+    @operative_notes = @record.operative_notes.sort! {|a,b| a.created_at <=> b.created_at}.reverse
+  end
 
   def new
     @operative_note = OperativeNote.new
@@ -31,7 +35,7 @@ class OperativeNotesController < ApplicationController
 
       if @operative_note.save
         flash[:success] = "Operative Note was created successfully"
-        redirect_to root_path
+        redirect_to operative_note_path(@operative_note)
       else
         @operative_note = OperativeNote.new
         render 'new'
@@ -64,6 +68,6 @@ class OperativeNotesController < ApplicationController
     end
 
     def operative_note_params
-      params.require(:operative_note).permit( :description, :find )
+      params.require(:operative_note).permit( :description, :find, :diagnostic )
     end
 end

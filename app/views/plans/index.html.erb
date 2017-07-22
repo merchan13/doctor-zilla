@@ -1,0 +1,45 @@
+<div class="col-md-12">
+  <h1><%= "Historia ##{@record.id}" %></h1>
+
+  <div class="col-md-9 new-panel main-panel">
+
+    <h3 align="center">Planes</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha de creación</th>
+          <th>Descripcion</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @plans.each do |plan| %>
+        <tr>
+            <th scope="row" class="col-md-1"><%= plan.id %></th>
+            <td class="col-md-2"><%= "#{plan.created_at.strftime("%d-%b-%Y")}" %></td>
+            <td class="col-md-7"><%= plan.description %></td>
+            <td class="col-md-2">
+              <% if plan.operative_note.nil? %>
+                <%= link_to "Crear Nota Operatoria", new_operative_note_path(plan: plan), class: 'btn btn-success modal-link' %>
+              <% else %>
+                <%= link_to "Ver", operative_note_path(plan.operative_note), class: 'btn btn-info modal-link' %>
+              <% end %>
+            </td>
+        </tr>
+        <p></p>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="col-md-4 col-md-offset-5">
+      <%= link_to "Nuevo Plan", new_consultation_path(record: @record), class: 'btn btn-success modal-link' %>
+    </div>
+
+    <div class="col-md-12"><hr></div>
+
+  </div>
+
+  <!-- MENU LATERAL -->
+  <%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
+</div>
