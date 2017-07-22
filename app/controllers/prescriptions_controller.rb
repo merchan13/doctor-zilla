@@ -1,9 +1,10 @@
 class PrescriptionsController < ApplicationController
-  before_action :set_medical_record, only: [:new, :create]
-  before_action :set_prescription, only: [:edit, :update, :show]
+  before_action :set_medical_record, only: [:new, :create, :index]
+  before_action :set_prescription, only: [:show, :download]
+  respond_to :docx
 
   def index
-    # ...
+    @prescriptions = @record.prescriptions.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -24,7 +25,7 @@ class PrescriptionsController < ApplicationController
 
       if @complete_prescription.save
         flash[:success] = "Prescription was created successfully"
-        redirect_to root_path
+        redirect_to prescription_path(@prescription)
       else
         @prescription = @record.prescriptions.new
         @medicine = Medicine.new
@@ -33,11 +34,16 @@ class PrescriptionsController < ApplicationController
     end
   end
 
-  def update
+  def show
+    @record = @prescription.medical_record
   end
 
-  def show
-    # ...
+  def download
+    respond_to do |format|
+      format.docx do
+        render docx: 'download', filename: "recipe_#{@prescription.medical_record.last_name.gsub(/ /, "")}_#{@prescription.id}.docx"
+      end
+    end
   end
 
   private

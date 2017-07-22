@@ -2,9 +2,9 @@
   <% if @filter == 'new_consultation' %>
     <h3>Nueva Consulta - <small>Buscar historia</small></h3>
   <% elsif @filter == 'search_record'%>
-    <h3>Historia médica - <small>Buscar historia</small></h3>
+    <h3>Historia Médica - <small>Buscar historia</small></h3>
   <% elsif @filter == 'new_prescription'%>
-    <h3>Nuevo Récipe - <small>Buscar historia</small></h3>
+    <h3>Récipe Médico- <small>Buscar historia</small></h3>
   <% elsif @filter == 'new_operative_note'%>
     <h3>Nota Operatoria - <small>Buscar historia</small></h3>
   <% elsif @filter == 'new_report'%>
@@ -40,9 +40,9 @@
             <% @records.each do |record| %>
               <tr>
                 <td class="col-md-2"><%= record.full_id %></td>
-                <td class="col-md-5"><%= record.full_name %></td>
-                <td class="col-md-3"><%= record.consultations.last.created_at.strftime("%d-%b-%Y") if !record.consultations.last.nil? %></td>
-                <td class="col-md-2">
+                <td class="col-md-4"><%= record.full_name %></td>
+                <td class="col-md-2"><%= record.consultations.last.created_at.strftime("%d-%b-%Y") if !record.consultations.last.nil? %></td>
+                <td class="col-md-4">
                   <% if @filter == 'new_consultation' %>
                     <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'search_record'%>
@@ -50,6 +50,9 @@
                     <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
                   <% elsif @filter == 'new_prescription'%>
                     <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-success modal-link' %>
+                    <% if record.prescriptions.count > 0 %>
+                      <%= link_to "Ver récipes (#{record.prescriptions.count})", prescriptions_path(record: record), class: 'btn btn-primary modal-link' %>
+                    <% end %>
                   <% elsif @filter == 'new_operative_note'%>
                     <%= link_to "Plan de emergencia", new_operative_note_path(record: record), class: 'btn btn-danger modal-link' %>
                   <% elsif @filter == 'new_report'%>

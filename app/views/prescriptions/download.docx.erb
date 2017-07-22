@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <h1 style="float:right"><%= @prescription.created_at.strftime("%d-%b-%Y") %></h1>
+</div>
+
+<div class="col-md-12">
+  <h1>Rp</h1>
+  <p><%= @prescription.prescriptions_list.html_safe %></p>
+</div>
+
+<div class="-page-break"></div>
+
+<div class="col-md-12">
+  <h1>Indicaciones</h1>
+  <p><%= @prescription.indications_list.html_safe %></p>
+</div>

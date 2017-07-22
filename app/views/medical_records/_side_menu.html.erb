@@ -35,11 +35,13 @@
       <hr>
       <h4><%= link_to "Anexos ", attachments_path(record: record) %>(<%= record.attachments.count %>)</h4>
       <hr>
+      <h4><a href="#" data-toggle="modal" data-target="#">Planes </a>(<%= record.plans.count %>)</h4>
+      <br>
       <h4><a href="#" data-toggle="modal" data-target="#">Notas<br>Operatorias </a>(<%= record.operative_notes.count %>)</h4>
       <hr>
       <h4><%= link_to "Informes ", reports_path(record: record) %>(<%= record.reports.count %>)</h4>
       <hr>
-      <h4><a href="#" data-toggle="modal" data-target="#">Récipes </a>(<%= record.prescriptions.count %>)</h4>
+      <h4><%= link_to "Récipes ", prescriptions_path(record: record) %>(<%= record.prescriptions.count %>)</h4>
     <% end %>
 
     <!--
