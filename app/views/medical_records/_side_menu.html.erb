@@ -20,7 +20,8 @@
   <div class="col-md-12"><hr></div>
 
   <div class="col-md-12 center">
-    <% if params[:controller] == 'medical_records' && params[:action] == 'new' %>
+    <%# if params[:controller] == 'medical_records' && params[:action] == 'new' %>
+    <% if record.id.nil? %>
       <h4>Historia</h4>
       <hr>
       <h4>Anexos</h4>

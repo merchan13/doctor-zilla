@@ -24,7 +24,7 @@ class MedicalRecordsController < ApplicationController
       @record = current_user.medical_records.create(record_params)
       if @record.save
         flash[:success] = "Medical record was created successfully"
-        redirect_to medical_records_path
+        redirect_to medical_record_path(@record)
       else
         render 'new'
       end
@@ -84,7 +84,6 @@ class MedicalRecordsController < ApplicationController
     def set_others
       @occupation = Occupation.new
       @insurance = Insurance.new
-      @attachment = Attachment.new
     end
 
     def set_attachments
