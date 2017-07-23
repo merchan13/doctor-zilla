@@ -133,6 +133,10 @@ class MedicalRecord < ApplicationRecord
     plns
   end
 
+  def latest_pe
+    self.consultations.last.physical_exams
+  end
+
   def imc
     if physic_data["weight"] != 0 && physic_data["height"] != 0
       imc = physic_data["weight"]/((physic_data["height"]/100) ** 2)

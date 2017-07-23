@@ -57,80 +57,83 @@
 
     <div class="col-md-12"><hr></div>
 
-    <p>EXÁMENES FÍSICOS</p>
-    <div class="col-md-12">
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:head_neck_pe) %>
-          <%= label_tag(:head_neck_pe, "Cabeza y cuello", style: "margin-right:25px") %>
-        </div>
-      <% end %>
+    <% if !@record.latest_pe.empty? %>
+      <p>EXÁMENES FÍSICOS</p>
+      <div class="col-md-12">
+        <% if !@record.latest_pe.where(exam_type: 'Head and Neck').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:head_neck_pe) %>
+            <%= label_tag(:head_neck_pe, "Cabeza y cuello", style: "margin-right:25px") %>
+          </div>
+        <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:chest_pe) %>
-          <%= label_tag(:chest_pe, "Tórax", style: "margin-right:25px") %>
-        </div>
-      <% end %>
+        <% if !@record.latest_pe.where(exam_type: 'Chest').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:chest_pe) %>
+            <%= label_tag(:chest_pe, "Tórax", style: "margin-right:25px") %>
+          </div>
+        <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:abdomen_pe) %>
-          <%= label_tag(:abdomen_pe, "Abdomen", style: "margin-right:25px") %>
-        </div>
-      <% end %>
+        <% if !@record.latest_pe.where(exam_type: 'Abdomen').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:abdomen_pe) %>
+            <%= label_tag(:abdomen_pe, "Abdomen", style: "margin-right:25px") %>
+          </div>
+        <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:genitals_pe) %>
-          <%= label_tag(:genitals_pe, "Genitales", style: "margin-right:25px") %>
-        </div>
-      <% end %>
+        <% if !@record.latest_pe.where(exam_type: 'Genitals').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:genitals_pe) %>
+            <%= label_tag(:genitals_pe, "Genitales", style: "margin-right:25px") %>
+          </div>
+        <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.nil? %>
-      <div class="col-md-2">
-        <%= check_box_tag(:soft_parts_pe) %>
-        <%= label_tag(:soft_parts_pe, "Partes blandas", style: "margin-right:25px") %>
+        <% if !@record.latest_pe.where(exam_type: 'Soft Parts').first.nil? %>
+        <div class="col-md-2">
+          <%= check_box_tag(:soft_parts_pe) %>
+          <%= label_tag(:soft_parts_pe, "Partes blandas", style: "margin-right:25px") %>
+        </div>
+        <% end %>
+
+        <% if !@record.latest_pe.where(exam_type: 'Extremities').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:extremities_pe) %>
+            <%= label_tag(:extremities_pe, "Extremidades", style: "margin-right:25px") %>
+          </div>
+        <% end %>
+
+        <% if !@record.latest_pe.where(exam_type: 'Vascular').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:vascular_pe) %>
+            <%= label_tag(:vascular_pe, "Vascular", style: "margin-right:25px") %>
+          </div>
+        <% end %>
+
+        <% if !@record.latest_pe.where(exam_type: 'Skin').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:skin_pe) %>
+            <%= label_tag(:skin_pe, "Piel", style: "margin-right:25px") %>
+          </div>
+        <% end %>
+
+        <% if !@record.latest_pe.where(exam_type: 'Mamma').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:mamma_pe) %>
+            <%= label_tag(:mamma_pe, "Mamas", style: "margin-right:25px") %>
+          </div>
+        <% end %>
+
+        <% if !@record.latest_pe.where(exam_type: 'Others').first.nil? %>
+          <div class="col-md-2">
+            <%= check_box_tag(:others_pe) %>
+            <%= label_tag(:others_pe, "Otros", style: "margin-right:25px") %>
+          </div>
+        <% end %>
       </div>
-      <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:extremities_pe) %>
-          <%= label_tag(:extremities_pe, "Extremidades", style: "margin-right:25px") %>
-        </div>
-      <% end %>
+      <div class="col-md-12"><hr></div>
+    <% end %>
 
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:vascular_pe) %>
-          <%= label_tag(:vascular_pe, "Vascular", style: "margin-right:25px") %>
-        </div>
-      <% end %>
-
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:skin_pe) %>
-          <%= label_tag(:skin_pe, "Piel", style: "margin-right:25px") %>
-        </div>
-      <% end %>
-
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:mamma_pe) %>
-          <%= label_tag(:mamma_pe, "Mamas", style: "margin-right:25px") %>
-        </div>
-      <% end %>
-
-      <% if !@record.consultations.last.physical_exams.where(exam_type: 'Others').first.nil? %>
-        <div class="col-md-2">
-          <%= check_box_tag(:others_pe) %>
-          <%= label_tag(:others_pe, "Otros", style: "margin-right:25px") %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-12"><hr></div>
 
     <p>ANTECEDENTES</p>
     <div class="col-md-12">

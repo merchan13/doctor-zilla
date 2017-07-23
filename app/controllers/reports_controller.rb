@@ -203,43 +203,43 @@ class ReportsController < ApplicationController
       physical_exams = "Exámen físico:\n"
 
       if @options['head_neck_pe'] == true
-        head_neck_pe = " Cabeza y cuello: #{@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Cabeza y cuello: #{@record.consultations.last.physical_exams.where(exam_type: 'Head and Neck').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['chest_pe'] == true
-        chest_pe = " Torax: #{@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Torax: #{@record.consultations.last.physical_exams.where(exam_type: 'Chest').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['abdomen_pe'] == true
-        abdomen_pe = " Adbomen: #{@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Adbomen: #{@record.consultations.last.physical_exams.where(exam_type: 'Abdomen').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['genitals_pe'] == true
-        genitals_pe = " Genitales: #{@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Genitales: #{@record.consultations.last.physical_exams.where(exam_type: 'Genitals').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['soft_parts_pe'] == true
-        soft_parts_pe = " Partes blandas: #{@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Partes blandas: #{@record.consultations.last.physical_exams.where(exam_type: 'Soft Parts').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['extremities_pe'] == true
-        extremities_pe = " Extremidades: #{@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Extremidades: #{@record.consultations.last.physical_exams.where(exam_type: 'Extremities').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['vascular_pe'] == true
-        vascular_pe = " Vascular: #{@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Vascular: #{@record.consultations.last.physical_exams.where(exam_type: 'Vascular').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['skin_pe'] == true
-        skin_pe = " Piel: #{@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Piel: #{@record.consultations.last.physical_exams.where(exam_type: 'Skin').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['mamma_pe'] == true
-        mamma_pe = " Mamas: #{@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Mamas: #{@record.consultations.last.physical_exams.where(exam_type: 'Mamma').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       if @options['others_pe'] == true
-        others_pe = " Otros: #{@record.consultations.last.physical_exams.where(exam_type: 'Others').first.observation.gsub(/\r\n/, ' ')}\n"
+        physical_exams += " Otros: #{@record.consultations.last.physical_exams.where(exam_type: 'Others').first.observation.gsub(/\r\n/, ' ')}\n"
       end
 
       physical_exams += "\n"
