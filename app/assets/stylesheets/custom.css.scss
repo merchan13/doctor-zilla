@@ -132,3 +132,10 @@ footer ul li {
 
 .container .secondary-panel {
 }
+
+@media (min-width: 768px){
+  .modal-dialog {
+    width: 1000px;
+    margin: 145px auto;
+  }
+}

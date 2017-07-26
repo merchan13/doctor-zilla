@@ -1,5 +1,5 @@
   <!-- OCCUPATION MODAL -->
-  <div class="modal fade" id="new-occupation-form" role="dialog">
+  <div class="modal fade" id="new-occupation-modal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -8,10 +8,21 @@
             <h4 class="modal-title">Agregar Nueva Profesión</h4>
         </div>
         <div class="modal-body">
-          <%= form_for(@occupation, remote: true) do |o| %>
-            <%= o.label :Profesión, class: 'form-control-label' %>
-            <%= o.text_field :name, value: nil, class: 'form-control' %>
-            <%= o.submit class: 'btn btn-primary' %>
+          <%= form_tag ('/occupations'), remote: true, id: 'new-occupation-form' do %>
+            <div id="occupation-taken"></div>
+            <div class="form-group row col-md-12" style="float:none">
+              <div class="col-md-6">
+                <%= text_field_tag "occupation[name]", nil, placeholder: "Nombre o breve descripción de la profesión",
+                  autofocus: true, class: 'form-control'%>
+              </div>
+            </div>
+            <div class="form-group row col-md-12" style="float:none">
+              <div class="col-md-6">
+                <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                  Guardar
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </div>
         <div class="modal-footer">

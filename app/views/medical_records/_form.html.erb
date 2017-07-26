@@ -11,7 +11,7 @@
 
   <%= form_for(@record, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
 
-    <% if params[:action] == 'new' %>
+    <% if params[:action] == 'new' || params[:action] == "create" %>
       <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
     <% end %>
 
@@ -53,11 +53,11 @@
       <div class="col-md-4">
         <%= f.label :profesión, class: 'form-control-label' %>
         <%= f.select :occupation_id, options_from_collection_for_select(Occupation.order(name: :asc), :id, :name, @record.occupation_id), {include_blank: 'N/A'}, class: 'form-control' %>
-        <a href="#" data-toggle="modal" data-target="#new-occupation-form">Agrear nuevo</a>
+        <a href="#" data-toggle="modal" data-target="#new-occupation-modal">Agrear nuevo</a>
       </div>
       <div class="col-md-3">
         <%= f.label :fecha_de_nacimiento, class: 'form-control-label' %>
-        <%= f.text_field :birthday, class: 'form-control', "data-provide" => 'datepicker', "data-date-format" => 'yyyy/mm/dd' %>
+        <%= f.text_field :birthday, class: 'form-control', "data-provide" => 'datepicker', "data-date-format" => 'dd/mm/yyyy' %>
       </div>
       <div class="col-md-2">
         <%= f.label :edad, class: 'form-control-label' %>
@@ -160,9 +160,5 @@
 </div>
 
 <%= render partial: 'side_menu', locals: { record: @record } %>
-
-<div class="col-xs-4 col-xs-offset-4">
-  [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
-</div>
 
 <%= render 'modals' %>

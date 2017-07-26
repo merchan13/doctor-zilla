@@ -1,13 +1,19 @@
 class OccupationsController < ApplicationController
 
   def create
-    @occupation = Occupation.create(occupation_params)
+    Occupation.transaction do
+      @occupation = Occupation.create(occupation_params)
 
-    if @occupation.save
-      flash[:success] = "New occupation added"
-      render json: @occupation
-    else
-      #render status: :not_found, nothing: true
+      if @occupation.save
+        flash[:success] = "New occupation added"
+        render json: @occupation
+      else
+        if @occupation.errors.full_messages.first.include? "blank"
+          render status: 400, nothing: true
+        elsif @occupation.errors.full_messages.first.include? "taken"
+          render status: 406, nothing: true
+        end
+      end
     end
   end
 

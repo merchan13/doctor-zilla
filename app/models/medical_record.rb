@@ -16,8 +16,16 @@ class MedicalRecord < ApplicationRecord
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true
 
-  validates_presence_of :document, :document_type, :first_consultation_date, :name, :last_name, :birthday, :gender,
-                        :phone_number, :address
+  validates_presence_of :document,
+                        :document_type,
+                        :first_consultation_date,
+                        :name,
+                        :last_name,
+                        :birthday,
+                        :gender,
+                        :phone_number,
+                        :address,
+                        :message => "es un campo obligatorio."
 
   def full_name
     return "#{name} #{last_name}".strip if (name || last_name)

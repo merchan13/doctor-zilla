@@ -1,12 +1,10 @@
 <% if obj.errors.any? %>
   <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
+    <div class="col-md-4">
       <div class="panel panel-danger">
         <div class="panel-heading">
-          <h2 class="panel-title">
-            <%= pluralize(obj.errors.count, "Error") %>
-            prohibited this <%= obj.class.name %> from being saved:
-          </h2>
+          <h3>Errores en el formulario</h3>
+          <b>Por favor verifique los datos ingresados.</b>
           <div class="panel-body">
             <ul>
                 <% obj.errors.full_messages.each do |msg| %>

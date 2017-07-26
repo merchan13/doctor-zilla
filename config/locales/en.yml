@@ -20,4 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      medical_record: "Historia médica"
+    attributes:
+      medical_record:
+        document: "Cédula"
+    errors:
+      template:
+        header:
+          one:   "En la generación hubo un error que no permite que usted pueda continuar"
+          other: "En la generación hubo %{count} errores que no permiten que usted pueda continuar"
+        body:    ""
+      models:
+        user:
+          attributes:
+            document:
+              blank: "Es un campo obligatorio"
