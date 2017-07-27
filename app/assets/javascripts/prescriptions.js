@@ -1,15 +1,13 @@
 var add_fields;
 
 add_fields = function() {
-    var add_button      = $(".add_medicine_button");
+    var add_button = $(".add_medicine_button");
     var x = 0;
 
     $(add_button).click(function(e){
       e.preventDefault();
 
       var clone = $(".clone-test").last().clone();
-
-      //$(".clone-test").last().append("<div class='col-md-12'><hr></div>");
 
       var lastMedicine = $(".clone-test").last();
 

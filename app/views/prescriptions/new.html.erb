@@ -14,68 +14,17 @@
         <div class="form-group col-md-12">
           <h4><i>Medicamento</i></h4>
           <div class="col-md-8">
-            <%= select_tag "prescription[][medicine_id]", options_from_collection_for_select(Medicine.all, :id, :generic_name), include_blank: '-Seleccione una opción-', class: 'form-control medicine_form' %>
+            <select class="form-control form-control medicine_form" name="prescription[][medicine_id]" id="">
+              <option value="">-Seleccione una opción-</option>
+              <% Medicine.all.each do |m| %>
+                <option value="<%= m.id %>"><%= "#{m.generic_name} (#{m.comercial_name}) - Vía #{m.dose_way}, #{m.dose_presentation} de #{m.dose_quantity}#{m.dose_unit}" %></option>
+              <% end %>
+            </select>
           </div>
           <div class="col-md-12">
-            <a href="#" data-toggle="modal" data-target="#new-medicine-form">Agrear nuevo medicamento</a>
+            <a href="#" data-toggle="modal" data-target="#new-medicine-modal">Agrear nuevo medicamento</a>
           </div>
         </div>
-
-      <!-- INDICACION Y DOSIS -->
-      <div class="form-group col-md-7">
-        <h4><i>Administración</i></h4>
-        <div class="col-md-6">
-          <small>Vía de administración</small>
-          <select class="form-control" name="prescription[][dose_way]" id="">
-            <option value="">- Seleccione una opción -</option>
-            <option value="Tópico">Tópico</option>
-            <option value="Oral">Oral</option>
-            <option value="Subcutáneo">Subcutáneo</option>
-            <option value="Intramuscular">Intramuscular</option>
-            <option value="Intravenoso">Intravenoso</option>
-            <option value="Rectal">Rectal</option>
-            <option value="Sublingual">Sublingual</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <small>Presentación</small>
-          <select class="form-control" name="prescription[][dose_presentation]" id="">
-            <option value="">-Seleccione una opción-</option>
-            <option value="Tabletas">Tabletas</option>
-            <option value="Comprimidos">Comprimidos</option>
-            <option value="Grajeas">Grajeas</option>
-            <option value="Cápsula">Capsula</option>
-            <option value="Sobre">Sobre</option>
-            <option value="Ampollas">Ampollas</option>
-            <option value="Vial">Vial</option>
-            <option value="Gotas">Gotas</option>
-            <option value="Ungüento">Ungüento</option>
-            <option value="Supositorio">Supositorio</option>
-            <option value="Jarabe">Jarabe</option>
-            <option value="Parche">Parche</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group col-md-5">
-          <h4><i>Dósis</i></h4>
-        <div class="col-md-4">
-          <small>Cantidad</small>
-          <input type="number" name="prescription[][dose_quantity]" value="" placeholder="" class="form-control">
-        </div>
-        <div class="col-md-4">
-          <small>Unidades</small>
-          <select class="form-control" name="prescription[][dose_unit]" id="">
-            <option value="">-Seleccione una opción-</option>
-            <option value="cc">cc</option>
-            <option value="mgr">mg</option>
-            <option value="micro_gramo">μg</option>
-            <option value="gr">gr</option>
-            <option value="ml">ml</option>
-            <option value="l">l</option>
-          </select>
-        </div>
-      </div>
 
       <!-- INTERVALO -->
       <div class="form-group col-md-5">

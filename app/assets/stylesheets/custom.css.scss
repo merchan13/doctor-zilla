@@ -5,6 +5,10 @@ body {
   margin: 0;
 }
 
+h1 {
+  color: #211c5f;
+}
+
 textarea {
    resize: none;
 }
@@ -138,4 +142,9 @@ footer ul li {
     width: 1000px;
     margin: 145px auto;
   }
+}
+
+.modal-header {
+  background-color: #211c5f;
+  color: #fafafa;
 }

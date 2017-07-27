@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722220951) do
+ActiveRecord::Schema.define(version: 20170727044114) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -96,9 +96,13 @@ ActiveRecord::Schema.define(version: 20170722220951) do
 
   create_table "medicines", force: :cascade do |t|
     t.string   "comercial_name"
-    t.string   "generic_name",   null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "generic_name",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "dose_way",          null: false
+    t.string   "dose_presentation", null: false
+    t.float    "dose_quantity",     null: false
+    t.string   "dose_unit",         null: false
   end
 
   create_table "occupations", force: :cascade do |t|
@@ -152,10 +156,6 @@ ActiveRecord::Schema.define(version: 20170722220951) do
     t.integer  "medicine_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "dose_way",          null: false
-    t.string   "dose_presentation", null: false
-    t.float    "dose_quantity",     null: false
-    t.string   "dose_unit",         null: false
     t.float    "interval_quantity", null: false
     t.string   "interval_unit",     null: false
     t.float    "duration_quantity", null: false

@@ -1,5 +1,5 @@
-<!-- MEDICINE MODAL-->
-<div class="modal fade" id="new-medicine-form" role="dialog">
+<!-- MEDICINE MODAL -->
+<div class="modal fade" id="new-medicine-modal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -8,17 +8,94 @@
           <h4 class="modal-title">Agregar Nuevo Medicamento</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@medicine, remote: true) do |m| %>
-          <h5>Nombre genérico</h5>
-          <%= m.text_field :generic_name, value: nil, placeholder: 'Introduzca el nombre genérico', class: 'form-control' %>
-          <h5>Nombre comercial</h5>
-          <%= m.text_field :comercial_name, value: nil, placeholder: 'Introduzca el nombre comercial', class: 'form-control' %>
-          <br>
-          <%= m.submit class: 'btn btn-primary' %>
+        <%= form_tag ('/medicines'), remote: true, id: 'new-medicine-form' do %>
+
+          <!-- Errores -->
+          <div id="medicine-errors"></div>
+
+          <!-- Nombre del medicamento -->
+          <h4>Nombre</h4>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-5">
+              <small>Nombre genérico</small>
+              <%= text_field_tag "medicine[generic_name]", nil, placeholder: "Ejemplo: 'Acetaminofén'",
+                autofocus: true, class: 'form-control'%>
+            </div>
+            <div class="col-md-5">
+              <small>Nombre comercial</small>
+              <%= text_field_tag "medicine[comercial_name]", nil, placeholder: "Ejemplo: 'Atamel'",
+                autofocus: true, class: 'form-control'%>
+            </div>
+          </div>
+
+          <!-- Administracion del medicamento -->
+          <h4>Administración</h4>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-5">
+              <small>Vía de administración</small>
+              <select class="form-control" name="medicine[dose_way]" id="">
+                <option value="">- Seleccione una opción -</option>
+                <option value="Tópico">Tópico</option>
+                <option value="Oral">Oral</option>
+                <option value="Subcutáneo">Subcutáneo</option>
+                <option value="Intramuscular">Intramuscular</option>
+                <option value="Intravenoso">Intravenoso</option>
+                <option value="Rectal">Rectal</option>
+                <option value="Sublingual">Sublingual</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <small>Presentación</small>
+              <select class="form-control" name="medicine[dose_presentation]" id="">
+                <option value="">-Seleccione una opción-</option>
+                <option value="Tabletas">Tabletas</option>
+                <option value="Comprimidos">Comprimidos</option>
+                <option value="Grajeas">Grajeas</option>
+                <option value="Cápsula">Capsula</option>
+                <option value="Sobre">Sobre</option>
+                <option value="Ampollas">Ampollas</option>
+                <option value="Vial">Vial</option>
+                <option value="Gotas">Gotas</option>
+                <option value="Ungüento">Ungüento</option>
+                <option value="Supositorio">Supositorio</option>
+                <option value="Jarabe">Jarabe</option>
+                <option value="Parche">Parche</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-5">
+              <small>Cantidad</small>
+              <%= number_field_tag "medicine[dose_quantity]", nil, placeholder: "Cantidad en número. Ejemplo: '500'",
+                autofocus: true, class: 'form-control'%>
+            </div>
+            <div class="col-md-5">
+              <small>Unidades</small>
+              <select class="form-control" name="medicine[dose_unit]" id="">
+                <option value="">-Seleccione una opción-</option>
+                <option value="cc">cc</option>
+                <option value="mg">mg</option>
+                <option value="micro gramo">μg</option>
+                <option value="gr">gr</option>
+                <option value="ml">ml</option>
+                <option value="l">l</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
+            </div>
+          </div>
+
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
