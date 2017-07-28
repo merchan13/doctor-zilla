@@ -10,7 +10,9 @@ update_medicines = function() {
   });
 
   $('#new-medicine-form').on('ajax:success', function(event, data, status){
-    $('.medicine_form').append("<option value='"+ data.id +"'>"+ data.generic_name +"</option>");
+    var display = data.generic_name + ' (' + data.comercial_name + ') - Vía ' + data.dose_way + ', ' + data.dose_presentation + ' de ' + data.dose_quantity + data.dose_unit
+
+    $('.medicine_form').append("<option value='"+ data.id +"'>"+ display +"</option>");
     $('#new-medicine-modal').modal('hide');
     $('#new-medicine-form').find('input:text').val('');
     $('#new-medicine-form').find('input:number').val('');

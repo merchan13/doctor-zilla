@@ -18,7 +18,7 @@ class Prescription < ApplicationRecord
     list = ""
 
     self.prescription_medicines.each do |x|
-      list += "- #{x.medicine.comercial_name} (#{x.medicine.generic_name}), #{x.dose_presentation} #{x.dose_quantity.round} #{x.dose_unit}.<br><br>"
+      list += "- #{x.medicine.comercial_name} (#{x.medicine.generic_name}), #{x.medicine.dose_presentation} #{x.medicine.dose_quantity.round} #{x.medicine.dose_unit}.<br><br>"
     end
 
     list
@@ -28,7 +28,7 @@ class Prescription < ApplicationRecord
     list = ""
 
     self.prescription_medicines.each do |x|
-      list += "- #{x.medicine.comercial_name} (#{x.medicine.generic_name}), #{x.interval_quantity.round} #{x.dose_presentation} #{x.dose_quantity.round} #{x.dose_unit}, vía #{x.dose_way} cada #{x.interval_time.round} #{x.interval_unit} por #{x.duration_quantity.round} #{x.duration_unit} #{x.note}.<br><br>"
+      list += "- #{x.medicine.comercial_name} (#{x.medicine.generic_name}), #{x.interval_quantity.round} #{x.medicine.dose_presentation} #{x.medicine.dose_quantity.round} #{x.medicine.dose_unit}, vía #{x.medicine.dose_way} cada #{x.interval_time.round} #{x.interval_unit} por #{x.duration_quantity.round} #{x.duration_unit} #{x.note}.<br><br>"
     end
 
     list

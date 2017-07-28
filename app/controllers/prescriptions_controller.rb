@@ -9,7 +9,6 @@ class PrescriptionsController < ApplicationController
 
   def new
     @prescription = @record.prescriptions.new
-    @medicine = Medicine.new
     @complete_prescription = @prescription.prescription_medicines.new
   end
 
@@ -17,18 +16,15 @@ class PrescriptionsController < ApplicationController
     Prescription.transaction do
       @prescription = @record.prescriptions.create()
 
-      params["prescription"].each do |p|
-        #if p["name"] != "" || p["breed"] != ""
-          @complete_prescription = @prescription.prescription_medicines.create(prescription_medicines_params(p))
-        #end
+      prescription_params["prescription"].each do |params|
+          @complete_prescription = @prescription.prescription_medicines.create(params)
       end
 
       if @complete_prescription.save
-        flash[:success] = "Prescription was created successfully"
+        flash[:success] = "Récipe nuevo creado exitósamente."
         redirect_to prescription_path(@prescription)
       else
         @prescription = @record.prescriptions.new
-        @medicine = Medicine.new
         render 'new'
       end
     end
@@ -55,8 +51,8 @@ class PrescriptionsController < ApplicationController
       @record = MedicalRecord.find(params[:record])
     end
 
-    def prescription_medicines_params(my_params)
-      my_params.permit( :medicine_id, :dose_way, :dose_presentation, :dose_quantity, :dose_unit, :interval_quantity,
-                        :interval_time, :interval_unit, :duration_quantity, :duration_unit, :note )
+    def prescription_params
+      params.permit(:prescription => [:interval_quantity, :interval_time, :interval_unit, :duration_quantity, :duration_unit, :note, :medicine_id])
+      #params.require(:prescription).permit()
     end
 end
