@@ -12,6 +12,13 @@
       <p><%= @report.description.gsub(/\r\n/, '<br>').html_safe %></p>
     </div>
 
+    <div class="col-md-12">
+      <h3>Anexos</h3>
+      <% @report.attachments.each do |a| %>
+        <p><a href="<%= a.url %>" target="_blank"><%= a.description %></a></p>
+      <% end %>
+    </div>
+
     <div class="col-md-4 col-md-offset-5">
       <%= link_to "Descargar .docx", download_report_path(@report), class: 'btn btn-lg btn-primary' %>
     </div>

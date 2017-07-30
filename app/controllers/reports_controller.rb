@@ -11,15 +11,22 @@ class ReportsController < ApplicationController
   def new
     @report = @record.reports.new
     @data = set_description_text(@options)
+    @attachments = set_attachments(params[:attachments])
   end
 
   def create
     Report.transaction do
       @report = @record.reports.create(description: params[:description], report_type: 'Informe Médico')
+
+      params[:attachments].each do |a|
+        @report.attachments << Attachment.find(a)
+      end
+
       if @report.save
-        flash[:success] = "New Report added"
+        flash[:success] = "Nuevo informe creado"
         redirect_to report_path(@report)
       else
+        flash[:error] = "Errores en la generación del informe. Por favor verifique que la información es correcta, recuerde que la descripción no puede estar vacía."
         render 'select_data'
       end
     end
@@ -243,6 +250,16 @@ class ReportsController < ApplicationController
       end
 
       physical_exams += "\n"
+    end
+
+    def set_attachments(attachments)
+      attachments_array = Array.new
+
+      attachments.each do |a|
+        attachments_array << Attachment.find(a).id
+      end
+
+      attachments_array
     end
 
 end
