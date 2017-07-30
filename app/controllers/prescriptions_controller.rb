@@ -1,6 +1,6 @@
 class PrescriptionsController < ApplicationController
-  before_action :set_medical_record, only: [:new, :create, :index]
-  before_action :set_prescription, only: [:show, :download]
+  before_action :set_medical_record,  only: [:new, :create, :index]
+  before_action :set_prescription,    only: [:show, :download]
   respond_to :docx
 
   def index

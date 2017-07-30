@@ -1,7 +1,14 @@
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="col-md-12">
-  <h1 style="float:right"><%= @prescription.created_at.strftime("%d-%b-%Y") %></h1>
+  <h2 style="float:right">Fecha: <%= @prescription.created_at.strftime("%d-%b-%Y") %></h2>
+  <h2 style="float:right"><%= @prescription.medical_record.full_name %></h2>
+  <h2 style="float:right"><%= @prescription.medical_record.full_id %></h2>
 </div>
-
+<br>
 <div class="col-md-12">
   <h1>Rp</h1>
   <p><%= @prescription.prescriptions_list.html_safe %></p>
@@ -9,6 +16,17 @@
 
 <div class="-page-break"></div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="col-md-12">
+  <h2 style="float:right">Fecha: <%= @prescription.created_at.strftime("%d-%b-%Y") %></h2>
+  <h2 style="float:right"><%= @prescription.medical_record.full_name %></h2>
+  <h2 style="float:right"><%= @prescription.medical_record.full_id %></h2>
+</div>
+<br>
 <div class="col-md-12">
   <h1>Indicaciones</h1>
   <p><%= @prescription.indications_list.html_safe %></p>

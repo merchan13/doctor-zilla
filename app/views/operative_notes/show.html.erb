@@ -40,6 +40,10 @@
       <p><%= @operative_note.diagnostic %></p>
     </div>
 
+    <div class="col-md-4 col-md-offset-5">
+      <%= link_to "Descargar .docx", download_operative_path(@operative_note), class: 'btn btn-lg btn-primary' %>
+    </div>
+
     <div class="col-md-12"><hr></div>
 
   </div>

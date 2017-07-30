@@ -1,7 +1,8 @@
 class OperativeNotesController < ApplicationController
-  before_action :set_operative_note, only: [:show]
-  before_action :set_plan, only: [:new, :create]
-  before_action :set_medical_record, only: [:new, :create, :index]
+  before_action :set_medical_record,  only: [:new, :create, :index]
+  before_action :set_plan,            only: [:new, :create]
+  before_action :set_operative_note,  only: [:show, :download]
+  respond_to :docx
 
   def index
     @operative_notes = @record.operative_notes.sort! {|a,b| a.created_at <=> b.created_at}.reverse
@@ -45,6 +46,14 @@ class OperativeNotesController < ApplicationController
 
   def show
     # ...
+  end
+
+  def download
+    respond_to do |format|
+      format.docx do
+        render docx: 'download', filename: "notaOperatoria_#{@record.last_name.gsub(/ /, "")}_#{@operative_note.id}.docx"
+      end
+    end
   end
 
   private
