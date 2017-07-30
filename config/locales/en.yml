@@ -22,10 +22,10 @@
 en:
   activerecord:
     models:
-      medical_record: "Historia médica"
+      medical_record: "Historia Médica"
     attributes:
       medical_record:
-        document: "Cédula"
+        document: "Documento de Identificación"
     errors:
       template:
         header:

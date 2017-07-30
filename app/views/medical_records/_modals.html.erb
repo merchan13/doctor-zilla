@@ -12,6 +12,7 @@
             <div id="occupation-taken"></div>
             <div class="form-group row col-md-12" style="float:none">
               <div class="col-md-6">
+                <h4>Nombre de Profesión</h4>
                 <%= text_field_tag "occupation[name]", nil, placeholder: "Nombre o breve descripción de la profesión",
                   autofocus: true, class: 'form-control'%>
               </div>
@@ -33,7 +34,7 @@
   </div>
 
   <!-- INSURANCE MODAL -->
-  <div class="modal fade" id="new-insurance-form" role="dialog">
+  <div class="modal fade" id="new-insurance-modal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -42,10 +43,22 @@
             <h4 class="modal-title">Agregar Nuevo Seguro</h4>
         </div>
         <div class="modal-body">
-          <%= form_for(@insurance, remote: true) do |i| %>
-            <%= i.label :Seguro, class: 'form-control-label' %>
-            <%= i.text_field :name, value: nil, class: 'form-control' %>
-            <%= i.submit class: 'btn btn-primary' %>
+          <%= form_tag ('/insurances'), remote: true, id: 'new-insurance-form' do %>
+            <div id="insurance-taken"></div>
+            <div class="form-group row col-md-12" style="float:none">
+              <div class="col-md-6">
+                <h4>Nombre del Seguro</h4>
+                <%= text_field_tag "insurance[name]", nil, placeholder: "Nombre del Seguro",
+                  autofocus: true, class: 'form-control'%>
+              </div>
+            </div>
+            <div class="form-group row col-md-12" style="float:none">
+              <div class="col-md-6">
+                <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                  Guardar
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </div>
         <div class="modal-footer">

@@ -28,7 +28,7 @@ init_occupation_form = function() {
     + 'style=' + '"float:none"';
 
     if (error == 'Bad Request'){
-      alert_html = alert_html + '> <strong>Alerta!</strong> Debe ingresar una profesión. </div>';
+      alert_html = alert_html + '> <strong>Alerta!</strong> Debe ingresar un nombre profesión. </div>';
     }
 
     if (error == 'Not Acceptable'){

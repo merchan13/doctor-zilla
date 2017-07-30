@@ -3,7 +3,7 @@
 
   <% if params[:action] == 'edit' %>
     <h3 align="center"><strong>Editar Historia</strong></h3>
-  <% elsif params[:action] == 'new' %>
+  <% elsif params[:action] == 'new' || params[:action] == "create" %>
     <h3 align="center"><strong>Nueva Historia</strong></h3>
   <% end %>
 
@@ -15,78 +15,27 @@
       <%= f.hidden_field :first_consultation_date, value: Date.today.to_s %>
     <% end %>
 
-    <!-- IDENTIFICACIÓN -->
-    <div class="form-group col-md-5">
+    <!-- IDENTIFICACIÓN  Y FOTO-->
+    <div class="form-group col-md-8">
       <div class="col-md-12">
-        <%= f.label :identificación, class: 'form-control-label' %>
+        <h4>Documento de Identificación</h4>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-5">
         <select class="form-control" name="medical_record[document_type]" id="medical_record_document_type">
-          <option value="V">V</option>
-          <option value="E">E</option>
-          <option value="P">P</option>
+          <option value>Seleccione una opción</option>
+          <option value="V">Venezolano</option>
+          <option value="E">Extranjero</option>
+          <option value="P">Pasaporte</option>
         </select>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <%= f.text_field :document, class: 'form-control', placeholder: 'Número de identificación', autofocus: true %>
       </div>
     </div>
 
-    <!-- NOMBRES -->
-    <div class="form-group col-md-7">
-      <div class="col-md-6">
-        <%= f.label :nombres, class: 'form-control-label' %>
-        <%= f.text_field :name, class: 'form-control', placeholder: 'Nombres del paciente', autofocus: true %>
-      </div>
-      <div class="col-md-6">
-        <%= f.label :apellidos, class: 'form-control-label' %>
-        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Apellidos del paciente', autofocus: true %>
-      </div>
-    </div>
-
-    <div class="col-md-12">
-      <br>
-    </div>
-
-    <!-- PROFESION / FECHA DE NACIMIENTO -->
-    <div class="form-group col-md-12">
-      <div class="col-md-4">
-        <%= f.label :profesión, class: 'form-control-label' %>
-        <%= f.select :occupation_id, options_from_collection_for_select(Occupation.order(name: :asc), :id, :name, @record.occupation_id), {include_blank: 'N/A'}, class: 'form-control' %>
-        <a href="#" data-toggle="modal" data-target="#new-occupation-modal">Agrear nuevo</a>
-      </div>
-      <div class="col-md-3">
-        <%= f.label :fecha_de_nacimiento, class: 'form-control-label' %>
-        <%= f.text_field :birthday, class: 'form-control', placeholder: "Seleccione una fecha", "data-provide" => 'datepicker', "data-date-format" => 'dd/mm/yyyy' %>
-      </div>
-      <div class="col-md-2">
-        <%= f.label :edad, class: 'form-control-label' %>
-        <p id="age_text"></p>
-      </div>
-    </div>
-
-    <div class="col-md-12">
-      <br>
-    </div>
-
-    <!-- SEXO -->
-    <div class="form-group col-md-6">
-      <div class="col-md-12">
-        <%= f.label :sexo, class: 'form-control-label' %>
-      </div>
-      <div class="form-check col-md-4">
-        <%= f.radio_button :gender, 'masculine', class: 'form-check-input' %>
-        <small><strong>Masculino</strong></small>
-      </div>
-      <div class="form-check col-md-4">
-        <%= f.radio_button :gender, 'femenine', class: 'form-check-input' %>
-        <small><strong>Femenino</strong></small>
-      </div>
-    </div>
-
     <!-- FOTO -->
-    <div class="col-md-3">
-      <%= f.label :Foto_del_paciente, class: 'form-control-label' %>
+    <div class="col-md-4">
+      <h4>Foto del paciente (opcional)</h4>
       <% if @record.profile_picture.url.present? %>
         <%= image_tag(@record.profile_picture.url, class: 'img-responsive img-circle') %>
         <%= f.label :remove_profile_picture do %>
@@ -97,32 +46,80 @@
       <%= f.hidden_field :profile_picture_cache %>
     </div>
 
+    <div class="col-md-12"><br></div>
+
+    <!-- NOMBRES -->
+    <div class="form-group col-md-12">
+      <div class="col-md-4">
+        <h4>Nombres</h4>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Nombres del paciente', autofocus: true %>
+      </div>
+      <div class="col-md-4">
+        <h4>Apellidos</h4>
+        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Apellidos del paciente', autofocus: true %>
+      </div>
+    </div>
+
+    <div class="col-md-12"><br></div>
+
+    <!-- PROFESION / FECHA DE NACIMIENTO -->
+    <div class="form-group col-md-12">
+      <div class="col-md-4">
+        <h4>Profesión</h4>
+        <%= f.select :occupation_id, options_from_collection_for_select(Occupation.order(name: :asc), :id, :name, @record.occupation_id), {include_blank: 'Seleccione una opción'}, class: 'form-control' %>
+        <a href="#" data-toggle="modal" data-target="#new-occupation-modal">Agrear nuevo</a>
+      </div>
+      <div class="col-md-4">
+        <h4>Fecha de Nacimiento</h4>
+        <%= f.text_field :birthday, class: 'form-control', placeholder: "Seleccione una fecha", "data-provide" => 'datepicker', "data-date-format" => 'dd/mm/yyyy' %>
+      </div>
+      <div class="col-md-4">
+        <h4>Edad</h4>
+        <p id="age_text"></p>
+      </div>
+    </div>
+
+    <div class="col-md-12"><br></div>
+
+    <!-- SEXO -->
+    <div class="form-group col-md-12">
+      <div class="col-md-12">
+        <h4>Sexo</h4>
+      </div>
+      <div class="form-check col-md-3">
+        <%= f.radio_button :gender, 'masculine', class: 'form-check-input' %>
+        <label>Masculino</label>
+      </div>
+      <div class="form-check col-md-3">
+        <%= f.radio_button :gender, 'femenine', class: 'form-check-input' %>
+        <label>Femenino</label>
+      </div>
+    </div>
+
     <div class="col-md-12"><hr></div>
 
     <!-- TELÉFONOS / EMAIL -->
     <div class="form-group col-md-12">
       <div class="col-md-4">
-        <%= f.label :teléfono_casa, class: 'form-control-label' %>
+        <h4>Teléfono de Casa</h4>
         <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Teléfono fijo del paciente', autofocus: true %>
       </div>
       <div class="col-md-4">
-        <%= f.label :teléfono_celular, class: 'form-control-label' %>
+        <h4>Teléfono Celular</h4>
         <%= f.text_field :cellphone_number, class: 'form-control', placeholder: 'Teléfono celular del paciente', autofocus: true %>
       </div>
       <div class="col-md-4">
-        <%= f.label :email, class: 'form-control-label' %>
+        <h4>Correo Electrónico</h4>
         <%= f.text_field :email, class: 'form-control', placeholder: 'Correo electrónico del paciente', autofocus: true %>
       </div>
     </div>
 
-    <div class="col-md-12">
-      <br>
-    </div>
+    <div class="col-md-12"><br></div>
 
     <!-- DIRECCIÓN -->
     <div class="form-group col-md-12">
       <div class="col-md-12">
-        <%= f.label :dirección_de_habitación, class: 'form-control-label' %>
+        <h4>Dirección de Habitación</h4>
         <%= f.text_field :address, class: 'form-control', placeholder: 'Dirección completa del paciente' %>
       </div>
     </div>
@@ -132,13 +129,13 @@
     <!-- REFERENCIA / SEGURO -->
     <div class="form-group col-md-12">
       <div class="col-md-4">
-        <%= f.label :referido_por, class: 'form-control-label' %>
+        <h4>Referido por</h4>
         <%= f.text_field :referred_by, class: 'form-control', placeholder: 'Persona que refirió al paciente' %>
       </div>
       <div class="col-md-4">
-        <%= f.label :seguro, class: 'form-control-label' %>
-        <%= f.select :insurance_id, options_from_collection_for_select(Insurance.order(name: :asc), :id, :name, @record.insurance_id), {include_blank: 'N/A'}, class: 'form-control' %>
-        <a href="#" data-toggle="modal" data-target="#new-insurance-form">Agrear nuevo</a>
+        <h4>Seguro</h4>
+        <%= f.select :insurance_id, options_from_collection_for_select(Insurance.order(name: :asc), :id, :name, @record.insurance_id), {include_blank: 'Seleccione una opción'}, class: 'form-control' %>
+        <a href="#" data-toggle="modal" data-target="#new-insurance-modal">Agrear nuevo</a>
       </div>
     </div>
 

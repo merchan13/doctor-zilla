@@ -25,7 +25,11 @@ class MedicalRecord < ApplicationRecord
                         :gender,
                         :phone_number,
                         :address,
+                        :occupation,
+                        :insurance,
                         :message => "es un campo obligatorio."
+
+  validates :document, uniqueness: { scope: :document_type, message: "ya existe en la base de datos." }
 
   def full_name
     return "#{name} #{last_name}".strip if (name || last_name)

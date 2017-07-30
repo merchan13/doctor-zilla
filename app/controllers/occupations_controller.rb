@@ -5,7 +5,7 @@ class OccupationsController < ApplicationController
       @occupation = Occupation.create(occupation_params)
 
       if @occupation.save
-        flash[:success] = "New occupation added"
+        flash[:success] = "Nueva profesión agregada"
         render json: @occupation
       else
         if @occupation.errors.full_messages.first.include? "blank"
