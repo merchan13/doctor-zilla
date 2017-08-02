@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730200215) do
+ActiveRecord::Schema.define(version: 20170802002159) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,6 +48,32 @@ ActiveRecord::Schema.define(version: 20170730200215) do
     t.index ["medical_record_id"], name: "index_backgrounds_on_medical_record_id"
   end
 
+  create_table "budget_equipments", force: :cascade do |t|
+    t.integer  "budget_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["budget_id"], name: "index_budget_equipments_on_budget_id"
+    t.index ["equipment_id"], name: "index_budget_equipments_on_equipment_id"
+  end
+
+  create_table "budget_procedures", force: :cascade do |t|
+    t.integer  "budget_id"
+    t.integer  "procedure_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["budget_id"], name: "index_budget_procedures_on_budget_id"
+    t.index ["procedure_id"], name: "index_budget_procedures_on_procedure_id"
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.float    "cost",               null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "medical_records_id"
+    t.index ["medical_records_id"], name: "index_budgets_on_medical_records_id"
+  end
+
   create_table "consultations", force: :cascade do |t|
     t.integer  "medical_record_id"
     t.datetime "created_at",        null: false
@@ -72,6 +98,12 @@ ActiveRecord::Schema.define(version: 20170730200215) do
     t.string   "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "insurances", force: :cascade do |t|

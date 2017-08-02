@@ -1,13 +1,19 @@
 class ProceduresController < ApplicationController
 
   def create
-    @procedure = Procedure.create(procedure_params)
+    Procedure.transaction do
+      @procedure = Procedure.create(procedure_params)
 
-    if @procedure.save
-      flash[:success] = "New procedure added"
-      render json: @procedure
-    else
-      #render status: :not_found, nothing: true
+      if @procedure.save
+        flash[:success] = "Nuevo Procedimiento Quirúrgico agregado"
+        render json: @procedure
+      else
+        if @procedure.errors.full_messages.first.include? "blank"
+          render status: 400, nothing: true
+        elsif @procedure.errors.full_messages.first.include? "taken"
+          render status: 406, nothing: true
+        end
+      end
     end
   end
 

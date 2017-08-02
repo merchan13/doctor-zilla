@@ -1,1 +1,103 @@
-<h1>Budgets home</h1>
+<div class="container home center">
+  <div class="row align-middle">
+    <div class="col-md-4">
+      <%= link_to search_path(model: 'medical_record', filter:'new_budget') do %>
+        <i class="fa fa-calculator"></i>
+        <h4>Nuevo Presupuesto</h4>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <a href="#" data-toggle="modal" data-target="#new-procedure-modal">
+        <i class="fa fa-stethoscope"></i>
+        <h4>Agregar Procedimiento</h4>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" data-toggle="modal" data-target="#new-equipment-modal">
+        <i class="fa fa-cogs"></i>
+        <h4>Agregar Equipo</h4>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PROCEDURE MODAL -->
+<div class="modal fade" id="new-procedure-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Procedimiento</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form' do %>
+          <div id="procedure-taken"></div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <h4>Nombre del Procedimiento</h4>
+              <%= text_field_tag "procedure[name]", nil, placeholder: "Nombre del Procedimiento",
+                autofocus: true, class: 'form-control'%>
+            </div>
+
+            <div class="col-md-12"><br></div>
+
+            <div class="col-md-10">
+              <h4>Descripción del Procedimiento</h4>
+              <%= text_field_tag "procedure[description]", nil, placeholder: "Descripción breve del Procedimiento",
+                autofocus: true, class: 'form-control'%>
+            </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EQUIPMENT MODAL -->
+<div class="modal fade" id="new-equipment-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Equipo Médico</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag ('/equipments'), remote: true, id: 'new-equipment-form' do %>
+          <div id="equipment-taken"></div>
+
+          <%= hidden_field_tag 'source', 'menu' %>
+
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <h4>Nombre del Equipo</h4>
+              <%= text_field_tag "equipment[name]", nil, placeholder: "Nombre del Equipo Médico",
+                autofocus: true, class: 'form-control'%>
+            </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

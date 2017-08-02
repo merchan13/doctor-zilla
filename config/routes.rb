@@ -17,8 +17,10 @@ Rails.application.routes.draw do
 
   resources :attachments,       except: [:edit, :update]
   resources :backgrounds,       except: :destroy
+  resources :budgets,           except: [:destroy, :edit, :update]
   resources :consultations,     except: :destroy
   resources :diagnostics,       except: [:destroy, :edit, :update]
+  resources :equipments,        except: [:destroy, :edit, :update]
   resources :insurances,        except: [:destroy, :edit, :update]
   resources :medical_records,   except: :destroy
   resources :medicines,         except: [:destroy, :edit, :update]

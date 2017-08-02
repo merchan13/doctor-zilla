@@ -1,6 +1,5 @@
 class OperativeNotesController < ApplicationController
   before_action :set_medical_record,  only: [:new, :create, :index]
-  before_action :set_plan,            only: [:new, :create]
   before_action :set_operative_note,  only: [:show, :download]
   respond_to :docx
 
@@ -64,11 +63,9 @@ class OperativeNotesController < ApplicationController
       @procedures = @plan.procedures
     end
 
-    def set_plan
-      @plan = Plan.find(params[:plan]) unless params[:plan].nil?
-    end
-
     def set_medical_record
+      @plan = Plan.find(params[:plan]) unless params[:plan].nil?
+
       if @plan.nil?
         @record = MedicalRecord.find(params[:record])
       else
