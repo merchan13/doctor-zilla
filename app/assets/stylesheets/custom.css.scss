@@ -5,7 +5,10 @@ body {
   margin: 0;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4 {
   color: #211c5f;
 }
 
@@ -147,10 +150,6 @@ footer ul li {
 .modal-header {
   background-color: #211c5f;
   color: #fafafa;
-}
-
-#new_medical_record h4{
-  color: #211c5f;
 }
 
 .panel-body > ul {

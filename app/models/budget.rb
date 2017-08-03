@@ -3,4 +3,6 @@ class Budget < ApplicationRecord
 
   has_many :budget_procedures
   has_many :procedures, through: :budget_procedures
+
+  validates :cost, presence: true 
 end

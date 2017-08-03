@@ -12,6 +12,7 @@ class MedicalRecord < ApplicationRecord
   has_many :prescriptions
   has_many :attachments
   has_many :reports
+  has_many :budgets
 
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true

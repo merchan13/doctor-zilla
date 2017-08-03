@@ -18,7 +18,7 @@ init_record_lookup = function() {
   $('#record-lookup-form').on('ajax:error', function(event, xhr, status, error){
     hide_spinner();
     $('#record-lookup-results').replaceWith(' ');
-    $('#record-lookup-errors').replaceWith('person was not found.');
+    $('#record-lookup-errors').replaceWith('No se encontró ninguna historia que coincida con ese criterio de busqueda.');
   });
 }
 
