@@ -86,7 +86,7 @@
 
                   <!-- NUEVO PRESUPUESTO -->
                   <% elsif @filter == 'new_budget' %>
-                    <%= link_to "Nuevo presupuesto", new_budget_path(record: record), class: 'btn btn-success modal-link' %>
+                    <%= link_to "Nuevo", new_budget_path(record: record), class: 'btn btn-success modal-link' %>
                     <% if record.budgets.count > 0 %>
                       <%= link_to "Ver presupuestos (#{record.budgets.count})", budgets_path(record: record), class: 'btn btn-primary modal-link' %>
                     <% end %>

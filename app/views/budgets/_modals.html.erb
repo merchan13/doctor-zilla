@@ -1,5 +1,5 @@
 <!-- PROCEDURE MODAL -->
-<div class="modal fade" id="new-procedure-modal" role="dialog">
+<div class="modal fade" id="new-procedure-modal-bg" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -8,7 +8,7 @@
           <h4 class="modal-title">Agregar Nuevo Procedimiento</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form' do %>
+        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form-bg' do %>
           <div id="procedure-taken"></div>
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-6">
@@ -42,7 +42,7 @@
 </div>
 
 <!-- EQUIPMENT MODAL -->
-<div class="modal fade" id="new-equipment-modal" role="dialog">
+<div class="modal fade" id="new-equipment-modal-bg" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -51,7 +51,7 @@
           <h4 class="modal-title">Agregar Nuevo Equipo Médico</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag ('/equipments'), remote: true, id: 'new-equipment-form' do %>
+        <%= form_tag ('/equipments'), remote: true, id: 'new-equipment-form-bg' do %>
           <div id="equipment-taken"></div>
 
           <%= hidden_field_tag 'source', 'menu' %>

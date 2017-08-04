@@ -17,10 +17,10 @@
           <%= select_tag "procedures_select", options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name), include_blank: 'N/A', class: 'form-control' %>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-success budget_add_select_button">Agregar a la lista</button>
+          <button type="button" class="btn btn-success budget_add_procedure_button">Agregar a la lista</button>
         </div>
         <div class="col-md-12">
-          <a href="#" data-toggle="modal" data-target="#new-procedure-modal">Agrear nuevo procedimiento</a>
+          <a href="#" data-toggle="modal" data-target="#new-procedure-modal-bg">Agrear nuevo procedimiento</a>
         </div>
       </div>
       <div class="col-md-12"><br></div> <!-- separador -->
@@ -29,7 +29,9 @@
           <!-- hidden inputs -->
         </div>
         <div class="col-md-10 budget_procedures_wrap">
-          <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+          <div class="col-md-12">
+            <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+          </div>
           <!-- inputs -->
         </div>
       </div>
@@ -43,10 +45,10 @@
           <%= select_tag "equipments_select", options_from_collection_for_select(Equipment.all.order(name: :asc), :id, :name), include_blank: 'N/A', class: 'form-control' %>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-success budget_add_select_button">Agregar a la lista</button>
+          <button type="button" class="btn btn-success budget_add_equipment_button">Agregar a la lista</button>
         </div>
         <div class="col-md-12">
-          <a href="#" data-toggle="modal" data-target="#new-equipment-modal">Agrear nuevo equipo</a>
+          <a href="#" data-toggle="modal" data-target="#new-equipment-modal-bg">Agrear nuevo equipo</a>
         </div>
       </div>
       <div class="col-md-12"><br></div> <!-- separador -->
@@ -65,7 +67,7 @@
       <!-- COSTO -->
       <div class="col-md-5">
         <h4>Costo total estimado (BsF)</h4>
-        <%= number_field_tag "equipment[cost]", nil, placeholder: "Costo total estimado del presupueto (en BsF) ",
+        <%= number_field_tag "budget[cost]", nil, placeholder: "Costo total estimado del presupueto (en BsF) ",
           autofocus: true, class: 'form-control'%>
       </div>
     </div>

@@ -34,7 +34,7 @@ class OperativeNotesController < ApplicationController
       @operative_note.plan = @plan
 
       if @operative_note.save
-        flash[:success] = "Operative Note was created successfully"
+        flash[:success] = "Nueva Nota Operatoria creada exitósamente"
         redirect_to operative_note_path(@operative_note)
       else
         @operative_note = OperativeNote.new

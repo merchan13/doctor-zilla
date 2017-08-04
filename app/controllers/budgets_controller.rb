@@ -12,7 +12,28 @@ class BudgetsController < ApplicationController
   end
 
   def create
+    Budget.transaction do
 
+      @budget = @record.budgets.create(budget_params)
+
+      params["procedures"].each do |pr|
+          @budget.budget_procedures.create(procedure_id: pr)
+      end
+
+      params["equipments"].each do |eq|
+          @budget.budget_equipments.create(equipment_id: eq)
+      end
+
+      if @budget.save
+        flash[:success] = "Nuevo Presupuesto creado exitósamente"
+        #redirect_to budget_path(@budget)
+        redirect_to root_path
+      else
+        @budget = Budget.new
+        render 'new'
+      end
+
+    end
   end
 
   def show
@@ -40,7 +61,7 @@ class BudgetsController < ApplicationController
     end
 
     def budget_params
-      params.require(:operative_note).permit( :cost )
+      params.require(:budget).permit( :cost )
     end
 
 end

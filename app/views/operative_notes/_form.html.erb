@@ -19,16 +19,18 @@
 
     <div class="form-group">
       <% if !@plan.nil? %>
-        <div class="col-md-12">
-          <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
-          <% @procedures.each do |p| %>
-            <div class="">
-              <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
-            </div>
-          <% end %>
-        </div>
+        <% if @procedures.count > 0 %>
+          <div class="col-md-12">
+            <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
+            <% @procedures.each do |p| %>
+              <div class="">
+                <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
+              </div>
+            <% end %>
+          </div>
 
-        <div class="col-md-12"><hr></div>
+          <div class="col-md-12"><hr></div>
+        <% end %>
       <% end %>
 
       <div class="col-md-12">
