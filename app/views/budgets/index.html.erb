@@ -3,32 +3,43 @@
 
   <div class="col-md-9 new-panel main-panel">
 
-    <h3 align="center">Notas Operatorias</h3>
+    <h3 align="center">Presupuestos pasados</h3>
     <table class="table table-hover">
       <thead>
         <tr>
           <th>#</th>
           <th>Fecha de creación</th>
-          <th>Plan</th>
+          <th>Procedimientos</th>
+          <th>Total</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-      <% @operative_notes.each do |operative_note| %>
+      <% @budgets.each do |budget| %>
         <tr>
-            <th scope="row" class="col-md-1"><%= operative_note.id %></th>
-            <td class="col-md-2"><%= "#{operative_note.created_at.strftime("%d-%b-%Y")}" %></td>
-            <td class="col-md-7"><%= operative_note.plan.description %></td>
-            <td class="col-md-2"><%= link_to "Ver", operative_note_path(operative_note), class: 'btn btn-info' %></td>
+            <th scope="row" class="col-md-1"><%= budget.id %></th>
+            <td class="col-md-2"><%= "#{budget.created_at.strftime("%d-%b-%Y")}" %></td>
+            <td class="col-md-5">
+              <ul>
+                <% budget.procedures.each do |p| %>
+                  <li><%= p.name %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td class="col-md-3"><%= budget.cost %> BsF.</td>
+            <td class="col-md-1"><%= link_to "Ver", budget_path(budget), class: 'btn btn-info' %></td>
         </tr>
         <p></p>
       <% end %>
       </tbody>
     </table>
 
+    <div class="center">
+      <%= will_paginate @budgets %>
+    </div>
+
     <div class="col-md-6 col-md-offset-3">
-      <%= link_to "Nuevo nota operatoria", plans_path(record: @record), class: 'btn btn-success modal-link' %>
-      <%= link_to "Nota Operatoria de Emergencia", new_operative_note_path(record: @record), class: 'btn btn-danger modal-link' %>
+      <%= link_to "Nuevo presupuesto", new_budget_path(record: @record), class: 'btn btn-success modal-link' %>
     </div>
 
     <div class="col-md-12"><hr></div>

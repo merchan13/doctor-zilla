@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
   respond_to :docx
 
   def index
-
+    @budgets = @record.budgets.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -16,12 +16,12 @@ class BudgetsController < ApplicationController
 
       @budget = @record.budgets.create(budget_params)
 
-      params["procedures"].each do |pr|
-          @budget.budget_procedures.create(procedure_id: pr)
+      params["procedures"].each_with_index do |pr, i|
+          @budget.budget_procedures.create(procedure_id: pr, cost: params[:procedures_cost][i])
       end
 
-      params["equipments"].each do |eq|
-          @budget.budget_equipments.create(equipment_id: eq)
+      params["equipments"].each_with_index do |eq, i|
+          @budget.budget_equipments.create(equipment_id: eq, cost: params[:equipments_cost][i])
       end
 
       if @budget.save

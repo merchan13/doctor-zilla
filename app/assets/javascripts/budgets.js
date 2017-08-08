@@ -1,5 +1,7 @@
 var update_procedures;
+var update_equipments;
 var add_procedures_to_list;
+var add_equipments_to_list;
 
 add_procedures_to_list = function() {
     var wrapper         = $(".budget_procedures_wrap");
@@ -14,9 +16,11 @@ add_procedures_to_list = function() {
 
         if (value.length > 0){
           var field_html = "<div id='UIprocedure"+ value +"'>"
-                              +"<div class='col-md-10 form-group' style='margin-right:0; margin-left:0'>"
+                              +"<div class='col-md-8 form-group' style='margin-right:0; margin-left:0'>"
                                   +"<input type='text' name='procedures_name[]' value='"+ name +"' class='form-control' disabled></div>"
-                              +"<div class='col-md-2 form-group'>"
+                              +"<div class='col-md-3 form-group' style='margin-right:0; margin-left:-15px'>"
+                                  +"<input type='number' name='procedures_cost[]' placeholder='Costo' class='form-control cost' onchange='update_cost()'></div>"
+                              +"<div class='col-md-1 form-group'>"
                                   +"<button type='button' name='button' value='"+ value +"' class='btn btn-danger remove_procedure_button'>X</button></div>"
                             +"</div>";
 
@@ -34,6 +38,8 @@ add_procedures_to_list = function() {
         $("#UIprocedure"+ val +"").remove();
         $("#DATAprocedure"+ val +"").remove();
         x--;
+
+        update_cost();
     });
 }
 
@@ -50,9 +56,11 @@ add_equipments_to_list = function() {
 
         if (value.length > 0){
           var field_html = "<div id='UIequipment"+ value +"'>"
-                              +"<div class='col-md-10 form-group' style='margin-right:0; margin-left:0'>"
+                              +"<div class='col-md-8 form-group' style='margin-right:0; margin-left:0'>"
                                   +"<input type='text' name='equipments_name[]' value='"+ name +"' class='form-control' disabled></div>"
-                              +"<div class='col-md-2 form-group'>"
+                              +"<div class='col-md-3 form-group' style='margin-right:0; margin-left:-15px'>"
+                                  +"<input type='number' name='equipments_cost[]' placeholder='Costo' class='form-control cost' onchange='update_cost()'></div>"
+                              +"<div class='col-md-1 form-group'>"
                                   +"<button type='button' name='button' value='"+ value +"' class='btn btn-danger remove_equipment_button'>X</button></div>"
                             +"</div>";
 
@@ -70,6 +78,8 @@ add_equipments_to_list = function() {
         $("#UIequipment"+ val +"").remove();
         $("#DATAequipment"+ val +"").remove();
         x--;
+
+        update_cost();
     });
 }
 
@@ -149,6 +159,18 @@ update_equipments = function() {
 
     $('#equipment-taken').replaceWith(alert_html);
   });
+}
+
+function update_cost() {
+    var new_cost = 0;
+
+    $('.cost').each(function(i) {
+      if ($(this).val() != ''){
+          new_cost = new_cost + parseInt($(this).val(), 10);
+      }
+    });
+
+    $('#budget_cost').val(new_cost);
 }
 
 $(document).ready(function functionName() {
