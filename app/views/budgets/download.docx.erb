@@ -4,40 +4,39 @@
 <br>
 <br>
 <div class="col-md-12">
-  <h2 style="float:right">Fecha: <%= @operative_note.created_at.strftime("%d-%b-%Y") %></h2>
+  <h2 style="float:right">Fecha: <%= @budget.created_at.strftime("%d-%b-%Y") %></h2>
   <h2 style="float:right"><%= @record.full_name %></h2>
   <h2 style="float:right"><%= @record.full_id %></h2>
 </div>
 <br>
+<br>
+<br>
 <div class="col-md-12">
-  <h1>Plan</h1>
-  <p><%= @plan.description.html_safe %></p>
+  <h1>Presupuesto</h1>
 </div>
 
 <div class="col-md-12">
-  <h2>Procedimientos</h2>
+  <h2>-Procedimientos</h2>
   <ul>
-    <% @procedures.each do |p| %>
-      <li style="list-style-type: circle;"><%= p.name %></li>
+    <% @procedures.each do |pc| %>
+      <li style="list-style-type: circle;"><p><%= pc.name %> &mdash; <strong><%= pc.cost_in_budget(@budget) %> BsF.</strong></p></li>
     <% end %>
   </ul>
 </div>
 
 <div class="col-md-12">
-  <h2>Hallazgos</h2>
-  <% if @operative_note.find.nil? %>
-    <p>No se poseen hallazgos.</p>
-  <% else %>
-    <p><%= @operative_note.find %></p>
-  <% end %>
+  <h2>-Equipos</h2>
+  <ul>
+    <% @equipments.each do |eq| %>
+      <li style="list-style-type: circle;"><p><%= eq.name %> &mdash; <strong><%= eq.cost_in_budget(@budget) %> BsF.</strong></p></li>
+    <% end %>
+  </ul>
 </div>
 
-<div class="col-md-12">
-  <h2>Descripción</h2>
-  <p><%= @operative_note.description %></p>
-</div>
+<br>
+<br>
 
 <div class="col-md-12">
-  <h2>Diagnóstico</h2>
-  <p><%= @operative_note.diagnostic %></p>
+  <h2>Costo total</h2>
+  <h3><%= @budget.cost %> BsF.</h3>
 </div>

@@ -42,5 +42,6 @@ Rails.application.routes.draw do
   get 'reports/download/:id',         to: 'reports#download',         as: 'download_report',        format: 'docx'
   get 'prescriptions/download/:id',   to: 'prescriptions#download',   as: 'download_prescription',  format: 'docx'
   get 'operative_notes/download/:id', to: 'operative_notes#download', as: 'download_operative',     format: 'docx'
+  get 'budgets/download/:id',         to: 'budgets#download',         as: 'download_budget',        format: 'docx'
 
 end

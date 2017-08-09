@@ -26,8 +26,7 @@ class BudgetsController < ApplicationController
 
       if @budget.save
         flash[:success] = "Nuevo Presupuesto creado exitósamente"
-        #redirect_to budget_path(@budget)
-        redirect_to root_path
+        redirect_to budget_path(@budget)
       else
         @budget = Budget.new
         render 'new'
@@ -37,13 +36,12 @@ class BudgetsController < ApplicationController
   end
 
   def show
-
   end
 
   def download
     respond_to do |format|
       format.docx do
-        render docx: 'download', filename: "notaOperatoria_#{@record.last_name.gsub(/ /, "")}_#{@operative_note.id}.docx"
+        render docx: 'download', filename: "Presupuesto_#{@record.last_name.gsub(/ /, "")}_#{@budget.id}.docx"
       end
     end
   end

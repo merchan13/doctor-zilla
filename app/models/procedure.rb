@@ -4,4 +4,8 @@ class Procedure < ApplicationRecord
 
   validates_presence_of :name, :description
   validates :name, uniqueness: { case_sensitive: false }
+
+  def cost_in_budget(budget)
+    BudgetProcedure.where(budget: budget, procedure: self).first.cost || 0
+  end
 end

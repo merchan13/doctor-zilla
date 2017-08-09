@@ -1,47 +1,41 @@
 <div class="col-md-12">
   <h1><%= "Historia ##{@record.id}" %></h1>
-  <!-- NOTA OPERATORIA -->
+  <!-- PRESUPUESTO -->
   <div class="col-md-9 new-panel main-panel">
 
     <div class="col-md-12">
-      <h2>Nota operatoria [ <%= @operative_note.created_at.strftime("%Y-%b-%d") %> ]</h2>
-    </div>
-
-    <div class="col-md-12">
-      <h3>Plan</h3>
-      <p align="left"><%= @plan.description %></p>
+      <h2>Presupuesto [ <%= @budget.created_at.strftime("%Y-%b-%d") %> ]</h2>
     </div>
 
     <div class="col-md-12">
       <h3>Procedimientos</h3>
       <div class="col-md-12">
-        <% @procedures.each do |p| %>
-          <h4><%= p.name %></h4>
+        <% @procedures.each do |pc| %>
+          <p><%= pc.name %> &mdash; <strong><%= pc.cost_in_budget(@budget) %> BsF.</strong></p>
         <% end %>
       </div>
     </div>
 
     <div class="col-md-12">
-      <h3>Hallazgos</h3>
-      <% if @operative_note.find.nil? %>
-        <p>No se poseen hallazgos.</p>
-      <% else %>
-        <p><%= @operative_note.find %></p>
-      <% end %>
+      <h3>Equipos</h3>
+      <div class="col-md-12">
+        <% @equipments.each do |eq| %>
+          <p><%= eq.name %> &mdash; <strong><%= eq.cost_in_budget(@budget) %> BsF.</strong></p>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col-md-12">
-      <h3>Descripción</h3>
-      <p><%= @operative_note.description %></p>
+    <div class="col-md-4">
+      <h3>Costo total estimado:</h3>
+    </div>
+    <div class="col-md-8">
+      <h3><strong><%= @budget.cost %> BsF.</strong></h3>
     </div>
 
-    <div class="col-md-12">
-      <h3>Diagnóstico</h3>
-      <p><%= @operative_note.diagnostic %></p>
-    </div>
+    <div class="col-md-12"><br></div>
 
     <div class="col-md-4 col-md-offset-5">
-      <%= link_to "Descargar .docx", download_operative_path(@operative_note), class: 'btn btn-lg btn-primary' %>
+      <%= link_to "Descargar .docx", download_budget_path(@budget), class: 'btn btn-lg btn-primary' %>
     </div>
 
     <div class="col-md-12"><hr></div>
