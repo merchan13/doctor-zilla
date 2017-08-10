@@ -1,0 +1,19 @@
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+canvas {
+  display: inline-block;
+  vertical-align: baseline;
+}
+canvas {
+  display: block;
+}
+.ex-graph {
+  display: block;
+  margin: 0 auto 15px;
+}
+.w-lg {
+  width: 75% !important;
+}
+.m-x-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}

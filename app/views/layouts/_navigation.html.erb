@@ -33,7 +33,7 @@
               <% if current_user.role == "Doctor" || current_user.role == "Administrador" %>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "Administración", administration_path %></li>
-                <li><a href="#">Resumen de actividades</a></li>
+                <li><%= link_to "Resumen de actividades", activities_path %></li>
               <% end %>
               <li role="separator" class="divider"></li>
               <li><a href="#">Ayuda</a></li>

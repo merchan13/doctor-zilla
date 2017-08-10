@@ -159,3 +159,38 @@ footer ul li {
 .panel-body > ul {
   padding: 0;
 }
+
+.activity-divider {
+  background-color: #211c5f;
+  padding: 8px;
+  color: #fafafa;
+  text-align: center;
+}
+
+.activity-title {
+  font-weight: 300;
+}
+
+.activity-number {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.activity-success-label {
+  font-size: 60%;
+  color: #fff;
+  background: #1bc98e;
+  border-radius: .25em;
+  padding: .13em .6em;
+  margin-left: 5%;
+}
+
+.activity-danger-label {
+  font-size: 60%;
+  color: #fff;
+  background: #e64759;
+  border-radius: .25em;
+  padding: .13em .6em;
+  margin-left: 5%;
+}

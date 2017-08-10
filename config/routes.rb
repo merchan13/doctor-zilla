@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'search_plans',     to: 'plans#search'
   get 'select_data',      to: 'reports#select_data'
   get 'administration',   to: 'pages#administration'
+  get 'activities',        to: 'activities#general'
 
   get 'reports/download/:id',         to: 'reports#download',         as: 'download_report',        format: 'docx'
   get 'prescriptions/download/:id',   to: 'prescriptions#download',   as: 'download_prescription',  format: 'docx'

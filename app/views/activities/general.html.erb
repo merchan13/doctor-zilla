@@ -1,0 +1,160 @@
+<h1>Resumen de actividades</h1>
+
+<div class="col-md-12">
+  <br>
+</div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link" data-toggle="tab" href="#general" role="tab">General</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#monthly" role="tab">Mes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#annual" role="tab">Año</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#custom" role="tab">Personalizado</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <!-- GENERAL -->
+  <div class="tab-pane active" id="general" role="tabpanel">
+    <!--pacientes-->
+    <div class="container" style="padding-left:0;">
+      <div class="col-md-12">
+        <h2 class="activity-divider">Pacientes</h2>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Total de Pacientes</h3>
+        <h3 class="activity-number">
+          4500
+          <small class="label label-success activity-success-label"> +5%</small>
+        </h3>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Asegurados</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= rand(999) %>, color: '#1bc98e', label: 'No asegurados' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Sexo</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= rand(999) %>, color: '#ff87c3', label: 'Femenino' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Edades</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: '1-10' },
+                        { value: <%= rand(999) %>, color: '#1bc98e', label: '11-20' },
+                        { value: <%= rand(999) %>, color: '#211c5f', label: '21-30' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!--consultas-->
+    <div class="container" style="padding-left:0;">
+      <div class="col-md-12">
+        <h2 class="activity-divider">Consultas médicas</h2>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Total de Consultas</h3>
+        <h3 class="activity-number">
+          10000
+          <small class="label label-danger activity-danger-label"> -10%</small>
+        </h3>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Asegurados</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= rand(999) %>, color: '#1bc98e', label: 'No asegurados' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Sexo</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= rand(999) %>, color: '#ff87c3', label: 'Femenino' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-3 center">
+        <h3 class="activity-title">Edades</h3>
+        <div class="w-lg m-x-auto">
+          <canvas
+            class="ex-graph"
+            width="200" height="200"
+            data-chart="doughnut"
+            data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: '1-10' },
+                        { value: <%= rand(999) %>, color: '#1bc98e', label: '11-20' },
+                        { value: <%= rand(999) %>, color: '#211c5f', label: '21-30' }]"
+            data-segment-stroke-color="#fff"
+            data-options="{ percentageInnerCutout: '20' }">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <h2 class="activity-divider">Operaciones realizadas</h2>
+    </div>
+
+    <div class="col-md-12">
+      <h2 class="activity-divider">Presupuestos emitidos</h2>
+    </div>
+  </div><!-- GENERAL -->
+
+  <!-- MENSUAL -->
+  <div class="tab-pane" id="monthly" role="tabpanel">
+    <h2>mensual</h2>
+  </div><!-- MENSUAL -->
+
+  <!-- ANUAL -->
+  <div class="tab-pane" id="annual" role="tabpanel">
+    <h2>anual</h2>
+  </div><!-- ANUAL -->
+
+  <!-- CUSTOM -->
+  <div class="tab-pane" id="custom" role="tabpanel">
+    <h2>custom</h2>
+  </div><!-- CUSTOM -->
+</div>
