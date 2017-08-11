@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
     @budgets = Budget.all
 
     if @pacients.count > 0
-      @pacients_without_insurance = Insurance.where('name LIKE ?', 'sin seguro').first.medical_records
+      @pacients_without_insurance = Insurance.where('lower(name) LIKE ?', 'sin seguro').first.medical_records
       @pacients_with_insurance = @pacients - @pacients_without_insurance
       @pacients_female = @pacients.where('gender LIKE ?', 'femenine')
       @pacients_male = @pacients - @pacients_female
