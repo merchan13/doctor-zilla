@@ -1,0 +1,53 @@
+<div class="container" style="padding-left:0;">
+  <div class="col-md-12">
+    <h2 class="activity-divider">Presupuestos emitidos</h2>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Total de presupuestos<br>emitidos</h3>
+    <h3 class="activity-number">
+      934
+      <small class="label label-danger activity-danger-label"> -10%</small>
+    </h3>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Asegurados</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= rand(999) %>, color: '#1bc98e', label: 'No asegurados' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Sexo</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= rand(999) %>, color: '#ff87c3', label: 'Femenino' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Edades</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: '1-10' },
+                    { value: <%= rand(999) %>, color: '#1bc98e', label: '11-20' },
+                    { value: <%= rand(999) %>, color: '#211c5f', label: '21-30' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,7 @@ $(function () {
 
       var options = $.extend({
         responsive: true,
-        animation: false,
+        animation: true,
         segmentStrokeColor: '#fff',
         segmentStrokeWidth: 2,
         percentageInnerCutout: 80,
@@ -135,11 +135,15 @@ $(function () {
 
   $(document)
     .on('redraw.bs.charts', function () {
+      $('.tab-pane').each(function () {
+        $(this).addClass('active')
+      })
       $('[data-chart]').each(function () {
         if ($(this).is(':visible')) {
           Charts[$(this).attr('data-chart')](this)
         }
       })
+      $('div.tab-pane:not(:first)').removeClass('active')
     })
     .trigger('redraw.bs.charts')
 });

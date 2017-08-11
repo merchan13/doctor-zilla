@@ -1,0 +1,59 @@
+<div class="container" style="padding-left:0;">
+  <div class="col-md-12">
+    <h2 class="activity-divider">Pacientes</h2>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Total de Pacientes</h3>
+    <h3 class="activity-number">
+      <%= all %>
+      <small class="label label-success activity-success-label"> +5%</small>
+    </h3>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Asegurados</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= with_insurance %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= without_insurance %>, color: '#1bc98e', label: 'No asegurados' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Sexo</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= male %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= female %>, color: '#ff87c3', label: 'Femenino' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+  <div class="col-md-3 center">
+    <h3 class="activity-title">Edades</h3>
+    <div class="w-lg m-x-auto">
+      <canvas
+        class="ex-graph"
+        width="200" height="200"
+        data-chart="doughnut"
+        data-value="[{ value: <%= p_1_10 %>, color: '#1ca8dd', label: '1-10' },
+                    { value: <%= p_11_20 %>, color: '#1bc98e', label: '11-20' },
+                    { value: <%= p_21_30 %>, color: '#1bc98e', label: '21-30' },
+                    { value: <%= p_31_40 %>, color: '#1bc98e', label: '31-40' },
+                    { value: <%= p_41_50 %>, color: '#1bc98e', label: '41-50' },
+                    { value: <%= p_51_60 %>, color: '#1bc98e', label: '51-60' },
+                    { value: <%= p_61_70 %>, color: '#1bc98e', label: '61-70' },
+                    { value: <%= p_71_80 %>, color: '#211c5f', label: '71-80' },
+                    { value: <%= p_81 %>, color: '#211c5f', label: 'Mayores a 81 años' }]"
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
+      </canvas>
+    </div>
+  </div>
+</div>
