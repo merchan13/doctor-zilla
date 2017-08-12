@@ -28,6 +28,7 @@
       render partial: 'pacients',
               locals: {
                         all: @pacients.count,
+                        pct: 'N/A',
                         without_insurance: @pacients_without_insurance.count,
                         with_insurance: @pacients_with_insurance.count,
                         female: @pacients_female.count,
@@ -50,7 +51,35 @@
 
   <!-- MENSUAL -->
   <div class="tab-pane" id="monthly" role="tabpanel">
-    <%#= render 'pacients' %>
+    <%=
+      actual = @pacients.where('created_at >= ?', @actual_month).count
+      previous = @pacients.where('created_at >= ? AND created_at < ?', @previous_month, @actual_month).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'pacients',
+              locals: {
+                        all: @pacients.where('created_at >= ?', @actual_month).count,
+                        pct: @pct,
+                        without_insurance: @pacients_without_insurance.where('created_at >= ?', @actual_month).count,
+                        with_insurance: @pacients_with_insurance.where('created_at >= ?', @actual_month).count,
+                        female: @pacients_female.where('created_at >= ?', @actual_month).count,
+                        male: @pacients_male.where('created_at >= ?', @actual_month).count,
+                        p_1_10: @pacients_1_10.where('created_at >= ?', @actual_month).count,
+                        p_11_20: @pacients_11_20.where('created_at >= ?', @actual_month).count,
+                        p_21_30: @pacients_21_30.where('created_at >= ?', @actual_month).count,
+                        p_31_40: @pacients_31_40.where('created_at >= ?', @actual_month).count,
+                        p_41_50: @pacients_41_50.where('created_at >= ?', @actual_month).count,
+                        p_51_60: @pacients_51_60.where('created_at >= ?', @actual_month).count,
+                        p_61_70: @pacients_61_70.where('created_at >= ?', @actual_month).count,
+                        p_71_80: @pacients_71_80.where('created_at >= ?', @actual_month).count,
+                        p_81: @pacients_81_plus.where('created_at >= ?', @actual_month).count
+                      }
+    %>
     <%#= render 'consultations' %>
     <%#= render 'procedures' %>
     <%#= render 'budgets' %>
@@ -58,7 +87,35 @@
 
   <!-- ANUAL -->
   <div class="tab-pane" id="annual" role="tabpanel">
-    <%#= render 'pacients' %>
+    <%=
+      actual = @pacients.where('created_at >= ?', @actual_year).count
+      previous = @pacients.where('created_at >= ? AND created_at < ?', @previous_year, @actual_year).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'pacients',
+              locals: {
+                        all: @pacients.where('created_at >= ?', @actual_year).count,
+                        pct: @pct,
+                        without_insurance: @pacients_without_insurance.where('created_at >= ?', @actual_year).count,
+                        with_insurance: @pacients_with_insurance.where('created_at >= ?', @actual_year).count,
+                        female: @pacients_female.where('created_at >= ?', @actual_year).count,
+                        male: @pacients_male.where('created_at >= ?', @actual_year).count,
+                        p_1_10: @pacients_1_10.where('created_at >= ?', @actual_year).count,
+                        p_11_20: @pacients_11_20.where('created_at >= ?', @actual_year).count,
+                        p_21_30: @pacients_21_30.where('created_at >= ?', @actual_year).count,
+                        p_31_40: @pacients_31_40.where('created_at >= ?', @actual_year).count,
+                        p_41_50: @pacients_41_50.where('created_at >= ?', @actual_year).count,
+                        p_51_60: @pacients_51_60.where('created_at >= ?', @actual_year).count,
+                        p_61_70: @pacients_61_70.where('created_at >= ?', @actual_year).count,
+                        p_71_80: @pacients_71_80.where('created_at >= ?', @actual_year).count,
+                        p_81: @pacients_81_plus.where('created_at >= ?', @actual_year).count
+                      }
+    %>
     <%#= render 'consultations' %>
     <%#= render 'procedures' %>
     <%#= render 'budgets' %>

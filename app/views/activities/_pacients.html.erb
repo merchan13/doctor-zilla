@@ -6,7 +6,17 @@
     <h3 class="activity-title">Total de Pacientes</h3>
     <h3 class="activity-number">
       <%= all %>
-      <small class="label label-success activity-success-label"> +5%</small>
+      <% if pct != 'N/A' %>
+        <% if pct > 0 %>
+          <small class="label label-success activity-success-label">
+            <%= " +#{pct}%" %>
+          </small>
+        <% else %>
+          <small class="label label-danger activity-danger-label">
+            <%= " #{pct}%" %>
+          </small>
+        <% end %>
+      <% end %>
     </h3>
   </div>
   <div class="col-md-3 center">
@@ -16,7 +26,7 @@
         class="ex-graph"
         width="200" height="200"
         data-chart="doughnut"
-        data-value="[{ value: <%= with_insurance %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= without_insurance %>, color: '#1bc98e', label: 'No asegurados' }]"
+        data-value="[{ value: <%= with_insurance %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= without_insurance %>, color: '#e64759', label: 'No asegurados' }]"
         data-segment-stroke-color="#fff"
         data-options="{ percentageInnerCutout: '20' }">
       </canvas>
@@ -42,14 +52,14 @@
         class="ex-graph"
         width="200" height="200"
         data-chart="doughnut"
-        data-value="[{ value: <%= p_1_10 %>, color: '#1ca8dd', label: '1-10' },
-                    { value: <%= p_11_20 %>, color: '#1bc98e', label: '11-20' },
-                    { value: <%= p_21_30 %>, color: '#1bc98e', label: '21-30' },
-                    { value: <%= p_31_40 %>, color: '#1bc98e', label: '31-40' },
-                    { value: <%= p_41_50 %>, color: '#1bc98e', label: '41-50' },
-                    { value: <%= p_51_60 %>, color: '#1bc98e', label: '51-60' },
-                    { value: <%= p_61_70 %>, color: '#1bc98e', label: '61-70' },
-                    { value: <%= p_71_80 %>, color: '#211c5f', label: '71-80' },
+        data-value="[{ value: <%= p_1_10 %>, color: '#191919', label: '1-10 años' },
+                    { value: <%= p_11_20 %>, color: '#ff7f50', label: '11-20 años' },
+                    { value: <%= p_21_30 %>, color: '#ff87c3', label: '21-30 años' },
+                    { value: <%= p_31_40 %>, color: '#9f86ff', label: '31-40 años' },
+                    { value: <%= p_41_50 %>, color: '#e4d836', label: '41-50 años' },
+                    { value: <%= p_51_60 %>, color: '#1bc98e', label: '51-60 años' },
+                    { value: <%= p_61_70 %>, color: '#1ca8dd', label: '61-70 años' },
+                    { value: <%= p_71_80 %>, color: '#e64759', label: '71-80 años' },
                     { value: <%= p_81 %>, color: '#211c5f', label: 'Mayores a 81 años' }]"
         data-segment-stroke-color="#fff"
         data-options="{ percentageInnerCutout: '20' }">

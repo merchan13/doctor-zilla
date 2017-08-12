@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  before_action :set_dates
 
   def general
     @pacients = MedicalRecord.all
@@ -8,9 +9,9 @@ class ActivitiesController < ApplicationController
 
     if @pacients.count > 0
       @pacients_without_insurance = Insurance.where('lower(name) LIKE ?', 'sin seguro').first.medical_records
-      @pacients_with_insurance = @pacients - @pacients_without_insurance
+      @pacients_with_insurance = @pacients.where.not(id: @pacients_without_insurance)
       @pacients_female = @pacients.where('gender LIKE ?', 'femenine')
-      @pacients_male = @pacients - @pacients_female
+      @pacients_male = @pacients.where('gender LIKE ?', 'masculine')
       @pacients_1_10 = @pacients.where(birthday: 11.years.ago..1.years.ago)
       @pacients_11_20 = @pacients.where(birthday: 21.years.ago..11.years.ago)
       @pacients_21_30 = @pacients.where(birthday: 31.years.ago..21.years.ago)
@@ -32,6 +33,18 @@ class ActivitiesController < ApplicationController
     if @budgets.count > 0
     end
 
+  end
+
+  def set_dates
+    time = Time.new
+    previous_month = time - 1.month
+    previous_year = time - 1.year
+
+    @actual_month = time.strftime("%Y-%m-01")
+    @previous_month = previous_month.strftime("%Y-%m-01")
+
+    @actual_year = time.strftime("%Y-01-01")
+    @previous_year = previous_year.strftime("%Y-01-01")
   end
 
   private
