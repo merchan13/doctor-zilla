@@ -12,18 +12,20 @@
       <h3 class="activity-title">Total de presupuestos<br>emitidos</h3>
       <h3 class="activity-number">
         <%= all %>
-        <% if pct != 'N/A' %>
-          <% if pct > 0 %>
-            <small class="label label-success activity-success-label">
-              <%= " +#{pct}%" %>
-            </small>
-          <% else %>
-            <small class="label label-danger activity-danger-label">
-              <%= " #{pct}%" %>
-            </small>
-          <% end %>
-        <% end %>
       </h3>
+      <% if pct != 'N/A' %>
+        <hr>
+        <h3 class="activity-title">Rendimiento comparado con el período pasado</h3>
+        <% if pct > 0 %>
+          <h3 class="activity-number">
+            <small class="label label-success activity-success-label"><%= " +#{pct}%" %></small>
+          </h3>
+        <% else %>
+          <h3 class="activity-number">
+            <small class="label label-danger activity-danger-label"><%= " #{pct}%" %></small>
+          </h3>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-md-3 center">
       <h3 class="activity-title">Asegurados</h3>
@@ -36,8 +38,8 @@
           data-segment-stroke-color="#fff"
           data-options="{ percentageInnerCutout: '20' }">
         </canvas>
-        <span class="label activity-legend" style="background-color:#1ca8dd">Con Seguro</span>
-        <span class="label activity-legend" style="background-color:#e64759">Sin Seguro</span>
+        <span class="label activity-legend" style="background-color:#1ca8dd">Con Seguro: <%= (with_insurance*100)/all %>%</span>
+        <span class="label activity-legend" style="background-color:#e64759">Sin Seguro: <%= (without_insurance*100)/all %>%</span>
       </div>
     </div>
     <div class="col-md-3 center">
@@ -51,8 +53,8 @@
           data-segment-stroke-color="#fff"
           data-options="{ percentageInnerCutout: '20' }">
         </canvas>
-        <span class="label activity-legend" style="background-color:#1ca8dd">Masculino</span>
-        <span class="label activity-legend" style="background-color:#ff87c3">Femenino</span>
+        <span class="label activity-legend" style="background-color:#1ca8dd">Masculino: <%= (male*100)/all%>%</span>
+        <span class="label activity-legend" style="background-color:#ff87c3">Femenino: <%= (female*100)/all%>%</span>
       </div>
     </div>
     <div class="col-md-3 center">
@@ -75,31 +77,31 @@
           data-options="{ percentageInnerCutout: '20' }">
         </canvas>
         <% if p_1_10.nonzero? %>
-          <span class="label activity-legend" style="background-color:#191919">1-10</span>
+          <span class="label activity-legend" style="background-color:#191919">1-10: <%= (p_1_10*100)/all%>%</span>
         <% end %>
         <% if p_11_20.nonzero? %>
-          <span class="label activity-legend" style="background-color:#ff7f50">11-20</span>
+          <span class="label activity-legend" style="background-color:#ff7f50">11-20: <%= (p_11_20*100)/all%>%</span>
         <% end %>
         <% if p_21_30.nonzero? %>
-          <span class="label activity-legend" style="background-color:#3A5677">21-30</span>
+          <span class="label activity-legend" style="background-color:#3A5677">21-30: <%= (p_21_30*100)/all%>%</span>
         <% end %>
         <% if p_31_40.nonzero? %>
-          <span class="label activity-legend" style="background-color:#9f86ff">31-40</span>
+          <span class="label activity-legend" style="background-color:#9f86ff">31-40: <%= (p_31_40*100)/all%>%</span>
         <% end %>
         <% if p_41_50.nonzero? %>
-          <span class="label activity-legend" style="background-color:#e4d836">41-50</span>
+          <span class="label activity-legend" style="background-color:#e4d836">41-50: <%= (p_41_50*100)/all%>%</span>
         <% end %>
         <% if p_51_60.nonzero? %>
-          <span class="label activity-legend" style="background-color:#1bc98e">51-60</span>
+          <span class="label activity-legend" style="background-color:#1bc98e">51-60: <%= (p_51_60*100)/all%>%</span>
         <% end %>
         <% if p_61_70.nonzero? %>
-          <span class="label activity-legend" style="background-color:#1ca8dd">61-70</span>
+          <span class="label activity-legend" style="background-color:#1ca8dd">61-70: <%= (p_61_70*100)/all%>%</span>
         <% end %>
         <% if p_71_80.nonzero? %>
-          <span class="label activity-legend" style="background-color:#e64759">71-80</span>
+          <span class="label activity-legend" style="background-color:#e64759">71-80: <%= (p_71_80*100)/all%>%</span>
         <% end %>
         <% if p_81.nonzero? %>
-          <span class="label activity-legend" style="background-color:#211c5f">Mayores a 81</span>
+          <span class="label activity-legend" style="background-color:#211c5f">Mayores a 81: <%= (p_81*100)/all%>%</span>
         <% end %>
       </div>
     </div>
