@@ -44,9 +44,66 @@
                         p_81: @pacients_81_plus.count
                       }
     %>
-    <%= render 'consultations' %>
-    <%= render 'procedures' %>
-    <%= render 'budgets' %>
+    <%=
+      render partial: 'consultations',
+              locals: {
+                        all: @consultations.count,
+                        pct: 'N/A',
+                        without_insurance: @consultations_without_insurance.count,
+                        with_insurance: @consultations_with_insurance.count,
+                        female: @consultations_female.count,
+                        male: @consultations_male.count,
+                        p_1_10: @consultations_1_10.count,
+                        p_11_20: @consultations_11_20.count,
+                        p_21_30: @consultations_21_30.count,
+                        p_31_40: @consultations_31_40.count,
+                        p_41_50: @consultations_41_50.count,
+                        p_51_60: @consultations_51_60.count,
+                        p_61_70: @consultations_61_70.count,
+                        p_71_80: @consultations_71_80.count,
+                        p_81: @consultations_81_plus.count
+                      }
+    %>
+    <%=
+      render partial: 'procedures',
+              locals: {
+                        all: @procedures.count,
+                        pct: 'N/A',
+                        without_insurance: @procedures_without_insurance.count,
+                        with_insurance: @procedures_with_insurance.count,
+                        female: @procedures_female.count,
+                        male: @procedures_male.count,
+                        p_1_10: @procedures_1_10.count,
+                        p_11_20: @procedures_11_20.count,
+                        p_21_30: @procedures_21_30.count,
+                        p_31_40: @procedures_31_40.count,
+                        p_41_50: @procedures_41_50.count,
+                        p_51_60: @procedures_51_60.count,
+                        p_61_70: @procedures_61_70.count,
+                        p_71_80: @procedures_71_80.count,
+                        p_81: @procedures_81_plus.count
+                      }
+    %>
+    <%=
+      render partial: 'budgets',
+              locals: {
+                        all: @budgets.count,
+                        pct: 'N/A',
+                        without_insurance: @budgets_without_insurance.count,
+                        with_insurance: @budgets_with_insurance.count,
+                        female: @budgets_female.count,
+                        male: @budgets_male.count,
+                        p_1_10: @budgets_1_10.count,
+                        p_11_20: @budgets_11_20.count,
+                        p_21_30: @budgets_21_30.count,
+                        p_31_40: @budgets_31_40.count,
+                        p_41_50: @budgets_41_50.count,
+                        p_51_60: @budgets_51_60.count,
+                        p_61_70: @budgets_61_70.count,
+                        p_71_80: @budgets_71_80.count,
+                        p_81: @budgets_81_plus.count
+                      }
+    %>
   </div><!-- GENERAL -->
 
   <!-- MENSUAL -->
@@ -80,9 +137,93 @@
                         p_81: @pacients_81_plus.where('created_at >= ?', @actual_month).count
                       }
     %>
-    <%#= render 'consultations' %>
-    <%#= render 'procedures' %>
-    <%#= render 'budgets' %>
+    <%=
+      actual = @consultations.where('created_at >= ?', @actual_month).count
+      previous = @consultations.where('created_at >= ? AND created_at < ?', @previous_month, @actual_month).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'consultations',
+              locals: {
+                        all: @consultations.where('created_at >= ?', @actual_month).count,
+                        pct: @pct,
+                        without_insurance: @consultations_without_insurance.where('created_at >= ?', @actual_month).count,
+                        with_insurance: @consultations_with_insurance.where('created_at >= ?', @actual_month).count,
+                        female: @consultations_female.where('created_at >= ?', @actual_month).count,
+                        male: @consultations_male.where('created_at >= ?', @actual_month).count,
+                        p_1_10: @consultations_1_10.where('created_at >= ?', @actual_month).count,
+                        p_11_20: @consultations_11_20.where('created_at >= ?', @actual_month).count,
+                        p_21_30: @consultations_21_30.where('created_at >= ?', @actual_month).count,
+                        p_31_40: @consultations_31_40.where('created_at >= ?', @actual_month).count,
+                        p_41_50: @consultations_41_50.where('created_at >= ?', @actual_month).count,
+                        p_51_60: @consultations_51_60.where('created_at >= ?', @actual_month).count,
+                        p_61_70: @consultations_61_70.where('created_at >= ?', @actual_month).count,
+                        p_71_80: @consultations_71_80.where('created_at >= ?', @actual_month).count,
+                        p_81: @consultations_81_plus.where('created_at >= ?', @actual_month).count
+                      }
+    %>
+    <%=
+      actual = @procedures.where('created_at >= ?', @actual_month).count
+      previous = @procedures.where('created_at >= ? AND created_at < ?', @previous_month, @actual_month).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'procedures',
+              locals: {
+                        all: @procedures.where('created_at >= ?', @actual_month).count,
+                        pct: @pct,
+                        without_insurance: @procedures_without_insurance.where('created_at >= ?', @actual_month).count,
+                        with_insurance: @procedures_with_insurance.where('created_at >= ?', @actual_month).count,
+                        female: @procedures_female.where('created_at >= ?', @actual_month).count,
+                        male: @procedures_male.where('created_at >= ?', @actual_month).count,
+                        p_1_10: @procedures_1_10.where('created_at >= ?', @actual_month).count,
+                        p_11_20: @procedures_11_20.where('created_at >= ?', @actual_month).count,
+                        p_21_30: @procedures_21_30.where('created_at >= ?', @actual_month).count,
+                        p_31_40: @procedures_31_40.where('created_at >= ?', @actual_month).count,
+                        p_41_50: @procedures_41_50.where('created_at >= ?', @actual_month).count,
+                        p_51_60: @procedures_51_60.where('created_at >= ?', @actual_month).count,
+                        p_61_70: @procedures_61_70.where('created_at >= ?', @actual_month).count,
+                        p_71_80: @procedures_71_80.where('created_at >= ?', @actual_month).count,
+                        p_81: @procedures_81_plus.where('created_at >= ?', @actual_month).count
+                      }
+    %>
+    <%=
+      actual = @budgets.where('created_at >= ?', @actual_month).count
+      previous = @budgets.where('created_at >= ? AND created_at < ?', @previous_month, @actual_month).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'budgets',
+              locals: {
+                        all: @budgets.where('created_at >= ?', @actual_month).count,
+                        pct: @pct,
+                        without_insurance: @budgets_without_insurance.where('created_at >= ?', @actual_month).count,
+                        with_insurance: @budgets_with_insurance.where('created_at >= ?', @actual_month).count,
+                        female: @budgets_female.where('created_at >= ?', @actual_month).count,
+                        male: @budgets_male.where('created_at >= ?', @actual_month).count,
+                        p_1_10: @budgets_1_10.where('created_at >= ?', @actual_month).count,
+                        p_11_20: @budgets_11_20.where('created_at >= ?', @actual_month).count,
+                        p_21_30: @budgets_21_30.where('created_at >= ?', @actual_month).count,
+                        p_31_40: @budgets_31_40.where('created_at >= ?', @actual_month).count,
+                        p_41_50: @budgets_41_50.where('created_at >= ?', @actual_month).count,
+                        p_51_60: @budgets_51_60.where('created_at >= ?', @actual_month).count,
+                        p_61_70: @budgets_61_70.where('created_at >= ?', @actual_month).count,
+                        p_71_80: @budgets_71_80.where('created_at >= ?', @actual_month).count,
+                        p_81: @budgets_81_plus.where('created_at >= ?', @actual_month).count
+                      }
+    %>
   </div><!-- MENSUAL -->
 
   <!-- ANUAL -->
@@ -116,9 +257,93 @@
                         p_81: @pacients_81_plus.where('created_at >= ?', @actual_year).count
                       }
     %>
-    <%#= render 'consultations' %>
-    <%#= render 'procedures' %>
-    <%#= render 'budgets' %>
+    <%=
+      actual = @consultations.where('created_at >= ?', @actual_year).count
+      previous = @consultations.where('created_at >= ? AND created_at < ?', @previous_year, @actual_year).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'consultations',
+              locals: {
+                        all: @consultations.where('created_at >= ?', @actual_year).count,
+                        pct: @pct,
+                        without_insurance: @consultations_without_insurance.where('created_at >= ?', @actual_year).count,
+                        with_insurance: @consultations_with_insurance.where('created_at >= ?', @actual_year).count,
+                        female: @consultations_female.where('created_at >= ?', @actual_year).count,
+                        male: @consultations_male.where('created_at >= ?', @actual_year).count,
+                        p_1_10: @consultations_1_10.where('created_at >= ?', @actual_year).count,
+                        p_11_20: @consultations_11_20.where('created_at >= ?', @actual_year).count,
+                        p_21_30: @consultations_21_30.where('created_at >= ?', @actual_year).count,
+                        p_31_40: @consultations_31_40.where('created_at >= ?', @actual_year).count,
+                        p_41_50: @consultations_41_50.where('created_at >= ?', @actual_year).count,
+                        p_51_60: @consultations_51_60.where('created_at >= ?', @actual_year).count,
+                        p_61_70: @consultations_61_70.where('created_at >= ?', @actual_year).count,
+                        p_71_80: @consultations_71_80.where('created_at >= ?', @actual_year).count,
+                        p_81: @consultations_81_plus.where('created_at >= ?', @actual_year).count
+                      }
+    %>
+    <%=
+      actual = @procedures.where('created_at >= ?', @actual_year).count
+      previous = @procedures.where('created_at >= ? AND created_at < ?', @previous_year, @actual_year).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'procedures',
+              locals: {
+                        all: @procedures.where('created_at >= ?', @actual_year).count,
+                        pct: @pct,
+                        without_insurance: @procedures_without_insurance.where('created_at >= ?', @actual_year).count,
+                        with_insurance: @procedures_with_insurance.where('created_at >= ?', @actual_year).count,
+                        female: @procedures_female.where('created_at >= ?', @actual_year).count,
+                        male: @procedures_male.where('created_at >= ?', @actual_year).count,
+                        p_1_10: @procedures_1_10.where('created_at >= ?', @actual_year).count,
+                        p_11_20: @procedures_11_20.where('created_at >= ?', @actual_year).count,
+                        p_21_30: @procedures_21_30.where('created_at >= ?', @actual_year).count,
+                        p_31_40: @procedures_31_40.where('created_at >= ?', @actual_year).count,
+                        p_41_50: @procedures_41_50.where('created_at >= ?', @actual_year).count,
+                        p_51_60: @procedures_51_60.where('created_at >= ?', @actual_year).count,
+                        p_61_70: @procedures_61_70.where('created_at >= ?', @actual_year).count,
+                        p_71_80: @procedures_71_80.where('created_at >= ?', @actual_year).count,
+                        p_81: @procedures_81_plus.where('created_at >= ?', @actual_year).count
+                      }
+    %>
+    <%=
+      actual = @budgets.where('created_at >= ?', @actual_year).count
+      previous = @budgets.where('created_at >= ? AND created_at < ?', @previous_year, @actual_year).count
+
+      if previous.nonzero?
+        @pct = (actual - previous)*100/previous
+      else
+        @pct = 'N/A'
+      end
+
+      render partial: 'budgets',
+              locals: {
+                        all: @budgets.where('created_at >= ?', @actual_year).count,
+                        pct: @pct,
+                        without_insurance: @budgets_without_insurance.where('created_at >= ?', @actual_year).count,
+                        with_insurance: @budgets_with_insurance.where('created_at >= ?', @actual_year).count,
+                        female: @budgets_female.where('created_at >= ?', @actual_year).count,
+                        male: @budgets_male.where('created_at >= ?', @actual_year).count,
+                        p_1_10: @budgets_1_10.where('created_at >= ?', @actual_year).count,
+                        p_11_20: @budgets_11_20.where('created_at >= ?', @actual_year).count,
+                        p_21_30: @budgets_21_30.where('created_at >= ?', @actual_year).count,
+                        p_31_40: @budgets_31_40.where('created_at >= ?', @actual_year).count,
+                        p_41_50: @budgets_41_50.where('created_at >= ?', @actual_year).count,
+                        p_51_60: @budgets_51_60.where('created_at >= ?', @actual_year).count,
+                        p_61_70: @budgets_61_70.where('created_at >= ?', @actual_year).count,
+                        p_71_80: @budgets_71_80.where('created_at >= ?', @actual_year).count,
+                        p_81: @budgets_81_plus.where('created_at >= ?', @actual_year).count
+                      }
+    %>
   </div><!-- ANUAL -->
 
   <!-- CUSTOM -->

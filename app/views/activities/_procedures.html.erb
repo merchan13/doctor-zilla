@@ -2,52 +2,106 @@
   <div class="col-md-12">
     <h2 class="activity-divider">Operaciones realizadas</h2>
   </div>
-  <div class="col-md-3 center">
-    <h3 class="activity-title">Total de operaciones</h3>
-    <h3 class="activity-number">
-      934
-      <small class="label label-danger activity-danger-label"> -10%</small>
-    </h3>
-  </div>
-  <div class="col-md-3 center">
-    <h3 class="activity-title">Asegurados</h3>
-    <div class="w-lg m-x-auto">
-      <canvas
-        class="ex-graph"
-        width="200" height="200"
-        data-chart="doughnut"
-        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= rand(999) %>, color: '#e64759', label: 'No asegurados' }]"
-        data-segment-stroke-color="#fff"
-        data-options="{ percentageInnerCutout: '20' }">
-      </canvas>
+  <% if all == 0 %>
+    <div class="col-md-12"><br></div>
+    <h3 class="activity-title" style="text-align:center">No hay actividades nuevas</h3>
+    <div class="col-md-12"><br></div>
+    <br>
+  <% else %>
+    <div class="col-md-3 center">
+      <h3 class="activity-title">Total de operaciones</h3>
+      <h3 class="activity-number">
+        <%= all %>
+        <% if pct != 'N/A' %>
+          <% if pct > 0 %>
+            <small class="label label-success activity-success-label">
+              <%= " +#{pct}%" %>
+            </small>
+          <% else %>
+            <small class="label label-danger activity-danger-label">
+              <%= " #{pct}%" %>
+            </small>
+          <% end %>
+        <% end %>
+      </h3>
     </div>
-  </div>
-  <div class="col-md-3 center">
-    <h3 class="activity-title">Sexo</h3>
-    <div class="w-lg m-x-auto">
-      <canvas
-        class="ex-graph"
-        width="200" height="200"
-        data-chart="doughnut"
-        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= rand(999) %>, color: '#ff87c3', label: 'Femenino' }]"
-        data-segment-stroke-color="#fff"
-        data-options="{ percentageInnerCutout: '20' }">
-      </canvas>
+    <div class="col-md-3 center">
+      <h3 class="activity-title">Asegurados</h3>
+      <div class="w-lg m-x-auto">
+        <canvas
+          class="ex-graph"
+          width="200" height="200"
+          data-chart="doughnut"
+          data-value="[{ value: <%= with_insurance %>, color: '#1ca8dd', label: 'Asegurados' }, { value: <%= without_insurance %>, color: '#e64759', label: 'No asegurados' }]"
+          data-segment-stroke-color="#fff"
+          data-options="{ percentageInnerCutout: '20' }">
+        </canvas>
+        <span class="label activity-legend" style="background-color:#1ca8dd">Con Seguro</span>
+        <span class="label activity-legend" style="background-color:#e64759">Sin Seguro</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-3 center">
-    <h3 class="activity-title">Edades</h3>
-    <div class="w-lg m-x-auto">
-      <canvas
-        class="ex-graph"
-        width="200" height="200"
-        data-chart="doughnut"
-        data-value="[{ value: <%= rand(999) %>, color: '#1ca8dd', label: '1-10' },
-                    { value: <%= rand(999) %>, color: '#1bc98e', label: '11-20' },
-                    { value: <%= rand(999) %>, color: '#211c5f', label: '21-30' }]"
-        data-segment-stroke-color="#fff"
-        data-options="{ percentageInnerCutout: '20' }">
-      </canvas>
+    <div class="col-md-3 center">
+      <h3 class="activity-title">Sexo</h3>
+      <div class="w-lg m-x-auto">
+        <canvas
+          class="ex-graph"
+          width="200" height="200"
+          data-chart="doughnut"
+          data-value="[{ value: <%= male %>, color: '#1ca8dd', label: 'Masculino' }, { value: <%= female %>, color: '#ff87c3', label: 'Femenino' }]"
+          data-segment-stroke-color="#fff"
+          data-options="{ percentageInnerCutout: '20' }">
+        </canvas>
+        <span class="label activity-legend" style="background-color:#1ca8dd">Masculino</span>
+        <span class="label activity-legend" style="background-color:#ff87c3">Femenino</span>
+      </div>
     </div>
-  </div>
+    <div class="col-md-3 center">
+      <h3 class="activity-title">Edades</h3>
+      <div class="w-lg m-x-auto">
+        <canvas
+          class="ex-graph"
+          width="200" height="200"
+          data-chart="doughnut"
+          data-value="[{ value: <%= p_1_10 %>, color: '#191919', label: '1-10 años' },
+                      { value: <%= p_11_20 %>, color: '#ff7f50', label: '11-20 años' },
+                      { value: <%= p_21_30 %>, color: '#3A5677', label: '21-30 años' },
+                      { value: <%= p_31_40 %>, color: '#9f86ff', label: '31-40 años' },
+                      { value: <%= p_41_50 %>, color: '#e4d836', label: '41-50 años' },
+                      { value: <%= p_51_60 %>, color: '#1bc98e', label: '51-60 años' },
+                      { value: <%= p_61_70 %>, color: '#1ca8dd', label: '61-70 años' },
+                      { value: <%= p_71_80 %>, color: '#e64759', label: '71-80 años' },
+                      { value: <%= p_81 %>, color: '#211c5f', label: 'Mayores a 81 años' }]"
+          data-segment-stroke-color="#fff"
+          data-options="{ percentageInnerCutout: '20' }">
+        </canvas>
+        <% if p_1_10.nonzero? %>
+          <span class="label activity-legend" style="background-color:#191919">1-10</span>
+        <% end %>
+        <% if p_11_20.nonzero? %>
+          <span class="label activity-legend" style="background-color:#ff7f50">11-20</span>
+        <% end %>
+        <% if p_21_30.nonzero? %>
+          <span class="label activity-legend" style="background-color:#3A5677">21-30</span>
+        <% end %>
+        <% if p_31_40.nonzero? %>
+          <span class="label activity-legend" style="background-color:#9f86ff">31-40</span>
+        <% end %>
+        <% if p_41_50.nonzero? %>
+          <span class="label activity-legend" style="background-color:#e4d836">41-50</span>
+        <% end %>
+        <% if p_51_60.nonzero? %>
+          <span class="label activity-legend" style="background-color:#1bc98e">51-60</span>
+        <% end %>
+        <% if p_61_70.nonzero? %>
+          <span class="label activity-legend" style="background-color:#1ca8dd">61-70</span>
+        <% end %>
+        <% if p_71_80.nonzero? %>
+          <span class="label activity-legend" style="background-color:#e64759">71-80</span>
+        <% end %>
+        <% if p_81.nonzero? %>
+          <span class="label activity-legend" style="background-color:#211c5f">Mayores a 81</span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
