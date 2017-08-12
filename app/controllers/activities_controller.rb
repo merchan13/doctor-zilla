@@ -51,7 +51,12 @@ class ActivitiesController < ApplicationController
           @procedures_61_70 = @procedures.where(plan: @plans.where(consultation: @consultations_61_70))
           @procedures_71_80 = @procedures.where(plan: @plans.where(consultation: @consultations_71_80))
           @procedures_81_plus = @procedures.where(plan: @plans.where(consultation: @consultations_81_plus))
+        else
+          set_procedures_variables
         end
+      else
+        set_consultations_variables
+        set_procedures_variables
       end
 
       @budgets = Budget.all
@@ -69,7 +74,14 @@ class ActivitiesController < ApplicationController
         @budgets_61_70 = @budgets.where(medical_record: @pacients_61_70)
         @budgets_71_80 = @budgets.where(medical_record: @pacients_71_80)
         @budgets_81_plus = @budgets.where(medical_record: @pacients_81_plus)
+      else
+        set_budgets_variables
       end
+    else
+      set_records_variables
+      set_consultations_variables
+      set_procedures_variables
+      set_budgets_variables
     end
   end
 
@@ -83,6 +95,74 @@ class ActivitiesController < ApplicationController
 
     @actual_year = time.strftime("%Y-01-01")
     @previous_year = previous_year.strftime("%Y-01-01")
+  end
+
+  def set_records_variables
+    none = MedicalRecord.none
+    @pacients_without_insurance = none
+    @pacients_with_insurance = none
+    @pacients_female = none
+    @pacients_male = none
+    @pacients_1_10 = none
+    @pacients_11_20 = none
+    @pacients_21_30 = none
+    @pacients_31_40 = none
+    @pacients_41_50 = none
+    @pacients_51_60 = none
+    @pacients_61_70 = none
+    @pacients_71_80 = none
+    @pacients_81_plus = none
+  end
+
+  def set_consultations_variables
+    none = Consultation.none
+    @consultations_without_insurance = none
+    @consultations_with_insurance = none
+    @consultations_female = none
+    @consultations_male = none
+    @consultations_1_10 = none
+    @consultations_11_20 = none
+    @consultations_21_30 = none
+    @consultations_31_40 = none
+    @consultations_41_50 = none
+    @consultations_51_60 = none
+    @consultations_61_70 = none
+    @consultations_71_80 = none
+    @consultations_81_plus = none
+  end
+
+  def set_procedures_variables
+    none = OperativeNote.none
+    @procedures_without_insurance = none
+    @procedures_with_insurance = none
+    @procedures_female = none
+    @procedures_male = none
+    @procedures_1_10 = none
+    @procedures_11_20 = none
+    @procedures_21_30 = none
+    @procedures_31_40 = none
+    @procedures_41_50 = none
+    @procedures_51_60 = none
+    @procedures_61_70 = none
+    @procedures_71_80 = none
+    @procedures_81_plus = none
+  end
+
+  def set_budgets_variables
+    none = Budget.none
+    @budgets_without_insurance = none
+    @budgets_with_insurance = none
+    @budgets_female = none
+    @budgets_male = none
+    @budgets_1_10 = none
+    @budgets_11_20 = none
+    @budgets_21_30 = none
+    @budgets_31_40 = none
+    @budgets_41_50 = none
+    @budgets_51_60 = none
+    @budgets_61_70 = none
+    @budgets_71_80 = none
+    @budgets_81_plus = none
   end
 
   private
