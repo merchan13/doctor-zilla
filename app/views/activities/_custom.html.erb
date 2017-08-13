@@ -1,0 +1,85 @@
+<div id="custom-summary-results">
+  <!-- CUSTOM -->
+  <div class="tab-pane" id="custom" role="tabpanel">
+    <%=
+      render partial: 'pacients',
+              locals: {
+                        all: @pacients.where(created_at: @from..@to).count,
+                        pct: 'N/A',
+                        without_insurance: @pacients_without_insurance.where(created_at: @from..@to).count,
+                        with_insurance: @pacients_with_insurance.where(created_at: @from..@to).count,
+                        female: @pacients_female.where(created_at: @from..@to).count,
+                        male: @pacients_male.where(created_at: @from..@to).count,
+                        p_1_10: @pacients_1_10.where(created_at: @from..@to).count,
+                        p_11_20: @pacients_11_20.where(created_at: @from..@to).count,
+                        p_21_30: @pacients_21_30.where(created_at: @from..@to).count,
+                        p_31_40: @pacients_31_40.where(created_at: @from..@to).count,
+                        p_41_50: @pacients_41_50.where(created_at: @from..@to).count,
+                        p_51_60: @pacients_51_60.where(created_at: @from..@to).count,
+                        p_61_70: @pacients_61_70.where(created_at: @from..@to).count,
+                        p_71_80: @pacients_71_80.where(created_at: @from..@to).count,
+                        p_81: @pacients_81_plus.where(created_at: @from..@to).count
+                      }
+    %>
+    <%=
+      render partial: 'consultations',
+              locals: {
+                        all: @consultations.where(created_at: @from..@to).count,
+                        pct: 'N/A',
+                        without_insurance: @consultations_without_insurance.where(created_at: @from..@to).count,
+                        with_insurance: @consultations_with_insurance.where(created_at: @from..@to).count,
+                        female: @consultations_female.where(created_at: @from..@to).count,
+                        male: @consultations_male.where(created_at: @from..@to).count,
+                        p_1_10: @consultations_1_10.where(created_at: @from..@to).count,
+                        p_11_20: @consultations_11_20.where(created_at: @from..@to).count,
+                        p_21_30: @consultations_21_30.where(created_at: @from..@to).count,
+                        p_31_40: @consultations_31_40.where(created_at: @from..@to).count,
+                        p_41_50: @consultations_41_50.where(created_at: @from..@to).count,
+                        p_51_60: @consultations_51_60.where(created_at: @from..@to).count,
+                        p_61_70: @consultations_61_70.where(created_at: @from..@to).count,
+                        p_71_80: @consultations_71_80.where(created_at: @from..@to).count,
+                        p_81: @consultations_81_plus.where(created_at: @from..@to).count
+                      }
+    %>
+    <%=
+      render partial: 'procedures',
+              locals: {
+                        all: @procedures.where(created_at: @from..@to).count,
+                        pct: 'N/A',
+                        without_insurance: @procedures_without_insurance.where(created_at: @from..@to).count,
+                        with_insurance: @procedures_with_insurance.where(created_at: @from..@to).count,
+                        female: @procedures_female.where(created_at: @from..@to).count,
+                        male: @procedures_male.where(created_at: @from..@to).count,
+                        p_1_10: @procedures_1_10.where(created_at: @from..@to).count,
+                        p_11_20: @procedures_11_20.where(created_at: @from..@to).count,
+                        p_21_30: @procedures_21_30.where(created_at: @from..@to).count,
+                        p_31_40: @procedures_31_40.where(created_at: @from..@to).count,
+                        p_41_50: @procedures_41_50.where(created_at: @from..@to).count,
+                        p_51_60: @procedures_51_60.where(created_at: @from..@to).count,
+                        p_61_70: @procedures_61_70.where(created_at: @from..@to).count,
+                        p_71_80: @procedures_71_80.where(created_at: @from..@to).count,
+                        p_81: @procedures_81_plus.where(created_at: @from..@to).count
+                      }
+    %>
+    <%=
+      render partial: 'budgets',
+              locals: {
+                        all: @budgets.where(created_at: @from..@to).count,
+                        pct: 'N/A',
+                        without_insurance: @budgets_without_insurance.where(created_at: @from..@to).count,
+                        with_insurance: @budgets_with_insurance.where(created_at: @from..@to).count,
+                        female: @budgets_female.where(created_at: @from..@to).count,
+                        male: @budgets_male.where(created_at: @from..@to).count,
+                        p_1_10: @budgets_1_10.where(created_at: @from..@to).count,
+                        p_11_20: @budgets_11_20.where(created_at: @from..@to).count,
+                        p_21_30: @budgets_21_30.where(created_at: @from..@to).count,
+                        p_31_40: @budgets_31_40.where(created_at: @from..@to).count,
+                        p_41_50: @budgets_41_50.where(created_at: @from..@to).count,
+                        p_51_60: @budgets_51_60.where(created_at: @from..@to).count,
+                        p_61_70: @budgets_61_70.where(created_at: @from..@to).count,
+                        p_71_80: @budgets_71_80.where(created_at: @from..@to).count,
+                        p_81: @budgets_81_plus.where(created_at: @from..@to).count
+                      }
+    %>
+  </div><!-- CUSTOM -->
+</div>

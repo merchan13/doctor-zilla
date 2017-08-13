@@ -85,6 +85,21 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def custom
+    @_from = params[:from]
+    @_to = params[:to]
+
+    @from = Time.parse(@_from)
+    @to = Time.parse(@_to)
+
+    if @to >= @from
+      general
+      render partial: "activities/custom"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
+
   def set_dates
     time = Time.new
     previous_month = time - 1.month

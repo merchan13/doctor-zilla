@@ -33,12 +33,13 @@ Rails.application.routes.draw do
   resources :reports,           except: [:destroy, :edit, :update]
   resources :reasons,           except: [:destroy, :edit, :update]
 
-  get 'search',           to: 'pages#search'
-  get 'search_records',   to: 'medical_records#search'
-  get 'search_plans',     to: 'plans#search'
-  get 'select_data',      to: 'reports#select_data'
-  get 'administration',   to: 'pages#administration'
-  get 'activities',        to: 'activities#general'
+  get 'search',             to: 'pages#search'
+  get 'search_records',     to: 'medical_records#search'
+  get 'search_plans',       to: 'plans#search'
+  get 'select_data',        to: 'reports#select_data'
+  get 'administration',     to: 'pages#administration'
+  get 'activities',         to: 'activities#general'
+  get 'custom_activities',  to: 'activities#custom'
 
   get 'reports/download/:id',         to: 'reports#download',         as: 'download_report',        format: 'docx'
   get 'prescriptions/download/:id',   to: 'prescriptions#download',   as: 'download_prescription',  format: 'docx'

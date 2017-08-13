@@ -1,9 +1,7 @@
 <h1>Resumen de actividades</h1>
-
 <div class="col-md-12">
   <br>
 </div>
-
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item active">
@@ -348,6 +346,30 @@
 
   <!-- CUSTOM -->
   <div class="tab-pane" id="custom" role="tabpanel">
-    <h2>Personalizado</h2>
+    <div class="row">
+      <%= form_tag ('/custom_activities'), remote: true, method: :get, id: 'get-activities-form' do %>
+        <div class="col-md-2 form-group">
+          <br>
+          <input type="text" name="from" class='form-control' data-provide='datepicker' placeholder="Desde" data-date-format='dd/mm/yyyy'>
+        </div>
+
+        <div class="col-md-2 form-group">
+          <br>
+          <input type="text" name="to" class='form-control' data-provide='datepicker' placeholder="Hasta" data-date-format='dd/mm/yyyy'>
+        </div>
+
+        <div class="col-md-4 form-group">
+          <br>
+          <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+            Consultar
+          <% end %>
+        </div>
+        <div class="col-md-12" id="activities-errors"></div>
+      <% end %>
+    </div>
+    <div class="row">
+      <%= render 'common/spinner' %>
+    </div>
+    <div id="custom-summary-results"></div>
   </div><!-- CUSTOM -->
 </div>
