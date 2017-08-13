@@ -20,9 +20,13 @@
           <h3 class="activity-number">
             <small class="label label-success activity-success-label"><%= " +#{pct}%" %></small>
           </h3>
-        <% else %>
+        <% elsif pct < 0%>
           <h3 class="activity-number">
             <small class="label label-danger activity-danger-label"><%= " #{pct}%" %></small>
+          </h3>
+        <% else %>
+          <h3 class="activity-number">
+            <small class="label activity-none-label">-</small>
           </h3>
         <% end %>
       <% end %>
