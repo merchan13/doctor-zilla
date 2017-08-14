@@ -1,13 +1,15 @@
 var init_age_calculator;
 
 init_age_calculator = function() {
-  $('#medical_record_birthday').datepicker("option", "onSelect", function(dateText, inst) {
-    var dob = $(this).datepicker('getDate');
-    var age = GetAge(dob);
-    if (age >= 16 && age < 18) {
-        alert("The minimum age requirement for supplementary card applicant is 18 years old. For applicant aged 16 and 17, and are going overseas to study, please submit the letter of acceptance from the education institution.");
-    }
-  });
+  $('#medical_record_birthday').datepicker()
+    .on('changeDate', function(e) {
+        var bday = $('#medical_record_birthday').val().split("/");
+        var birthDate = new Date(bday[2], bday[1] - 1, bday[0]);
+
+        var age = GetAge(birthDate);
+
+        $('#age_text').text(age + ' años');
+    });
 
   function GetAge(birthDate) {
       var today = new Date();
@@ -23,6 +25,3 @@ init_age_calculator = function() {
 $(document).ready(function functionName() {
   init_age_calculator();
 })
-
-//#medical_record_birthday
-//#age_text
