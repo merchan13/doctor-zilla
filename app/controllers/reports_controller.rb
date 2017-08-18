@@ -22,8 +22,10 @@ class ReportsController < ApplicationController
     Report.transaction do
       @report = @record.reports.create(description: params[:description], report_type: 'Informe Médico')
 
-      params[:attachments].each do |a|
-        @report.attachments << Attachment.find(a)
+      if !params[:attachments].nil?
+        params[:attachments].each do |a|
+          @report.attachments << Attachment.find(a)
+        end
       end
 
       if @report.save
