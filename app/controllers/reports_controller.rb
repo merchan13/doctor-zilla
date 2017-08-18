@@ -11,7 +11,11 @@ class ReportsController < ApplicationController
   def new
     @report = @record.reports.new
     @data = set_description_text(@options)
-    @attachments = set_attachments(params[:attachments])
+
+    if !params[:attachments].nil?
+      @attachments = set_attachments(params[:attachments])
+    end
+
   end
 
   def create

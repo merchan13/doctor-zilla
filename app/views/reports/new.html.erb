@@ -9,8 +9,10 @@
 
     <input type="hidden" name="record" value="<%= @record.id %>">
 
-    <% @attachments.each do |a| %>
-      <input type="hidden" name="attachments[]" value="<%= a %>">
+    <% if !@attachments.nil? %>
+      <% @attachments.each do |a| %>
+        <input type="hidden" name="attachments[]" value="<%= a %>">
+      <% end %>
     <% end %>
 
     <div class="form-group col-md-12">

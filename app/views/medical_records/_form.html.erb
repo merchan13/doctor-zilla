@@ -21,12 +21,7 @@
         <h4>Documento de Identificación</h4>
       </div>
       <div class="col-md-5">
-        <select class="form-control" name="medical_record[document_type]" id="medical_record_document_type">
-          <option value>Seleccione una opción</option>
-          <option value="V">Venezolano</option>
-          <option value="E">Extranjero</option>
-          <option value="P">Pasaporte</option>
-        </select>
+        <%= f.select :document_type, options_for_select({"Venezolano" => "V", "Extranjero" => "E", "Pasaporte" => "P"}, @record.document_type), {include_blank: 'Seleccione una opción'}, class: 'form-control' %>
       </div>
       <div class="col-md-5">
         <%= f.text_field :document, class: 'form-control', placeholder: 'Número de identificación', autofocus: true %>
