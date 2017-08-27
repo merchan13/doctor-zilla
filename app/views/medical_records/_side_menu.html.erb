@@ -24,7 +24,11 @@
     <% if record.id.nil? %>
       <h4>Historia</h4>
       <hr>
+      <h4>Nueva Consulta</h4>
+      <hr>
       <h4>Anexos</h4>
+      <hr>
+      <h4>Planes</h4>
       <hr>
       <h4>Notas<br>Operatorias</h4>
       <hr>
@@ -33,6 +37,8 @@
       <h4>Récipes</h4>
     <% else %>
       <h4><%= link_to "Historia", medical_record_path(record)%></h4>
+      <hr>
+      <h4><%= link_to "Nueva Consulta", new_consultation_path(record: record), style: "color:#ff4c4c"%></h4>
       <hr>
       <h4><%= link_to "Anexos ", attachments_path(record: record) %>(<%= record.attachments.count %>)</h4>
       <hr>
