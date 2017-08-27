@@ -9,8 +9,35 @@ class Consultation < ApplicationRecord
   # Recibo un array con todos los examenes fisicos.
   def add_physical_exams(physical_exams, exams_descriptions)
     physical_exams.each do |exam|
-      if physical_exams[exam] == '1'
+      if physical_exams[exam] == '1' && exams_descriptions[exam] != ""
         self.physical_exams << PhysicalExam.create( exam_type: white_list_exam_type(exam), url: 'unknown', observation: exams_descriptions[exam] )
+      end
+    end
+  end
+
+  def update_PE(physical_exams, exams_descriptions)
+    physical_exams.each do |exam|
+      if physical_exams[exam] == '1'
+        pe = self.physical_exams.where(exam_type: white_list_exam_type(exam)).first
+
+        if pe.nil?
+          if exams_descriptions[exam] != ""
+            self.physical_exams.create(exam_type: white_list_exam_type(exam), url: 'unknown', observation: exams_descriptions[exam])
+          end
+        else
+          if exams_descriptions[exam] == "" || exams_descriptions[exam] == " "
+            pe.delete
+          else
+            pe.observation = exams_descriptions[exam]
+            pe.save
+          end
+        end
+      elsif physical_exams[exam] == '0'
+        pe = self.physical_exams.where(exam_type: white_list_exam_type(exam)).first
+
+        if !pe.nil?
+          pe.delete
+        end
       end
     end
   end
@@ -37,6 +64,28 @@ class Consultation < ApplicationRecord
     elsif pre_type == 'otros'
       type = 'Others'
     end
+  end
+
+  def physical_exams_dict
+    pes =  Hash.new
+    pes = {
+            "Head and Neck" => "",
+            "Chest" => "",
+            "Abdomen" => "",
+            "Genitals" => "",
+            "Soft Parts" => "",
+            "Extremities" => "",
+            "Vascular" => "",
+            "Skin" => "",
+            "Mamma" => "",
+            "Others" => ""
+          }
+
+    self.physical_exams.each do |pe|
+      pes[pe.exam_type] = pe.observation
+    end
+
+    pes
   end
 
   def add_backgrounds(backgrounds)

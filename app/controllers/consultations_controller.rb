@@ -42,11 +42,15 @@ class ConsultationsController < ApplicationController
   end
 
   def update
-    if @consultation.update(consultation_params)
-      flash[:success] = "Consultation data was successfully updated"
-      redirect_to medical_record_path(@consultation.medical_record)
-    else
-      render 'edit'
+    Consultation.transaction do
+      @consultation.update_PE(params[:physical], params[:physical_description])
+
+      if @consultation.update(consultation_params)
+        flash[:success] = "Consulta Médica actualizada exitósamente"
+        redirect_to medical_record_path(@consultation.medical_record)
+      else
+        render 'edit'
+      end
     end
   end
 

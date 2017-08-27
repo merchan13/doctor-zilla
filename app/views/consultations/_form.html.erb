@@ -19,7 +19,7 @@
     <div class="col-md-12"><hr></div>
 
     <!-- ANTECEDENTES. -->
-    <% if params[:action] == 'new' %>
+    <% if params[:action] == 'new' || params[:action] == "create" %>
       <%= render partial: 'backgrounds', locals: { f: f } %>
     <% end %>
 
@@ -31,9 +31,7 @@
     <div class="col-md-12"><hr></div>
 
     <!-- EXAMEN FÍSICO -->
-    <% if params[:action] == 'new' %>
-      <%= render partial: 'physical_exam', locals: { f: f } %>
-    <% end %>
+    <%= render partial: 'physical_exam', locals: { f: f, consultation: @consultation } %>
 
     <div class="col-md-12"><hr></div>
 

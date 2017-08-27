@@ -1,0 +1,19 @@
+<% if normal %>
+  <div class="col-md-3">
+    <input id="<%= exam %>_normal" name="physical[<%= exam %>]" type="radio" value="0" checked onclick="javascript:normalAbnormalCheck('<%= exam %>');" />
+    <span>Normal</span>
+  </div>
+  <div class="col-md-3">
+    <input id="<%= exam %>_abnormal" name="physical[<%= exam %>]" type="radio" value="1" onclick="javascript:normalAbnormalCheck('<%= exam %>');" />
+    <span>Anormal</span>
+  </div>
+<% else %>
+  <div class="col-md-3">
+    <input id="<%= exam %>_normal" name="physical[<%= exam %>]" type="radio" value="0" onclick="javascript:normalAbnormalCheck('<%= exam %>');" />
+    <span>Normal</span>
+  </div>
+  <div class="col-md-3">
+    <input id="<%= exam %>_abnormal" name="physical[<%= exam %>]" type="radio" value="1" checked onclick="javascript:normalAbnormalCheck('<%= exam %>');" />
+    <span>Anormal</span>
+  </div>
+<% end %>
