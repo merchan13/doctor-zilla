@@ -43,7 +43,14 @@ class ConsultationsController < ApplicationController
 
   def update
     Consultation.transaction do
+
+      peModified = @consultation.physical_exams.count
+
       @consultation.update_PE(params[:physical], params[:physical_description])
+
+      if peModified != @consultation.physical_exams.count
+        @consultation.updated_at = Time.now.getutc
+      end
 
       if @consultation.update(consultation_params)
         flash[:success] = "Consulta Médica actualizada exitósamente"
