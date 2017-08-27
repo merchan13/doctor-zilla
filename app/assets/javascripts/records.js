@@ -36,6 +36,18 @@ show_consultation = function() {
   });
 }
 
+function documentTypeSelected(docType) {
+    var type = docType.value;
+
+    if (type == 'V' || type == 'E'){
+      $('#medical_record_document').attr("pattern", '^[0-9]{4,12}$');
+      $('#medical_record_document').attr("title", 'Debe introducir un número de cédula válido (No se aceptan letras ni caracteres especiales)');
+    } else if (type == 'P'){
+      $('#medical_record_document').attr("pattern", '^[a-zA-Z0-9]{2,41}$');
+      $('#medical_record_document').attr("title", 'Debe introducir un número de pasaporte válido (No se aceptan caracteres especiales, sólo letras y números)');
+    }
+}
+
 $(document).ready(function functionName() {
   init_record_lookup();
   show_consultation();
