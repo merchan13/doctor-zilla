@@ -34,10 +34,10 @@
             <div class="col-md-4">
               <p><i><u><strong>Datos clínicos</strong></u></i></p>
               <% if consultation.weight.present? %>
-                <p><strong>Peso: </strong><small><%= consultation.weight %> kg.</small></p>
+                <p><strong>Peso: </strong><small><%= consultation.weight %> kg</small></p>
               <% end %>
               <% if consultation.height.present? %>
-                <p><strong>Talla: </strong><small><%= consultation.height %> m.</small></p>
+                <p><strong>Talla: </strong><small><%= consultation.height/100 %> m</small></p>
               <% end %>
               <% if consultation.weight.present? && consultation.height.present? %>
                 <p><strong>IMC: </strong><small><%= consultation.imc.round(2) %></small></p>

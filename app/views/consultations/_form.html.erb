@@ -1,9 +1,9 @@
 <%= render 'shared/errors', obj: @consultation %>
 <div class="col-md-9 new-panel main-panel">
 
-  <% if params[:action] == 'edit' %>
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
     <h3 align="center"><strong>Editar Consulta Médica</strong></h3>
-  <% elsif params[:action] == 'new' %>
+  <% elsif params[:action] == 'new' || params[:action] == "create" %>
     <h3 align="center"><strong>Consulta Médica</strong></h3>
   <% end %>
 
@@ -47,23 +47,20 @@
     <div class="col-md-12"><hr></div>
 
     <!-- PLAN. -->
-    <% if params[:action] == 'new' %>
+      <!-- quitar este if para poder editar plan -->
+    <% if params[:action] == 'new' || params[:action] == 'create' %>
       <%= render partial: 'plan', locals: { f: f, consultation: @consultation } %>
     <% end %>
 
     <div class='form-group center'>
       <div class='col-md-offset-4 col-md-4'>
-        <%= f.submit class: 'btn btn-primary btn-lg' %>
+        <%= f.submit value: 'Guardar Consulta', class: 'btn btn-primary btn-lg' %>
       </div>
     </div>
   <% end %>
 </div>
 
 <%= render partial: 'medical_records/side_menu', locals: { record: @record } %>
-
-<div class="col-xs-4 col-xs-offset-4">
-  [ <%= link_to 'Cancel request an return to records listing', medical_records_path  %> ]
-</div>
 
 <!-- EXAMEN FÍSICO -->
 <%= render 'modals'%>

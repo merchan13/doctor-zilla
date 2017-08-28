@@ -1,9 +1,9 @@
-var update_procedures;
-var update_equipments;
-var add_procedures_to_list;
-var add_equipments_to_list;
+var budget_update_procedures;
+var budget_update_equipments;
+var budget_add_procedures_to_list;
+var budget_add_equipments_to_list;
 
-add_procedures_to_list = function() {
+budget_add_procedures_to_list = function() {
     var wrapper         = $(".budget_procedures_wrap");
     var data_wrapper    = $(".budget_procedures_data_wrap");
     var add_button      = $(".budget_add_procedure_button");
@@ -43,7 +43,7 @@ add_procedures_to_list = function() {
     });
 }
 
-add_equipments_to_list = function() {
+budget_add_equipments_to_list = function() {
     var wrapper         = $(".budget_equipments_wrap");
     var data_wrapper    = $(".budget_equipments_data_wrap");
     var add_button      = $(".budget_add_equipment_button");
@@ -83,7 +83,7 @@ add_equipments_to_list = function() {
     });
 }
 
-update_procedures = function() {
+budget_update_procedures = function() {
   $('#new-procedure-form-bg').on('ajax:before', function(event, data, status){
     show_spinner();
   });
@@ -122,7 +122,7 @@ update_procedures = function() {
   });
 }
 
-update_equipments = function() {
+budget_update_equipments = function() {
   $('#new-equipoment-form-bg').on('ajax:before', function(event, data, status){
     show_spinner();
   });
@@ -174,8 +174,8 @@ function update_cost() {
 }
 
 $(document).ready(function functionName() {
-  update_procedures();
-  update_equipments();
-  add_procedures_to_list();
-  add_equipments_to_list();
+  budget_update_procedures();
+  budget_update_equipments();
+  budget_add_procedures_to_list();
+  budget_add_equipments_to_list();
 })

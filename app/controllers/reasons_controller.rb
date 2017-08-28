@@ -1,13 +1,19 @@
 class ReasonsController < ApplicationController
 
   def create
-    @reason = Reason.create(reason_params)
+    Reason.transaction do
+      @reason = Reason.create(reason_params)
 
-    if @reason.save
-      flash[:success] = "New reason added"
-      render json: @reason
-    else
-      #render status: :not_found, nothing: true
+      if @reason.save
+        flash[:success] = "Nuevo Seguro agregado"
+        render json: @reason
+      else
+        if @reason.errors.full_messages.first.include? "blank"
+          render status: 400, nothing: true
+        elsif @reason.errors.full_messages.first.include? "taken"
+          render status: 406, nothing: true
+        end
+      end
     end
   end
 

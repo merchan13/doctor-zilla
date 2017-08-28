@@ -23,8 +23,8 @@ class ConsultationsController < ApplicationController
 
       if !params[:plan][:description].blank?
         @consultation.add_plan(params[:plan])
-        if params[:procedures_ids].present?
-          @consultation.add_procedure(params[:procedures_ids])
+        if params[:procedures].present?
+          @consultation.add_procedure(params[:procedures])
         end
       end
 

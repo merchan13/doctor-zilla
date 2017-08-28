@@ -15,7 +15,7 @@
     <div class="col-md-4 col-md-offset-4 center">
       <h4><%= "#{@record.name} #{@record.last_name}" %></h4>
       <h5><%= @record.full_id %></h5>
-      <h6><%= "Fecha de nacimiento: #{@record.birthday} " %><strong><%= "(#{@record.age} años)" %></strong></h6>
+      <h6><%= "Fecha de nacimiento: #{@record.birthday.strftime('%d %b %Y')} " %><strong><%= "(#{@record.age} años)" %></strong></h6>
       <h6><%= "Primera consulta: #{@record.first_consultation_date.strftime('%d %b %Y')}" %></h6>
     </div>
 

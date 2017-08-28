@@ -32,10 +32,37 @@ var show_spinner = function(){
   $('#spinner').show();
 }
 
-function normalAbnormalCheck(system) {
-    if (document.getElementById(system + '_abnormal').checked) {
-        document.getElementById('if_'+ system +'_abnormal').style.display = 'block';
-    }
-    else document.getElementById('if_'+ system +'_abnormal').style.display = 'none';
+function blockCharacters(input){
+  var stripped = input.value.replace(/[^a-zA-Z ,.;()0-9\s]+/gi, '');
+  input.value = stripped;
+}
 
+function validateTextArea(textArea){
+    var regex = new RegExp("^[a-zA-Z ,.;()0-9]+");
+
+    var match = regex.test(textArea.value);
+
+    if (match == false && textArea.value != "") {
+      textArea.style.borderColor = "red";
+    }
+    else if (match == false && textArea.value == "") {
+      textArea.style.borderColor = "#ccc";
+    }
+    else {
+      textArea.style.borderColor = "#00e500"
+    }
+}
+
+function validateTextField(textField){
+    var valid = textField.checkValidity();
+
+    if (valid == false && textField.value != "") {
+      textField.style.borderColor = "red";
+    }
+    else if (textField.value == "") {
+      textField.style.borderColor = "#ccc";
+    }
+    else {
+      textField.style.borderColor = "#00e500"
+    }
 }

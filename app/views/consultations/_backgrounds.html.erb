@@ -2,38 +2,102 @@
   <h4><i>Antecedentes</i></h4>
   <div class="col-md-4">
     <%= f.label :Familiares, class: 'form-control-label' %>
-    <%= text_area(:background, :family, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :family,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Alergias, class: 'form-control-label' %>
-    <%= text_area(:background, :allergy, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :allergy,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Diábetes, class: 'form-control-label' %>
-    <%= text_area(:background, :diabetes, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :diabetes,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-4">
     <%= f.label :Asma, class: 'form-control-label' %>
-    <%= text_area(:background, :asthma, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :asthma,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Cardiopatías, class: 'form-control-label' %>
-    <%= text_area(:background, :heart, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :heart,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Medicamentos, class: 'form-control-label' %>
-    <%= text_area(:background, :medicine, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :medicine,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-6">
     <%= f.label :Quirúrgicos, class: 'form-control-label' %>
-    <%= text_area(:background, :surgical, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :surgical,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-6">
     <%= f.label :Otros, class: 'form-control-label' %>
-    <%= text_area(:background, :other, rows: '3', class: 'form-control') %>
+    <%= text_area(
+        :background,
+        :other,
+        rows: '3', 
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>

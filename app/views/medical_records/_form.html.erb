@@ -92,6 +92,7 @@
       <div class="col-md-4">
         <h4>Fecha de Nacimiento</h4>
         <%= f.text_field :birthday,
+            value: (@record.birthday.strftime('%d/%m/%Y') if !@record.birthday.nil?),
             class: 'form-control',
             style: "cursor:pointer;",
             placeholder: "Seleccione una fecha",
@@ -115,12 +116,12 @@
         <h4>Sexo</h4>
       </div>
       <div class="form-check col-md-3">
-        <%= f.radio_button :gender, 'masculine', class: 'form-check-input', required: true %>
-        <label>Masculino</label>
+        <label><%= f.radio_button :gender, 'masculine', class: 'form-check-input', required: true %>
+        Masculino</label>
       </div>
       <div class="form-check col-md-3">
-        <%= f.radio_button :gender, 'femenine', class: 'form-check-input', required: true %>
-        <label>Femenino</label>
+        <label><%= f.radio_button :gender, 'femenine', class: 'form-check-input', required: true %>
+        Femenino</label>
       </div>
     </div>
 

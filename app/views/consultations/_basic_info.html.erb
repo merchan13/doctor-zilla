@@ -1,11 +1,22 @@
 <div class="form-group col-md-12">
   <div class="col-md-4">
     <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
-    <%= f.select :reason_id, options_from_collection_for_select(Reason.order(description: :asc), :id, :description, @consultation.reason_id), {include_blank: 'N/A'}, class: 'form-control' %>
-    <a href="#" data-toggle="modal" data-target="#new-reason-form">Agrear nuevo</a>
+    <%= f.select :reason_id,
+        options_from_collection_for_select(Reason.order(description: :asc), :id, :description, @consultation.reason_id),
+        {include_blank: 'N/A'},
+        class: 'form-control',
+        required: true %>
+    <a href="#" data-toggle="modal" data-target="#new-reason-modal">Agrear nuevo</a>
   </div>
   <div class="col-md-8">
     <%= f.label :Enfermedad_Actual, class: 'form-control-label' %>
-    <%= f.text_area :affliction, rows: '3', class: 'form-control' %>
+    <%= f.text_area :affliction,
+        rows: '3',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)',
+        required: true %>
   </div>
 </div>

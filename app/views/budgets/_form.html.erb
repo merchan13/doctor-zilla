@@ -14,7 +14,10 @@
       <div class="col-md-12">
         <h4>Por favor agregue los PROCEDIMIENTOS a realizar:</h4>
         <div class="col-md-10">
-          <%= select_tag "procedures_select", options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name), include_blank: 'N/A', class: 'form-control' %>
+          <%= select_tag "procedures_select",
+              options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name),
+              include_blank: 'N/A',
+              class: 'form-control' %>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-success budget_add_procedure_button">Agregar a la lista</button>

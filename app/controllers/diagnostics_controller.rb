@@ -1,13 +1,19 @@
 class DiagnosticsController < ApplicationController
 
   def create
-    @diagnostic = Diagnostic.create(diagnostic_params)
+    Diagnostic.transaction do
+      @diagnostic = Diagnostic.create(diagnostic_params)
 
-    if @diagnostic.save
-      flash[:success] = "New diagnostic added"
-      render json: @diagnostic
-    else
-      #render status: :not_found, nothing: true
+      if @diagnostic.save
+        flash[:success] = "Nuevo Seguro agregado"
+        render json: @diagnostic
+      else
+        if @diagnostic.errors.full_messages.first.include? "blank"
+          render status: 400, nothing: true
+        elsif @diagnostic.errors.full_messages.first.include? "taken"
+          render status: 406, nothing: true
+        end
+      end
     end
   end
 

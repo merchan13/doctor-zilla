@@ -1,10 +1,10 @@
 <div class="form-group col-md-12">
-  <h4><i>Examen Físico</i></h4>
+  <h3><i>Examen Físico</i></h3>
 
   <!-- CABEZA Y CUELLO -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :Cabeza_y_Cuello, class: 'form-control-label' %>
+      <%= f.label :Cabeza_y_Cuello, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Head and Neck'].empty? %>
@@ -15,8 +15,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_cc_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Head and Neck'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[cc]', consultation.physical_exams_dict["Head and Neck"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[cc]',
+          consultation.physical_exams_dict["Head and Neck"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -24,7 +32,7 @@
   <!-- TORAX -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :Torax, class: 'form-control-label' %>
+      <%= f.label :Torax, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Chest'].empty? %>
@@ -35,8 +43,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_tx_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Chest'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[tx]', consultation.physical_exams_dict["Chest"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[tx]',
+          consultation.physical_exams_dict["Chest"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -44,7 +60,7 @@
   <!-- ABDOMEN -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :Abdomen, class: 'form-control-label' %>
+      <%= f.label :Abdomen, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Abdomen'].empty? %>
@@ -55,8 +71,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_ab_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Abdomen'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[ab]', consultation.physical_exams_dict["Abdomen"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[ab]',
+          consultation.physical_exams_dict["Abdomen"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -64,7 +88,7 @@
   <!-- GENITALES -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :genitales, class: 'form-control-label' %>
+      <%= f.label :genitales, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Genitals'].empty? %>
@@ -75,8 +99,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_gn_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Genitals'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[gn]', consultation.physical_exams_dict["Genitals"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[gn]',
+          consultation.physical_exams_dict["Genitals"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -84,7 +116,7 @@
   <!-- PARTES BLANDAS -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :Partes_Blandas, class: 'form-control-label' %>
+      <%= f.label :Partes_Blandas, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Soft Parts'].empty? %>
@@ -95,8 +127,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_pb_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Soft Parts'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[pb]', consultation.physical_exams_dict["Soft Parts"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[pb]',
+          consultation.physical_exams_dict["Soft Parts"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -104,7 +144,7 @@
   <!-- EXTREMIDADES -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :extremidades, class: 'form-control-label' %>
+      <%= f.label :extremidades, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Extremities'].empty? %>
@@ -115,8 +155,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_ex_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Extremities'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[ex]', consultation.physical_exams_dict["Extremities"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[ex]',
+          consultation.physical_exams_dict["Extremities"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -124,7 +172,7 @@
   <!-- VASCULAR -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :vascular, class: 'form-control-label' %>
+      <%= f.label :vascular, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Vascular'].empty? %>
@@ -135,8 +183,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_vs_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Vascular'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[vs]', consultation.physical_exams_dict["Vascular"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[vs]',
+          consultation.physical_exams_dict["Vascular"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -144,7 +200,7 @@
   <!-- PIEL -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :piel, class: 'form-control-label' %>
+      <%= f.label :piel, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Skin'].empty? %>
@@ -155,8 +211,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_pl_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Skin'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[pl]', consultation.physical_exams_dict["Skin"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[pl]',
+          consultation.physical_exams_dict["Skin"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -164,7 +228,7 @@
   <!-- MAMAS -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :mamas, class: 'form-control-label' %>
+      <%= f.label :mamas, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Mamma'].empty? %>
@@ -175,8 +239,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_mm_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Mamma'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[mm]', consultation.physical_exams_dict["Mamma"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[mm]',
+          consultation.physical_exams_dict["Mamma"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 
@@ -184,7 +256,7 @@
   <!-- OTROS -->
   <div class="col-md-8">
     <div class="col-md-4">
-      <%= f.label :otros, class: 'form-control-label' %>
+      <%= f.label :otros, class: 'form-control-label', style: 'font-size:18px;margin-bottom:10%;' %>
     </div>
     <!-- check normalidad -->
     <% if consultation.physical_exams_dict['Others'].empty? %>
@@ -195,8 +267,16 @@
   </div>
   <!-- descripcion + esquema -->
   <div id="if_otros_abnormal" class="col-md-12" style="<%= 'display:none' if consultation.physical_exams_dict['Others'].empty? %>">
-    <div class="col-md-6">
-      <%= text_area_tag('physical_description[otros]', consultation.physical_exams_dict["Others"], rows: '3', class: 'form-control') %>
+    <div class="col-md-8">
+      <%= text_area_tag(
+          'physical_description[otros]',
+          consultation.physical_exams_dict["Others"],
+          rows: '3',
+          class: 'form-control pe-text-area',
+          onkeydown: 'javascript:blockCharacters(this)',
+          onkeypressed: 'javascript:blockCharacters(this)',
+          onkeyup: 'javascript:blockCharacters(this)',
+          onblur: 'javascript:validateTextArea(this)') %>
     </div>
   </div>
 

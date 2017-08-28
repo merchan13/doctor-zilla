@@ -1,69 +1,69 @@
-  <!-- OCCUPATION MODAL -->
-  <div class="modal fade" id="new-occupation-modal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Agregar Nueva Profesión</h4>
-        </div>
-        <div class="modal-body">
-          <%= form_tag ('/occupations'), remote: true, id: 'new-occupation-form' do %>
-            <div id="occupation-taken"></div>
-            <div class="form-group row col-md-12" style="float:none">
-              <div class="col-md-6">
-                <h4>Nombre de Profesión</h4>
-                <%= text_field_tag "occupation[name]", nil, placeholder: "Nombre o breve descripción de la profesión",
-                  autofocus: true, class: 'form-control'%>
-              </div>
+<!-- OCCUPATION MODAL -->
+<div class="modal fade" id="new-occupation-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nueva Profesión</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag ('/occupations'), remote: true, id: 'new-occupation-form' do %>
+          <div id="occupation-taken"></div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <h4>Nombre de Profesión</h4>
+              <%= text_field_tag "occupation[name]", nil, placeholder: "Nombre o breve descripción de la profesión",
+                autofocus: true, class: 'form-control'%>
             </div>
-            <div class="form-group row col-md-12" style="float:none">
-              <div class="col-md-6">
-                <%= button_tag(type: :submit, class: "btn btn-primary") do %>
-                  Guardar
-                <% end %>
-              </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- INSURANCE MODAL -->
-  <div class="modal fade" id="new-insurance-modal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Agregar Nuevo Seguro</h4>
-        </div>
-        <div class="modal-body">
-          <%= form_tag ('/insurances'), remote: true, id: 'new-insurance-form' do %>
-            <div id="insurance-taken"></div>
-            <div class="form-group row col-md-12" style="float:none">
-              <div class="col-md-6">
-                <h4>Nombre del Seguro</h4>
-                <%= text_field_tag "insurance[name]", nil, placeholder: "Nombre del Seguro",
-                  autofocus: true, class: 'form-control'%>
-              </div>
+<!-- INSURANCE MODAL -->
+<div class="modal fade" id="new-insurance-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Nuevo Seguro</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag ('/insurances'), remote: true, id: 'new-insurance-form' do %>
+          <div id="insurance-taken"></div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <h4>Nombre del Seguro</h4>
+              <%= text_field_tag "insurance[name]", nil, placeholder: "Nombre del Seguro",
+                autofocus: true, class: 'form-control'%>
             </div>
-            <div class="form-group row col-md-12" style="float:none">
-              <div class="col-md-6">
-                <%= button_tag(type: :submit, class: "btn btn-primary") do %>
-                  Guardar
-                <% end %>
-              </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
