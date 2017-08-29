@@ -2,39 +2,103 @@
   <h4><i>Antecedentes</i></h4>
   <div class="col-md-4">
     <%= f.label :Familiares, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_family, record.backgrounds_dict["family"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_family,
+        record.backgrounds_dict["family"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Alergias, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_allergy, record.backgrounds_dict["allergy"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_allergy,
+        record.backgrounds_dict["allergy"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Diábetes, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_diabetes, record.backgrounds_dict["diabetes"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_diabetes,
+        record.backgrounds_dict["diabetes"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-4">
     <%= f.label :Asma, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_asthma, record.backgrounds_dict["asthma"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_asthma,
+        record.backgrounds_dict["asthma"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Cardiopatías, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_heart, record.backgrounds_dict["heart"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_heart,
+        record.backgrounds_dict["heart"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
     <%= f.label :Medicamentos, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_medicine, record.backgrounds_dict["medicine"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_medicine,
+        record.backgrounds_dict["medicine"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-6">
     <%= f.label :Quirúrgicos, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_surgical, record.backgrounds_dict["surgical"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_surgical,
+        record.backgrounds_dict["surgical"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-6">
     <%= f.label :Otros, class: 'form-control-label' %>
-    <%= text_area_tag(:bg_other, record.backgrounds_dict["other"], rows: '4', class: 'form-control') %>
+    <%= text_area_tag(
+        :bg_other,
+        record.backgrounds_dict["other"],
+        rows: '4',
+        class: 'form-control',
+        onkeydown: 'javascript:blockCharacters(this)',
+        onkeypressed: 'javascript:blockCharacters(this)',
+        onkeyup: 'javascript:blockCharacters(this)',
+        onblur: 'javascript:validateTextArea(this)') %>
   </div>
 </div>
 
