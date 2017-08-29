@@ -2,6 +2,16 @@ class PrescriptionsController < ApplicationController
   before_action :set_medical_record,  only: [:new, :create, :index]
   before_action :set_prescription,    only: [:show, :download]
   respond_to :docx
+  # bloqueo de secretarias
+  before_action :doctors_only, only: [:new, :create]
+
+  def doctors_only
+    if current_user.role != "Doctor"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      flash[:warning] = "Sólo el Doctor #{doctor.full_name} pueden realizar esa acción"
+      redirect_to medical_record_path(@record)
+    end
+  end
 
   def index
     @prescriptions = @record.prescriptions.order(created_at: :desc).paginate(page: params[:page], per_page: 20)

@@ -4,7 +4,6 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>#</th>
         <th>Identificación</th>
         <th>Nombre(s)</th>
         <th>Rol</th>
@@ -14,16 +13,15 @@
     <tbody>
       <% @assistants.each do |assistant| %>
         <tr>
-          <th scope="row"><%= link_to "#{assistant.id}", users_admin_path(assistant) %></th>
-            <td><%= "#{assistant.document}" %></td>
-            <td><%= "#{assistant.full_name}" %></td>
-            <td><%= "#{assistant.role}" %></td>
-            <td>
+          <td><%= "#{assistant.document}" %></td>
+          <td><%= "#{assistant.full_name}" %></td>
+          <td><%= "#{assistant.role}" %></td>
+          <td>
 
-              <%= link_to "Ver", users_admin_path(assistant), class: 'btn btn-primary' %>
-              <%= link_to "Eliminar", admin_destroy_user_path(assistant), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
-              <a class="btn btn-warning">Bloquear</a>
-            </td>
+            <%= link_to "Ver", users_admin_path(assistant), class: 'btn btn-info' %>
+            <%= link_to "Eliminar", admin_destroy_user_path(assistant), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
+            <a class="btn btn-warning">Bloquear</a>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -31,14 +29,7 @@
   <div class="center">
     <%= will_paginate @assistants %>
   </div>
-  <div class="col-md-12">
-    <%= link_to new_users_admin_path do %>
-      <div class="col-md-1 col-md-offset-4">
-        <i class="fa fa-user-plus" aria-hidden="true" style="font-size:30pt;"></i>
-      </div>
-      <div class="col-md-3">
-        <h4>Agregar Personal</h4>
-      </div>
-    <% end %>
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Agregar Personal", new_users_admin_path, class: 'btn btn-lg btn-primary' %>
   </div>
 </div>

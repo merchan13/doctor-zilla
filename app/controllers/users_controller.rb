@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  # bloqueo de secretarias
+  before_action :doctors_only, only: [:new, :create, :destroy]
+
+  def doctors_only
+    if current_user.role != "Doctor"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      flash[:warning] = "Sólo el Doctor #{doctor.full_name} pueden realizar esa acción"
+      redirect_to root_path
+    end
+  end
 
   def show
   end
@@ -26,6 +36,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    Assistantship.where(assistant_id: @user, user_id: current_user.id).each do |ass|
+      ass.destroy
+    end
     @user.destroy
     flash[:danger] = "Assistant have been deleted"
     redirect_to administration_path

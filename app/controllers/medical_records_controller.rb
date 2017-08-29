@@ -3,6 +3,16 @@ class MedicalRecordsController < ApplicationController
   before_action :set_others, only: [:edit, :update, :new, :create, :show]
   before_action :set_attachments, only: [:edit, :update, :show]
   before_action :set_consultations, only: [:show]
+  # bloqueo de secretarias
+  before_action :doctors_only, only: [:edit, :update]
+
+  def doctors_only
+    if current_user.role != "Doctor"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      flash[:warning] = "Sólo el Doctor #{doctor.full_name} pueden realizar esa acción"
+      redirect_to medical_record_path(@record)
+    end
+  end
 
   def index
     if current_user.role == "Doctor"
@@ -11,7 +21,7 @@ class MedicalRecordsController < ApplicationController
       doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
       @records = doctor.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
     elsif current_user.role == "Administrador"
-      #@records = MedicalRecord.all.paginate(page: params[:page], per_page: 20)
+      # do nothing
     end
   end
 
@@ -61,7 +71,16 @@ class MedicalRecordsController < ApplicationController
 
   def search
     @filter = params[:filter]
-    @records = current_user.medical_records.search(params[:search_param])
+
+    if current_user.role == "Doctor"
+      @records = current_user.medical_records.search(params[:search_param])
+    elsif current_user.role == "Ayudante"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      @records = doctor.medical_records.search(params[:search_param])
+    elsif current_user.role == "Administrador"
+      # do nothing
+    end
+
     if @records
       render partial: "medical_records/lookup"
     else
@@ -78,7 +97,14 @@ class MedicalRecordsController < ApplicationController
     end
 
     def set_record
-      @record = current_user.medical_records.find(params[:id])
+      if current_user.role == "Doctor"
+        @record = current_user.medical_records.find(params[:id])
+      elsif current_user.role == "Ayudante"
+        doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+        @record = doctor.medical_records.find(params[:id])
+      elsif current_user.role == "Administrador"
+        # do nothing
+      end
     end
 
     def set_others

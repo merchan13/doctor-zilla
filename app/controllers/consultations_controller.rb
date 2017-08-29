@@ -3,6 +3,16 @@ class ConsultationsController < ApplicationController
   before_action :set_consultation, only: [:edit, :update, :show]
   before_action :set_others, only: [:edit, :update, :new, :create]
   before_action :set_attachments, only: [:edit, :update]
+  # bloqueo de secretarias
+  before_action :doctors_only, only: [:new, :create, :edit, :update]
+
+  def doctors_only
+    if current_user.role != "Doctor"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      flash[:warning] = "Sólo el Doctor #{doctor.full_name} pueden realizar esa acción"
+      redirect_to medical_record_path(@record)
+    end
+  end
 
   def index
   end
