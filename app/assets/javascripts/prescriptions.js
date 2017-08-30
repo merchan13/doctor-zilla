@@ -12,7 +12,7 @@ add_fields = function() {
       var lastMedicine = $(".clone-test").last();
 
       if (x == 0) {
-        clone.insertAfter(lastMedicine).append("<button type='button' name='button' class='btn btn-danger remove_medicine_button'>Borrar medicamento</button>").find("input[type='number']").val("").end().find("textarea").val("");
+        clone.insertAfter(lastMedicine).append("<div class='col-md-2' style='top:-200px;'><button type='button' name='button' class='btn btn-danger remove_medicine_button'>Borrar medicamento</button></div>").find("input[type='number']").val("").end().find("textarea").val("");
         x++;
       } else {
         clone.insertAfter(lastMedicine).find("input[type='number']").val("").end().find("textarea").val("");
@@ -26,7 +26,7 @@ add_fields = function() {
     $("#new_prescription").on("click",".remove_medicine_button", function(e){
         e.preventDefault();
 
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
         $(".separador").last().remove();
         x--;
     })

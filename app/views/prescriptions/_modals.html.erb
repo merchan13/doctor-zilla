@@ -18,13 +18,25 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-5">
               <small>Nombre genérico</small>
-              <%= text_field_tag "medicine[generic_name]", nil, placeholder: "Ejemplo: 'Acetaminofén'",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "medicine[generic_name]",
+                  nil,
+                  placeholder: "Ejemplo: 'Acetaminofén'",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
             <div class="col-md-5">
               <small>Nombre comercial</small>
-              <%= text_field_tag "medicine[comercial_name]", nil, placeholder: "Ejemplo: 'Atamel'",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "medicine[comercial_name]",
+                  nil,
+                  placeholder: "Ejemplo: 'Atamel'",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
           </div>
 
@@ -33,7 +45,7 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-5">
               <small>Vía de administración</small>
-              <select class="form-control" name="medicine[dose_way]" id="">
+              <select class="form-control" name="medicine[dose_way]" id="" required>
                 <option value="">- Seleccione una opción -</option>
                 <option value="Tópico">Tópico</option>
                 <option value="Oral">Oral</option>
@@ -46,7 +58,7 @@
             </div>
             <div class="col-md-5">
               <small>Presentación</small>
-              <select class="form-control" name="medicine[dose_presentation]" id="">
+              <select class="form-control" name="medicine[dose_presentation]" id="" required>
                 <option value="">-Seleccione una opción-</option>
                 <option value="Tabletas">Tabletas</option>
                 <option value="Comprimidos">Comprimidos</option>
@@ -66,12 +78,17 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-5">
               <small>Cantidad</small>
-              <%= number_field_tag "medicine[dose_quantity]", nil, placeholder: "Cantidad en número. Ejemplo: '500'",
-                autofocus: true, class: 'form-control'%>
+              <%= number_field_tag "medicine[dose_quantity]",
+                  nil,
+                  placeholder: "Cantidad en número. Ejemplo: '500'",
+                  autofocus: true,
+                  class: 'form-control',
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true%>
             </div>
             <div class="col-md-5">
               <small>Unidades</small>
-              <select class="form-control" name="medicine[dose_unit]" id="">
+              <select class="form-control" name="medicine[dose_unit]" id="" required>
                 <option value="">-Seleccione una opción-</option>
                 <option value="cc">cc</option>
                 <option value="mg">mg</option>
