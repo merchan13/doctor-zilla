@@ -20,8 +20,6 @@ class MedicalRecordsController < ApplicationController
     elsif current_user.role == "Ayudante"
       doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
       @records = doctor.medical_records.order(created_at: :desc).paginate(page: params[:page], per_page: 20)
-    elsif current_user.role == "Administrador"
-      # do nothing
     end
   end
 
@@ -102,8 +100,6 @@ class MedicalRecordsController < ApplicationController
       elsif current_user.role == "Ayudante"
         doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
         @record = doctor.medical_records.find(params[:id])
-      elsif current_user.role == "Administrador"
-        # do nothing
       end
     end
 

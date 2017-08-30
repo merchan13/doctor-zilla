@@ -1,20 +1,30 @@
+<% if current_user.role != "Doctor" %>
+  <% div_class = "col-md-4 col-md-offset-1 center" %>
+  <% icon_style = "font-size:130pt;" %>
+<% else %>
+  <% div_class = "col-md-4 center" %>
+  <% icon_style = "font-size:120pt;" %>
+<% end %>
+
 <div class="container home center">
   <div class="row align-middle">
-    <div class="col-md-4">
+    <div class="<%= div_class %>">
       <%= link_to new_medical_record_path do %>
-        <i class="fa fa-user-plus"></i>
+        <i class="fa fa-user-plus" style="<%= icon_style %>"></i>
         <h4>Abrir Historia</h4>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <%= link_to search_path(model: 'medical_record', filter:'new_consultation') do %>
-        <i class="fa fa-stethoscope"></i>
-        <h4>Consulta</h4>
-      <% end %>
-    </div>
-    <div class="col-md-4">
+    <% if current_user.role == "Doctor" %>
+      <div class="col-md-4">
+        <%= link_to search_path(model: 'medical_record', filter:'new_consultation') do %>
+          <i class="fa fa-stethoscope" style="<%= icon_style %>"></i>
+          <h4>Consulta</h4>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="<%= div_class %>">
       <%= link_to search_path(model: 'medical_record', filter:'search_record') do %>
-        <i class="fa fa-pencil-square-o"></i>
+        <i class="fa fa-pencil-square-o" style="<%= icon_style %>"></i>
         <h4>Buscar Historia</h4>
       <% end %>
     </div>

@@ -6,8 +6,15 @@ class PlansController < ApplicationController
   end
 
   def search
+    if current_user.role == "Doctor"
+      @records = current_user.medical_records
+    elsif current_user.role == "Ayudante"
+      doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+      @records = doctor.medical_records
+    end
+
     @filter = params[:filter]
-    @plans = Plan.search(params[:search_param], current_user.medical_records)
+    @plans = Plan.search(params[:search_param], @records)
     if @plans
       render partial: "plans/lookup"
     else

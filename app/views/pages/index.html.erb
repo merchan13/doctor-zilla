@@ -1,30 +1,38 @@
+<% if current_user.role != "Doctor" %>
+  <% div_class = "col-md-3" %>
+<% else %>
+  <% div_class = "col-md-2" %>
+<% end %>
+
 <div class="container home center">
   <div class="row align-middle">
-    <div class="col-md-2 col-md-offset1">
+    <div class="<%= div_class %>">
       <%= link_to option_path('medical_records') do %>
         <i class="fa fa-users"></i>
         <h4>Historias</h4>
       <% end %>
     </div>
-    <div class="col-md-2">
+    <div class="<%= div_class %>">
       <%= link_to search_path(model: 'medical_record', filter:'new_report') do %>
         <i class="fa fa-clipboard"></i>
         <h4>Informes</h4>
       <% end %>
     </div>
-    <div class="col-md-2">
-      <%= link_to search_path(model: 'medical_record', filter:'new_prescription') do %>
-        <i class="fa fa-stethoscope"></i>
-        <h4>Récipes</h4>
-      <% end %>
-    </div>
-    <div class="col-md-2">
+    <% if current_user.role == "Doctor" %>
+      <div class="col-md-2">
+        <%= link_to search_path(model: 'medical_record', filter:'new_prescription') do %>
+          <i class="fa fa-stethoscope"></i>
+          <h4>Récipes</h4>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="<%= div_class %>">
       <%= link_to option_path('budgets') do %>
         <i class="fa fa-hospital-o"></i>
         <h4>Presupuestos</h4>
       <% end %>
     </div>
-    <div class="col-md-2">
+    <div class="<%= div_class %>">
       <%= link_to search_path(model: 'operative_note', filter:'new_operative_note') do %>
         <i class="fa fa-user-md"></i>
         <h4>Notas operatorias</h4>

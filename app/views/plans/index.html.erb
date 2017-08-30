@@ -32,9 +32,11 @@
       </tbody>
     </table>
 
-    <div class="col-md-4 col-md-offset-5">
-      <%= link_to "Nuevo Plan", new_consultation_path(record: @record), class: 'btn btn-success modal-link' %>
-    </div>
+    <% if current_user.role == "Doctor" %>
+      <div class="col-md-4 col-md-offset-5">
+        <%= link_to "Nuevo Plan", new_consultation_path(record: @record), class: 'btn btn-success modal-link' %>
+      </div>
+    <% end %>
 
     <div class="col-md-12"><hr></div>
 

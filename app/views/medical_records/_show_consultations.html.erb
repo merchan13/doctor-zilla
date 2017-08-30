@@ -11,9 +11,12 @@
 
       <div class="col-md-12" id="consultation<%= consultation.id %>" style="display:none">
         <div class="well well-lg col-md-12">
-          <div class="col-md-12">
-            <%= link_to "Editar", edit_consultation_path(consultation, record: @record) , class: 'btn btn-warning btn-xs', style: 'float:right;margin-bottom:20px;'  %>
-          </div>
+
+          <% if current_user.role == "Doctor" %>
+            <div class="col-md-12">
+              <%= link_to "Editar", edit_consultation_path(consultation, record: @record) , class: 'btn btn-warning btn-xs', style: 'float:right;margin-bottom:20px;'  %>
+            </div>
+          <% end %>
 
           <!-- Motivo de consulta -->
           <% if consultation.reason.present?  %>

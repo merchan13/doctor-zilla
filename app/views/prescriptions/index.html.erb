@@ -30,9 +30,11 @@
       <%= will_paginate @prescriptions %>
     </div>
 
-    <div class="col-md-4 col-md-offset-5">
-      <%= link_to "Nuevo récipe", new_prescription_path(record: @record), class: 'btn btn-success modal-link' %>
-    </div>
+    <% if current_user.role == "Doctor" %>
+      <div class="col-md-4 col-md-offset-5">
+        <%= link_to "Nuevo récipe", new_prescription_path(record: @record), class: 'btn btn-success modal-link' %>
+      </div>
+    <% end %>
 
     <div class="col-md-12"><hr></div>
 
