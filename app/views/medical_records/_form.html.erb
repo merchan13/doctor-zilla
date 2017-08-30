@@ -18,7 +18,7 @@
     <!-- IDENTIFICACIÓN -->
     <div class="form-group col-md-8">
       <div class="col-md-12">
-        <h4>Documento de Identificación</h4>
+        <h4>Documento de Identificación <span class="mandatory-field">*</span></h4>
       </div>
       <div class="col-md-5">
         <%= f.select :document_type,
@@ -38,8 +38,22 @@
       </div>
     </div>
 
-    <!-- FOTO -->
+    <!-- # HV -->
     <div class="col-md-4">
+      <h4>Historia Vieja <input type="checkbox" name="check-hv" value="" onchange="javascript:isOldRecord(this)"></h4></input>
+      <%= f.text_field :old_record_number,
+          class: 'form-control',
+          placeholder: 'Número de guía',
+          style: "display:none",
+          autofocus: true,
+          pattern: "^[0-9]{1,4}$",
+          onchange: 'javascript:validateTextField(this)'%>
+    </div>
+
+    <div class="col-md-12"><br></div>
+
+    <!-- FOTO -->
+    <div class="col-md-12">
       <h4>Foto del paciente (opcional)</h4>
       <% if @record.profile_picture.url.present? %>
         <%= image_tag(@record.profile_picture.url, class: 'img-responsive img-circle') %>
@@ -56,7 +70,7 @@
     <!-- NOMBRES -->
     <div class="form-group col-md-12">
       <div class="col-md-4">
-        <h4>Nombres</h4>
+        <h4>Nombres <span class="mandatory-field">*</span></h4>
         <%= f.text_field :name,
             class: 'form-control',
             placeholder: 'Nombres del paciente',
@@ -67,7 +81,7 @@
             required: true %>
       </div>
       <div class="col-md-4">
-        <h4>Apellidos</h4>
+        <h4>Apellidos <span class="mandatory-field">*</span></h4>
         <%= f.text_field :last_name,
             class: 'form-control',
             placeholder: 'Apellidos del paciente',
@@ -84,7 +98,7 @@
     <!-- PROFESION / FECHA DE NACIMIENTO -->
     <div class="form-group col-md-12">
       <div class="col-md-4">
-        <h4>Profesión</h4>
+        <h4>Profesión <span class="mandatory-field">*</span></h4>
         <%= f.select :occupation_id,
             options_from_collection_for_select(Occupation.order(name: :asc), :id, :name, @record.occupation_id),
             {include_blank: 'Seleccione una opción'},
@@ -93,7 +107,7 @@
         <a href="#" data-toggle="modal" data-target="#new-occupation-modal">Agregar nuevo</a>
       </div>
       <div class="col-md-4">
-        <h4>Fecha de Nacimiento</h4>
+        <h4>Fecha de Nacimiento <span class="mandatory-field">*</span></h4>
         <%= f.text_field :birthday,
             value: (@record.birthday.strftime('%d/%m/%Y') if !@record.birthday.nil?),
             class: 'form-control',
@@ -117,7 +131,7 @@
     <!-- SEXO -->
     <div class="form-group col-md-12">
       <div class="col-md-12">
-        <h4>Sexo</h4>
+        <h4>Sexo <span class="mandatory-field">*</span></h4>
       </div>
       <div class="form-check col-md-3">
         <label><%= f.radio_button :gender, 'masculine', class: 'form-check-input', required: true %>
@@ -134,7 +148,7 @@
     <!-- TELÉFONOS / EMAIL -->
     <div class="form-group col-md-12">
       <div class="col-md-4">
-        <h4>Teléfono de Casa</h4>
+        <h4>Teléfono de Casa <span class="mandatory-field">*</span></h4>
         <%= f.text_field :phone_number,
             class: 'form-control',
             placeholder: 'Teléfono fijo del paciente',
@@ -144,22 +158,24 @@
             required: true %>
       </div>
       <div class="col-md-4">
-        <h4>Teléfono Celular</h4>
+        <h4>Teléfono Celular <span class="mandatory-field">*</span></h4>
         <%= f.text_field :cellphone_number,
             class: 'form-control',
             placeholder: 'Teléfono celular del paciente',
             autofocus: true,
             pattern: "^\\+?\\d{7,13}$",
-            onchange: 'javascript:validateTextField(this)' %>
+            onchange: 'javascript:validateTextField(this)',
+            required: true %>
       </div>
       <div class="col-md-4">
-        <h4>Correo Electrónico</h4>
+        <h4>Correo Electrónico <span class="mandatory-field">*</span></h4>
         <%= f.text_field :email,
             class: 'form-control',
             placeholder: 'Correo electrónico del paciente',
             autofocus: true,
             pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$",
-            onchange: 'javascript:validateTextField(this)' %>
+            onchange: 'javascript:validateTextField(this)',
+            required: true %>
       </div>
     </div>
 
@@ -168,7 +184,7 @@
     <!-- DIRECCIÓN -->
     <div class="form-group col-md-12">
       <div class="col-md-12">
-        <h4>Dirección de Habitación</h4>
+        <h4>Dirección de Habitación <span class="mandatory-field">*</span></h4>
         <%= f.text_field :address,
             class: 'form-control',
             placeholder: 'Dirección completa del paciente',
@@ -192,7 +208,7 @@
             onchange: 'javascript:validateTextField(this)' %>
       </div>
       <div class="col-md-4">
-        <h4>Seguro</h4>
+        <h4>Seguro <span class="mandatory-field">*</span></h4>
         <%= f.select :insurance_id,
             options_from_collection_for_select(Insurance.order(name: :asc), :id, :name, @record.insurance_id),
             {include_blank: 'Seleccione una opción'},

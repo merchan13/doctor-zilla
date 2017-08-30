@@ -1,4 +1,7 @@
 <h1><%= "Historia ##{@record.id}" %></h1>
+<% if !@record.old_record_number.nil? %>
+  <h4><%= "[#HV #{@record.old_record_number}]" %></h4>
+<% end %>
 <div class="col-md-12">
   <!-- HISTORIA -->
   <div class="col-md-9 new-panel main-panel">

@@ -151,6 +151,18 @@ function documentTypeSelected(docType) {
     }
 }
 
+function isOldRecord(input) {
+  if (input.checked) {
+    $("#medical_record_old_record_number").toggle();
+    $("#medical_record_old_record_number").attr("required", true);
+  }
+  else {
+    $("#medical_record_old_record_number").toggle();
+    $("#medical_record_old_record_number").val('');
+    $("#medical_record_old_record_number").removeAttr("required");
+  }
+}
+
 $(document).ready(function functionName() {
   init_record_lookup();
   show_consultation();

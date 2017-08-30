@@ -31,7 +31,7 @@ class MedicalRecordsController < ApplicationController
     MedicalRecord.transaction do
       @record = current_user.medical_records.create(record_params)
       if @record.save
-        flash[:success] = "Medical record was created successfully"
+        flash[:success] = "Historia Médica creada exitósamente"
         redirect_to medical_record_path(@record)
       else
         render 'new'
@@ -55,7 +55,7 @@ class MedicalRecordsController < ApplicationController
       @record.update_background("other", params["bg_other"])
 
       if @record.update(record_params)
-        flash[:success] = "Medical record data was successfully updated"
+        flash[:success] = "Historia Médica actualizada exitósamente"
         redirect_to medical_record_path(@record)
       else
         render 'edit'
@@ -75,8 +75,6 @@ class MedicalRecordsController < ApplicationController
     elsif current_user.role == "Ayudante"
       doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
       @records = doctor.medical_records.search(params[:search_param])
-    elsif current_user.role == "Administrador"
-      # do nothing
     end
 
     if @records
@@ -91,7 +89,7 @@ class MedicalRecordsController < ApplicationController
       params.require(:medical_record).permit( :document, :document_type, :first_consultation_date, :name, :last_name,
                                               :birthday, :gender, :phone_number, :cellphone_number, :address, :email,
                                               :referred_by, :profile_picture, :representative_document, :occupation_id,
-                                              :insurance_id, :profile_picture_cache, :remove_profile_picture )
+                                              :insurance_id, :profile_picture_cache, :remove_profile_picture, :old_record_number )
     end
 
     def set_record

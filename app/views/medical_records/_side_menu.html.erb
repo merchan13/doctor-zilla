@@ -22,21 +22,21 @@
   <div class="col-md-12 center">
     <%# if params[:controller] == 'medical_records' && params[:action] == 'new' %>
     <% if record.id.nil? %>
-      <h4>Historia</h4>
+      <h4 style="text-decoration: line-through;">Historia</h4>
       <hr>
       <% if current_user.role == "Doctor" %>
-        <h4>Nueva Consulta</h4>
+        <h4 style="text-decoration: line-through;">Nueva Consulta</h4>
         <hr>
       <% end %>
-      <h4>Anexos</h4>
+      <h4 style="text-decoration: line-through;">Anexos</h4>
       <hr>
-      <h4>Planes</h4>
+      <h4 style="text-decoration: line-through;">Planes</h4>
       <hr>
-      <h4>Notas<br>Operatorias</h4>
+      <h4 style="text-decoration: line-through;">Notas<br>Operatorias</h4>
       <hr>
-      <h4>Informes</h4>
+      <h4 style="text-decoration: line-through;">Informes</h4>
       <hr>
-      <h4>Récipes</h4>
+      <h4 style="text-decoration: line-through;">Récipes</h4>
     <% else %>
       <h4><%= link_to "Historia", medical_record_path(record)%></h4>
       <hr>
