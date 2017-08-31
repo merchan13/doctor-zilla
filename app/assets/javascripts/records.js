@@ -52,11 +52,11 @@ update_occupations = function() {
     $('#medical_record_occupation_id').append("<option value='"+ data.id +"' selected>"+ data.name +"</option>");
     $('#new-occupation-modal').modal('hide');
     $('#new-occupation-form').find('input:text').val('');
+    $('#new-occupation-form').find('input').css('border-color', '#ccc');
 
     var alert_html = '<div id=' + '"occupation-taken"' + '></div>';
 
     $('#occupation-taken').replaceWith(alert_html);
-    init_occupation_form();
   });
 
   $('#new-occupation-form').on('ajax:error', function(event, xhr, status, error){
@@ -91,11 +91,11 @@ update_insurances = function() {
     $('#medical_record_insurance_id').append("<option value='"+ data.id +"' selected>"+ data.name +"</option>");
     $('#new-insurance-modal').modal('hide');
     $('#new-insurance-form').find('input:text').val('');
+    $('#new-insurance-form').find('input').css('border-color', '#ccc');
 
     var alert_html = '<div id=' + '"insurance-taken"' + '></div>';
 
     $('#insurance-taken').replaceWith(alert_html);
-    init_insurance_form();
   });
 
   $('#new-insurance-form').on('ajax:error', function(event, xhr, status, error){

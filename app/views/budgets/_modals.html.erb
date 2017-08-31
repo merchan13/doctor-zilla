@@ -13,16 +13,28 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-6">
               <h4>Nombre del Procedimiento</h4>
-              <%= text_field_tag "procedure[name]", nil, placeholder: "Nombre del Procedimiento",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "procedure[name]",
+                  nil,
+                  placeholder: "Nombre del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
 
             <div class="col-md-12"><br></div>
 
             <div class="col-md-10">
               <h4>Descripción del Procedimiento</h4>
-              <%= text_field_tag "procedure[description]", nil, placeholder: "Descripción breve del Procedimiento",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "procedure[description]",
+                  nil,
+                  placeholder: "Descripción breve del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
           </div>
           <div class="form-group row col-md-12" style="float:none">
@@ -59,8 +71,14 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-6">
               <h4>Nombre del Equipo</h4>
-              <%= text_field_tag "equipment[name]", nil, placeholder: "Nombre del Equipo Médico",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "equipment[name]",
+                  nil,
+                  placeholder: "Nombre del Equipo Médico",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
           </div>
           <div class="form-group row col-md-12" style="float:none">

@@ -1,7 +1,7 @@
 <div class="form-group col-md-12">
-  <h4><i>Antecedentes</i></h4>
+  <h3>Antecedentes</h3>
   <div class="col-md-4">
-    <%= f.label :Familiares, class: 'form-control-label' %>
+    <h4><i>Familiares</i></h4>
     <%= text_area(
         :background,
         :family,
@@ -13,7 +13,7 @@
         onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
-    <%= f.label :Alergias, class: 'form-control-label' %>
+    <h4><i>Alergias</i></h4>
     <%= text_area(
         :background,
         :allergy,
@@ -25,7 +25,7 @@
         onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
-    <%= f.label :Diábetes, class: 'form-control-label' %>
+    <h4><i>Diábetes</i></h4>
     <%= text_area(
         :background,
         :diabetes,
@@ -39,7 +39,7 @@
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-4">
-    <%= f.label :Asma, class: 'form-control-label' %>
+    <h4><i>Asma</i></h4>
     <%= text_area(
         :background,
         :asthma,
@@ -51,7 +51,7 @@
         onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
-    <%= f.label :Cardiopatías, class: 'form-control-label' %>
+    <h4><i>Cardiopatías</i></h4>
     <%= text_area(
         :background,
         :heart,
@@ -63,7 +63,7 @@
         onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-4">
-    <%= f.label :Medicamentos, class: 'form-control-label' %>
+    <h4><i>Medicamentos</i></h4>
     <%= text_area(
         :background,
         :medicine,
@@ -77,7 +77,7 @@
 </div>
 <div class="form-group col-md-12">
   <div class="col-md-6">
-    <%= f.label :Quirúrgicos, class: 'form-control-label' %>
+    <h4><i>Quirúrgicos</i></h4>
     <%= text_area(
         :background,
         :surgical,
@@ -89,11 +89,11 @@
         onblur: 'javascript:validateTextArea(this)') %>
   </div>
   <div class="col-md-6">
-    <%= f.label :Otros, class: 'form-control-label' %>
+    <h4><i>Otros</i></h4>
     <%= text_area(
         :background,
         :other,
-        rows: '3', 
+        rows: '3',
         class: 'form-control',
         onkeydown: 'javascript:blockCharacters(this)',
         onkeypressed: 'javascript:blockCharacters(this)',

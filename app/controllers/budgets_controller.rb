@@ -16,14 +16,18 @@ class BudgetsController < ApplicationController
 
       @budget = @record.budgets.create(budget_params)
 
-      params["procedures"].each_with_index do |pr, i|
-          @budget.budget_procedures.create(procedure_id: pr, cost: params[:procedures_cost][i])
+      if !params["procedures"].nil?
+        params["procedures"].each_with_index do |pr, i|
+            @budget.budget_procedures.create(procedure_id: pr, cost: params[:procedures_cost][i])
+        end
       end
 
-      params["equipments"].each_with_index do |eq, i|
-          @budget.budget_equipments.create(equipment_id: eq, cost: params[:equipments_cost][i])
+      if !params["equipments"].nil?
+        params["equipments"].each_with_index do |eq, i|
+            @budget.budget_equipments.create(equipment_id: eq, cost: params[:equipments_cost][i])
+        end
       end
-
+      
       if @budget.save
         flash[:success] = "Nuevo Presupuesto creado exitósamente"
         redirect_to budget_path(@budget)

@@ -229,7 +229,11 @@
 
     <div class='form-group center'>
       <div class='col-md-offset-4 col-md-4'>
-        <%= f.submit value: 'Guardar Nueva Historia', class: 'btn btn-primary btn-lg' %>
+        <% if params[:action] == 'new' || params[:action] == "create" %>
+          <%= f.submit value: 'Guardar Nueva Historia', class: 'btn btn-primary btn-lg' %>
+        <% else %>
+          <%= f.submit value: 'Guardar cambios', class: 'btn btn-primary btn-lg' %>
+        <% end %>
       </div>
     </div>
   <% end %>

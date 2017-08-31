@@ -17,11 +17,11 @@ consultation_update_reasons = function() {
     $('#consultation_reason_id').append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
     $('#new-reason-modal').modal('hide');
     $('#new-reason-form').find('input:text').val('');
+    $('#new-reason-form').find('input').css('border-color', '#ccc');
 
     var alert_html = '<div id=' + '"reason-taken"' + '></div>';
 
     $('#reason-taken').replaceWith(alert_html);
-    init_reason_form();
   });
 
   $('#new-reason-form').on('ajax:error', function(event, xhr, status, error){
@@ -56,11 +56,11 @@ consultation_update_diagnostics = function() {
     $('#consultation_diagnostic_id').append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
     $('#new-diagnostic-modal').modal('hide');
     $('#new-diagnostic-form').find('input:text').val('');
+    $('#new-diagnostic-form').find('input').css('border-color', '#ccc');
 
     var alert_html = '<div id=' + '"diagnostic-taken"' + '></div>';
 
     $('#diagnostic-taken').replaceWith(alert_html);
-    init_reason_form();
   });
 
   $('#new-diagnostic-form').on('ajax:error', function(event, xhr, status, error){
@@ -95,11 +95,11 @@ consultation_update_procedures = function() {
     $('#procedures_select').append("<option value='"+ data.id +"' selected>"+ data.name +"</option>");
     $('#new-procedure-modal-c').modal('hide');
     $('#new-procedure-form-c').find('input:text').val('');
+    $('#new-procedure-form-c').find('input').css('border-color', '#ccc');
 
     var alert_html = '<div id=' + '"procedure-taken"' + '></div>';
 
     $('#procedure-taken').replaceWith(alert_html);
-    init_procedure_form();
   });
 
   $('#new-procedure-form-c').on('ajax:error', function(event, xhr, status, error){

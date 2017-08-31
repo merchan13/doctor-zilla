@@ -3,6 +3,8 @@
 
   <h3 align="center"><strong>Nueva Nota Operatoria</strong></h3>
 
+  <div id="no-procedures-alert"></div>
+
   <% if !@plan.nil? %>
     <h4 align="left"><%= @plan.description %></h4>
   <% end %>
@@ -18,13 +20,14 @@
     <% end %>
 
     <div class="form-group">
+      <!-- PLAN PROCEDURES -->
       <% if !@plan.nil? %>
         <% if @procedures.count > 0 %>
           <div class="col-md-12">
             <h4>Por favor seleccione los procedimientos del Plan que se realizaron:</h4>
             <% @procedures.each do |p| %>
               <div class="">
-                <label><input type="checkbox" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
+                <label><input type="checkbox" class="procedure-check" name="procedures[]" value="<%= p.id %>"><%= " #{p.name}" %></label>
               </div>
             <% end %>
           </div>
@@ -33,6 +36,7 @@
         <% end %>
       <% end %>
 
+      <!-- ADD OTHER PROCEDURES -->
       <div class="col-md-12">
         <h4>Si se realizaron otros procedimientos por favor agréguelos:</h4>
         <div class="col-md-10">
@@ -43,21 +47,21 @@
           <% end %>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-info opnts_add_select_button">Agregar</button>
+          <button type="button" class="btn btn-success opnt_add_procedure_button">Agregar a la lista</button>
         </div>
         <div class="col-md-12">
-          <a href="#" data-toggle="modal" data-target="#new-procedure-form">Agrear nuevo procedimiento</a>
+          <a href="#" data-toggle="modal" data-target="#new-procedure-modal-o">Agregar nuevo procedimiento</a>
         </div>
       </div>
-
-      <div class="col-md-12"><br></div>
-
+      <div class="col-md-12"><br></div> <!-- separador -->
       <div class="col-md-12">
-        <div class="opnts_procedures_data_wrap">
+        <div class="opnt_procedures_data_wrap">
           <!-- hidden inputs -->
         </div>
-        <div class="col-md-10 opnts_procedures_wrap">
-          <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+        <div class="col-md-10 opnt_procedures_wrap">
+          <div class="col-md-12">
+            <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+          </div>
           <!-- inputs -->
         </div>
       </div>
@@ -67,26 +71,56 @@
       <!-- Hallazgos -->
       <div class="col-md-12">
         <h4>Hallazgos</h4>
-          <textarea rows="3" class="form-control" name="operative_note[find]"></textarea>
+          <textarea rows="3"
+                    class="form-control"
+                    name="operative_note[find]"
+                    onkeydown='javascript:blockCharacters(this)'
+                    onkeypressed='javascript:blockCharacters(this)'
+                    onkeyup='javascript:blockCharacters(this)'
+                    onblur='javascript:validateTextArea(this)'></textarea>
       </div>
+
+      <div class="col-md-12"><br></div>
 
       <!-- Descripción -->
       <div class="col-md-12">
-        <h4>Descripción</h4>
-        <textarea rows="3" class="form-control" name="operative_note[description]"></textarea>
+        <h4>Descripción <span class="mandatory-field">*</span></h4>
+        <textarea rows="3"
+                  class="form-control"
+                  name="operative_note[description]"
+                  onkeydown='javascript:blockCharacters(this)'
+                  onkeypressed='javascript:blockCharacters(this)'
+                  onkeyup='javascript:blockCharacters(this)'
+                  onblur='javascript:validateTextArea(this)'
+                  required></textarea>
       </div>
+
+      <div class="col-md-12"><br></div>
 
       <!-- Diagnóstico -->
       <div class="col-md-12">
-        <h4>Diagnóstico</h4>
-        <textarea rows="3" class="form-control" name="operative_note[diagnostic]"></textarea>
+        <h4>Diagnóstico <span class="mandatory-field">*</span></h4>
+        <textarea rows="3"
+                  class="form-control"
+                  name="operative_note[diagnostic]"
+                  onkeydown='javascript:blockCharacters(this)'
+                  onkeypressed='javascript:blockCharacters(this)'
+                  onkeyup='javascript:blockCharacters(this)'
+                  onblur='javascript:validateTextArea(this)'
+                  required></textarea>
       </div>
+
+      <div class="col-md-12"><br></div>
 
     </div>
 
     <div class='form-group center'>
       <div class='col-md-4 col-md-offset-4'>
-        <%= f.submit class: 'btn btn-primary btn-lg' %>
+        <% if params[:action] == 'new' || params[:action] == "create" %>
+          <%= f.submit value: 'Guardar Nota Operatoria', class: 'btn btn-primary btn-lg' %>
+        <% else %>
+          <%= f.submit value: 'Guardar cambios', class: 'btn btn-primary btn-lg' %>
+        <% end %>
       </div>
     </div>
   <% end %>

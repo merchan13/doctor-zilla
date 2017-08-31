@@ -11,7 +11,7 @@
         <%= form_tag ('/medicines'), remote: true, id: 'new-medicine-form' do %>
 
           <!-- Errores -->
-          <div id="medicine-errors"></div>
+          <div id="medicine-taken"></div>
 
           <!-- Nombre del medicamento -->
           <h4>Nombre</h4>
@@ -35,8 +35,7 @@
                   autofocus: true,
                   class: 'form-control',
                   pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
-                  onchange: 'javascript:validateTextField(this)',
-                  required: true %>
+                  onchange: 'javascript:validateTextField(this)' %>
             </div>
           </div>
 

@@ -7,13 +7,13 @@
       <% end %>
     </div>
     <div class="col-md-4">
-      <a href="#" data-toggle="modal" data-target="#new-procedure-modal">
+      <a href="#" data-toggle="modal" data-target="#new-procedure-modal-home">
         <i class="fa fa-stethoscope"></i>
         <h4>Agregar Procedimiento</h4>
       </a>
     </div>
     <div class="col-md-4">
-      <a href="#" data-toggle="modal" data-target="#new-equipment-modal">
+      <a href="#" data-toggle="modal" data-target="#new-equipment-modal-home">
         <i class="fa fa-cogs"></i>
         <h4>Agregar Equipo</h4>
       </a>
@@ -22,7 +22,7 @@
 </div>
 
 <!-- PROCEDURE MODAL -->
-<div class="modal fade" id="new-procedure-modal" role="dialog">
+<div class="modal fade" id="new-procedure-modal-home" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -31,21 +31,33 @@
           <h4 class="modal-title">Agregar Nuevo Procedimiento</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form' do %>
+        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form-home' do %>
           <div id="procedure-taken"></div>
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-6">
               <h4>Nombre del Procedimiento</h4>
-              <%= text_field_tag "procedure[name]", nil, placeholder: "Nombre del Procedimiento",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "procedure[name]",
+                  nil,
+                  placeholder: "Nombre del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
 
             <div class="col-md-12"><br></div>
 
             <div class="col-md-10">
               <h4>Descripción del Procedimiento</h4>
-              <%= text_field_tag "procedure[description]", nil, placeholder: "Descripción breve del Procedimiento",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "procedure[description]",
+                  nil,
+                  placeholder: "Descripción breve del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
           </div>
           <div class="form-group row col-md-12" style="float:none">
@@ -65,7 +77,7 @@
 </div>
 
 <!-- EQUIPMENT MODAL -->
-<div class="modal fade" id="new-equipment-modal" role="dialog">
+<div class="modal fade" id="new-equipment-modal-home" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -74,7 +86,7 @@
           <h4 class="modal-title">Agregar Nuevo Equipo Médico</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag ('/equipments'), remote: true, id: 'new-equipment-form' do %>
+        <%= form_tag ('/equipments'), remote: true, id: 'new-equipment-form-home' do %>
           <div id="equipment-taken"></div>
 
           <%= hidden_field_tag 'source', 'menu' %>
@@ -82,8 +94,14 @@
           <div class="form-group row col-md-12" style="float:none">
             <div class="col-md-6">
               <h4>Nombre del Equipo</h4>
-              <%= text_field_tag "equipment[name]", nil, placeholder: "Nombre del Equipo Médico",
-                autofocus: true, class: 'form-control'%>
+              <%= text_field_tag "equipment[name]",
+                  nil,
+                  placeholder: "Nombre del Equipo Médico",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
             </div>
           </div>
           <div class="form-group row col-md-12" style="float:none">

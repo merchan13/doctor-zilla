@@ -1,7 +1,7 @@
 <div class="form-group col-md-12">
-  <h4><i>Examen Básico</i></h4>
+  <h3>Examen Básico</h3>
   <div class="col-md-3">
-    <%= f.label :Peso, class: 'form-control-label' %> (kg)
+    <h4><i>Peso (kg)</i></h4>
     <%= f.number_field :weight,
         in: 1.00..300.00,
         step: 0.50,
@@ -9,7 +9,7 @@
         onchange: 'javascript:validateTextField(this)' %>
   </div>
   <div class="col-md-3">
-    <%= f.label :Talla, class: 'form-control-label' %> (cm)
+    <h4><i>Talla (cm)</i></h4>
     <%= f.text_field :height,
         in: 1.00..300.00,
         step: 0.50,
@@ -17,12 +17,12 @@
         onchange: 'javascript:validateTextField(this)' %>
   </div>
   <div class="col-md-2 center">
-    <label for="imc">IMC</label> (kg/m&#178;)
+    <h4><i>IMC (kg/m&#178;)</i></h4>
     <h4 id="imc-text"></h4>
   </div>
   <div class="col-md-4">
-    <div class="col-md-12">
-      <%= f.label :Tensión, class: 'form-control-label' %> (mmHg)
+    <div class="col-md-12 center">
+      <h4><i>Tensión (mmHg)</i></h4>
     </div>
     <div class="col-md-6">
       <small><strong>Sistólica</strong></small>

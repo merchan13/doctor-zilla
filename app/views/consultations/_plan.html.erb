@@ -1,9 +1,9 @@
 <div class="form-group col-md-12">
 
-  <h4><i>Plan</i></h4>
+  <h3>Plan</h3>
 
   <div class="col-md-12">
-    <%= f.label :Descripción_del_plan, class: 'form-control-label' %>
+    <h4>Descripción del Plan</h4>
     <% if consultation.plan.present? %>
       <%= text_area(:plan, :description, rows: '4', class: 'form-control', value: consultation.plan.description) %>
     <% else %>
@@ -22,7 +22,7 @@
   <div class="col-md-12"><br></div>
 
   <div class="col-md-12">
-    <p><i>Agregar un procedimiento</i></p>
+    <h4><i>Agregar un Procedimiento</i></h4>
     <div class="col-md-10">
       <%= select_tag "procedures_select",
           options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name),
@@ -33,7 +33,7 @@
       <button type="button" class="btn btn-success consultation_add_procedure_button">Agregar a la lista</button>
     </div>
     <div class="col-md-12">
-      <a href="#" data-toggle="modal" data-target="#new-procedure-modal-c">Agrear nuevo procedimiento</a>
+      <a href="#" data-toggle="modal" data-target="#new-procedure-modal-c">Agregar nuevo procedimiento</a>
     </div>
   </div>
   <div class="col-md-12"><br></div> <!-- separador -->

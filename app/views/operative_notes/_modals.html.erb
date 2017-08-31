@@ -1,5 +1,5 @@
-<!-- PROCEDURE MODAL-->
-<div class="modal fade" id="new-procedure-form" role="dialog">
+<!-- PROCEDURE MODAL -->
+<div class="modal fade" id="new-procedure-modal-o" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -8,15 +8,46 @@
           <h4 class="modal-title">Agregar Nuevo Procedimiento</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@procedure, remote: true) do |p| %>
-          <%= p.label :Procedimiento, class: 'form-control-label' %>
-          <%= p.text_field :name, value: nil, class: 'form-control' %>
-          <%= p.text_area :description, rows: '2', value: nil, class: 'form-control' %>
-          <%= p.submit class: 'btn btn-primary' %>
+        <%= form_tag ('/procedures'), remote: true, id: 'new-procedure-form-o' do %>
+          <div id="procedure-taken"></div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <h4>Nombre del Procedimiento</h4>
+              <%= text_field_tag "procedure[name]",
+                  nil,
+                  placeholder: "Nombre del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
+            </div>
+
+            <div class="col-md-12"><br></div>
+
+            <div class="col-md-10">
+              <h4>Descripción del Procedimiento</h4>
+              <%= text_field_tag "procedure[description]",
+                  nil,
+                  placeholder: "Descripción breve del Procedimiento",
+                  autofocus: true,
+                  class: 'form-control',
+                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  onchange: 'javascript:validateTextField(this)',
+                  required: true %>
+            </div>
+          </div>
+          <div class="form-group row col-md-12" style="float:none">
+            <div class="col-md-6">
+              <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                Guardar
+              <% end %>
+            </div>
+          </div>
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

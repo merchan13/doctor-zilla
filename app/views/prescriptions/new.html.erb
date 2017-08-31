@@ -10,35 +10,47 @@
     <input type="hidden" name="record" value="<%= @record.id %>">
 
     <div class="clone-test" id="clone-test">
-        <!-- MEDICAMENTO -->
-        <div class="form-group col-md-12">
-          <h4><i>Medicamento</i></h4>
-          <div class="col-md-8">
-            <select class="form-control form-control medicine_form" name="prescription[][medicine_id]" id="" required>
-              <option value="">-Seleccione una opción-</option>
-              <% Medicine.all.each do |m| %>
-                <option value="<%= m.id %>"><%= "#{m.generic_name} (#{m.comercial_name}) - Vía #{m.dose_way}, #{m.dose_presentation} de #{m.dose_quantity}#{m.dose_unit}" %></option>
-              <% end %>
-            </select>
-          </div>
-          <div class="col-md-12">
-            <a href="#" data-toggle="modal" data-target="#new-medicine-modal">Agrear nuevo medicamento</a>
-          </div>
+      <!-- MEDICAMENTO -->
+      <div class="form-group col-md-12">
+        <h4><i>Medicamento</i> <span class="mandatory-field">*</span></h4>
+        <div class="col-md-8">
+          <select class="form-control form-control medicine_form" name="prescription[][medicine_id]" id="" required>
+            <option value="">-Seleccione una opción-</option>
+            <% Medicine.all.each do |m| %>
+              <option value="<%= m.id %>"><%= "#{m.generic_name} (#{m.comercial_name}) - Vía #{m.dose_way}, #{m.dose_presentation} de #{m.dose_quantity}#{m.dose_unit}" %></option>
+            <% end %>
+          </select>
         </div>
+        <div class="col-md-12">
+          <a href="#" data-toggle="modal" data-target="#new-medicine-modal">Agregar nuevo medicamento</a>
+        </div>
+      </div>
 
       <!-- Administración -->
-      <div class="form-group col-md-7">
+      <div class="form-group col-md-9">
         <h4><i>Administración</i></h4>
         <div class="col-md-4">
-          <small>Cantidad</small>
-          <input type="number" name="prescription[][interval_quantity]" value="" class="form-control" onchange="javascript:validateTextField(this)" required>
+          <small>¿Cuánto? (Cantidad) <span class="mandatory-field">*</span></small>
+          <input type="number"
+                 name="prescription[][interval_quantity]"
+                 placeholder="Introduzca un número"
+                 value=""
+                 class="form-control"
+                 onchange="javascript:validateTextField(this)"
+                 required >
         </div>
         <div class="col-md-4">
-          <small>Tiempo</small>
-          <input type="number" name="prescription[][interval_time]" value="" class="form-control" onchange="javascript:validateTextField(this)" required>
+          <small>Intérvalo <span class="mandatory-field">*</span></small>
+          <input type="number"
+                 name="prescription[][interval_time]"
+                 placeholder="Introduzca un número"
+                 value=""
+                 class="form-control"
+                 onchange="javascript:validateTextField(this)"
+                 required >
         </div>
         <div class="col-md-4">
-          <small>Unidades</small>
+          <small>Horas/Veces <span class="mandatory-field">*</span></small>
           <select class="form-control" name="prescription[][interval_unit]" id="" onchange="javascript:validateTextField(this)" required>
             <option value="">-Seleccione una opción-</option>
             <option value="Horas">Horas</option>
@@ -51,11 +63,16 @@
       <div class="form-group col-md-6">
         <h4><i>Duración</i></h4>
         <div class="col-md-5">
-          <small>¿Por cuánto tiempo?</small>
-          <input type="number" name="prescription[][duration_quantity]" value="" class="form-control" onchange="javascript:validateTextField(this)" required>
+          <small>¿Por cuánto tiempo? <span class="mandatory-field">*</span></small>
+          <input type="number"
+                 name="prescription[][duration_quantity]"
+                 value=""
+                 class="form-control"
+                 onchange="javascript:validateTextField(this)"
+                 required >
         </div>
         <div class="col-md-6">
-          <small>Días/Semanas/Meses</small>
+          <small>Días/Semanas/Meses <span class="mandatory-field">*</span></small>
           <select class="form-control" name="prescription[][duration_unit]" id="" required>
             <option value="">-Seleccione una opción-</option>
             <option value="Días">Días</option>
@@ -67,8 +84,7 @@
 
       <!-- OBSERVACION -->
       <div class="form-group col-md-4">
-        <h4><i>Observación</i></h4>
-        <br>
+        <h4><i>Observación</i> (opcional)</h4>
         <textarea name="prescription[][note]"
                   rows="4"
                   class="form-control"
@@ -89,7 +105,11 @@
 
     <div class='form-group center'>
       <div class='col-md-4 col-md-offset-4'>
-        <%= f.submit value: "Crear Récipe", class: 'btn btn-primary btn-lg' %>
+        <% if params[:action] == 'new' || params[:action] == "create" %>
+          <%= f.submit value: 'Guardar Récipe', class: 'btn btn-primary btn-lg' %>
+        <% else %>
+          <%= f.submit value: 'Guardar cambios', class: 'btn btn-primary btn-lg' %>
+        <% end %>
       </div>
     </div>
   <% end %>

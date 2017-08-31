@@ -1,15 +1,15 @@
 <div class="form-group col-md-12">
   <div class="col-md-4">
-    <%= f.label :Motivo_De_Consulta, class: 'form-control-label' %>
+    <h4>Motivo de Consulta <span class="mandatory-field">*</span></h4>
     <%= f.select :reason_id,
         options_from_collection_for_select(Reason.order(description: :asc), :id, :description, @consultation.reason_id),
         {include_blank: 'N/A'},
         class: 'form-control',
         required: true %>
-    <a href="#" data-toggle="modal" data-target="#new-reason-modal">Agrear nuevo</a>
+    <a href="#" data-toggle="modal" data-target="#new-reason-modal">Agregar nuevo</a>
   </div>
   <div class="col-md-8">
-    <%= f.label :Enfermedad_Actual, class: 'form-control-label' %>
+    <h4>Enfermedad Actual <span class="mandatory-field">*</span></h4>
     <%= f.text_area :affliction,
         rows: '3',
         class: 'form-control',
