@@ -29,6 +29,9 @@ class MedicalRecordsController < ApplicationController
 
   def create
     MedicalRecord.transaction do
+
+      puts record_params[:old_record_number].nil?
+
       @record = current_user.medical_records.create(record_params)
       if @record.save
         flash[:success] = "Historia Médica creada exitósamente"
