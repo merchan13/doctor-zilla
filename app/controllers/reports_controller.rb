@@ -146,9 +146,7 @@ class ReportsController < ApplicationController
       if @options['last_consultation'] == true
         description += "Consulta médica:
         Motivo de consulta: #{@record.consultations.last.reason.description}
-        Enfermedad actual: #{@record.consultations.last.affliction}
-        Evolución: #{@record.consultations.last.evolution}
-        Diagnóstico: #{@record.consultations.last.diagnostic.description if !@record.consultations.last.diagnostic.nil?}\n\n"
+        Enfermedad actual: #{@record.consultations.last.affliction}\n\n"
       end
 
       backgrounds = set_bg_descriptions
@@ -161,12 +159,18 @@ class ReportsController < ApplicationController
         description += physical_exams
       end
 
+      if @options['last_consultation'] == true
+        description += "Evolución: #{@record.consultations.last.evolution}\n\n"
+        description += "Diagnóstico: #{@record.consultations.last.diagnostic.description if !@record.consultations.last.diagnostic.nil?}\n\n"
+      end
+
       if @options['plan'] == true
         description += "Plan: #{@record.plans.last.description}\n\n"
       end
 
       if @options['operative_note'] == true
-        operative_note = "Nota operatoria: #{@record.operative_notes.last.description}, hallazgos: #{@record.operative_notes.last.find}\n\n"
+        description += "Nota operatoria: #{@record.operative_notes.last.description}
+        Hallazgos: #{@record.operative_notes.last.find}\n\n"
       end
 
       description

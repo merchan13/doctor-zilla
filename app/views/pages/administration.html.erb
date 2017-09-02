@@ -19,8 +19,7 @@
           <td>
 
             <%= link_to "Ver", users_admin_path(assistant), class: 'btn btn-info' %>
-            <%= link_to "Eliminar", admin_destroy_user_path(assistant), class: 'btn btn-danger', method: :delete, data: { confirm: "You sure?" } %>
-            <a class="btn btn-warning">Bloquear</a>
+            <%= link_to "Eliminar", admin_destroy_user_path(assistant), class: 'btn btn-danger', method: :delete, data: { confirm: "¿Está seguro de que quiere eliminar a este asistente?" } %>
           </td>
         </tr>
       <% end %>
