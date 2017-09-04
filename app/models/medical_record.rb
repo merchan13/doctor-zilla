@@ -91,6 +91,8 @@ class MedicalRecord < ApplicationRecord
     else
       if description == "" || description == " "
         bg.delete
+        self.updated_at = Time.now
+        self.save
       else
         bg.description = description
         bg.save
