@@ -30,7 +30,7 @@ class MedicalRecord < ApplicationRecord
                         :insurance,
                         :message => "es un campo obligatorio."
 
-  validates :document, uniqueness: { scope: :document_type, message: "ya existe en la base de datos." }
+  validates :document, uniqueness: { scope: :document_type, case_sensitive: false, message: "ya existe en la base de datos." }
   validates :old_record_number, uniqueness: true, allow_nil: true
 
   def full_name
