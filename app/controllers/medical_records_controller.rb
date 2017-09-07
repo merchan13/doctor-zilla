@@ -29,12 +29,27 @@ class MedicalRecordsController < ApplicationController
 
   def create
     MedicalRecord.transaction do
-      @record = current_user.medical_records.create(record_params)
-      if @record.save
-        flash[:success] = "Historia Médica creada exitósamente"
-        redirect_to medical_record_path(@record)
-      else
-        render 'new'
+
+      if current_user.role == "Doctor"
+        @record = current_user.medical_records.create(record_params)
+
+        if @record.save
+          flash[:success] = "Historia Médica creada exitósamente"
+          redirect_to medical_record_path(@record)
+        else
+          render 'new'
+        end
+
+      elsif current_user.role == "Ayudante"
+        doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+        @record = doctor.medical_records.create(record_params)
+
+        if @record.save
+          flash[:success] = "Historia Médica creada exitósamente"
+          redirect_to medical_record_path(@record)
+        else
+          render 'new'
+        end
       end
     end
   end
