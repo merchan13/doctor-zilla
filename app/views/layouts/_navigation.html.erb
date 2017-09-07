@@ -15,7 +15,7 @@
           <li id="nav-inicio-link"><%= link_to "Inicio", root_path %></li>
         <% end %>
         <% if !current_page?(root_path) %>
-          <%= puts "PAGINA DE ERROR: #{current_page?}" %>
+          <%= puts "ACTION: #{params[:action]} \n CONTROLLER: #{params[:controller]}"%>
           <li><%= link_to "Historias", option_path('medical_records') %></li>
           <li><%= link_to "Informes", search_path(model: 'medical_record', filter:'new_report') %></li>
           <% if current_user.role == "Doctor" %>
