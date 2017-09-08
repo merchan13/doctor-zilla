@@ -3,8 +3,6 @@ class MedicalRecordsController < ApplicationController
   before_action :set_others, only: [:edit, :update, :new, :create, :show]
   before_action :set_attachments, only: [:edit, :update, :show]
   before_action :set_consultations, only: [:show]
-  # bloqueo de secretarias
-  before_action :doctors_only, only: [:edit, :update]
 
   def doctors_only
     if current_user.role != "Doctor"

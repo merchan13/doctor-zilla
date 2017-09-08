@@ -64,10 +64,8 @@
                   <!-- BUSCAR HISTORIA -->
                   <% elsif @filter == 'search_record' %>
                     <%= link_to "Ver", medical_record_path(record), class: 'btn btn-primary modal-link' %>
-                    <% if current_user.role == "Doctor" %>
-                      <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
-                    <% end %>
-
+                    <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
+  
                   <!-- NUEVO RECIPE -->
                   <% elsif @filter == 'new_prescription' %>
                     <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-success modal-link' %>
