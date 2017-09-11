@@ -189,7 +189,7 @@
         <%= f.text_field :address,
             class: 'form-control',
             placeholder: 'Dirección completa del paciente',
-            pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+            pattern: TEXT_FIELD_REGEX,
             onchange: 'javascript:validateTextField(this)',
             required: true %>
       </div>

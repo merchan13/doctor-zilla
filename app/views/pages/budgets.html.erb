@@ -41,7 +41,7 @@
                   placeholder: "Nombre del Procedimiento",
                   autofocus: true,
                   class: 'form-control',
-                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  pattern: TEXT_FIELD_REGEX,
                   onchange: 'javascript:validateTextField(this)',
                   required: true %>
             </div>
@@ -55,7 +55,7 @@
                   placeholder: "Descripción breve del Procedimiento",
                   autofocus: true,
                   class: 'form-control',
-                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  pattern: TEXT_FIELD_REGEX,
                   onchange: 'javascript:validateTextField(this)',
                   required: true %>
             </div>
@@ -99,7 +99,7 @@
                   placeholder: "Nombre del Equipo Médico",
                   autofocus: true,
                   class: 'form-control',
-                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  pattern: TEXT_FIELD_REGEX,
                   onchange: 'javascript:validateTextField(this)',
                   required: true %>
             </div>

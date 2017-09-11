@@ -33,12 +33,12 @@ var show_spinner = function(){
 }
 
 function blockCharacters(input){
-  var stripped = input.value.replace(/[^a-zA-Záäéëíïóöúüñ \/\-,.:;()0-9\s]+/gi, '');
+  var stripped = input.value.replace(/[^a-zA-Záäéëíïóöúüñ /,.:;(-=)0-9!¡%*\"¿+?<>\s]+/gi, '');
   input.value = stripped;
 }
 
 function validateTextArea(textArea){
-    var regex = new RegExp("^[a-zA-Záäéëíïóöúüñ \\-,.:;()0-9]+");
+    var regex = new RegExp("^[a-zA-Záäéëíïóöúüñ \/,.:;(\-\=)0-9!¡%*\"¿\+?<>]+");
 
     var match = regex.test(textArea.value);
 

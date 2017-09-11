@@ -18,7 +18,7 @@
                   placeholder: "Nombre o breve descripción de la profesión",
                   autofocus: true,
                   class: 'form-control',
-                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  pattern: TEXT_FIELD_REGEX,
                   onchange: 'javascript:validateTextField(this)',
                   required: true %>
             </div>
@@ -58,7 +58,7 @@
                   nil, placeholder: "Nombre del Seguro",
                   autofocus: true,
                   class: 'form-control',
-                  pattern: "^[a-zA-Záäéëíïóöúüñ ,.;()0-9]+$",
+                  pattern: TEXT_FIELD_REGEX,
                   onchange: 'javascript:validateTextField(this)',
                   required: true %>
             </div>
