@@ -165,7 +165,8 @@ class ReportsController < ApplicationController
       end
 
       if @options['plan'] == true
-        description += "Plan: #{@record.plans.last.description}\n\n"
+        description += "Plan: #{@record.plans.last.description}"
+        description += set_plan_procedures
       end
 
       if @options['operative_note'] == true
@@ -273,7 +274,7 @@ class ReportsController < ApplicationController
     end
 
     def set_diagnostics
-      diagnostics = "\n"
+      diagnostics = " \n"
 
       if !@record.consultations.last.nil?
         @record.consultations.last.diagnostics.each do |d|
@@ -283,4 +284,17 @@ class ReportsController < ApplicationController
 
       diagnostics
     end
+
+    def set_plan_procedures
+      procedures = "  \n"
+
+      if !@record.plans.last.nil?
+        @record.plans.last.procedures.each do |p|
+          procedures += " #{p.name}\n"
+        end
+      end
+
+      procedures += "\n"
+    end
+
 end

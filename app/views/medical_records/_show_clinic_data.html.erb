@@ -45,9 +45,11 @@
 <!-- Diagnósticos -->
 <div class="col-md-12">
   <h4>Diagnósticos</h4>
-  <% record.diagnostics.each do |d| %>
+  <% record.diagnostics.each do |key, dhash| %>
     <div class="col-md-12">
-      <p><%= "(#{d.created_at.strftime('%d %b %Y')}) - #{d.description}" %></p>
+      <% dhash.each do |d| %>
+        <p><%= "(#{key}) - #{d.description}" %></p>
+      <% end %>
     </div>
   <% end %>
 </div>

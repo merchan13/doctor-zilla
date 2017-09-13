@@ -112,18 +112,23 @@ class MedicalRecord < ApplicationRecord
   end
 
   def diagnostics
-    diagnostics_array = Array.new
+    diagnostics_hash = Hash.new
 
     @ordered_consultations = self.consultations.order(created_at: :desc)
     @ordered_consultations.each do |c|
 
-      @ordered_diagnostics = c.diagnostics.order(created_at: :desc)
-      @ordered_diagnostics.each do  |d|
-        diagnostics_array << d
+      @diagnostics = c.diagnostics
+      @diagnostics.each do  |d|
+        if diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"].nil?
+          diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] = Array.new
+          diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] << d
+        else
+          diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] << d
+        end
       end
     end
 
-    diagnostics_array
+    diagnostics_hash
   end
 
   def operative_notes
