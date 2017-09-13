@@ -224,8 +224,10 @@
     </div>
 
     <!-- ANTECEDENTES. -->
-    <% if params[:action] == 'edit' || params[:action] == 'update' %>
-      <%= render partial: 'backgrounds', locals: { f: f, record: @record } %>
+    <% if current_user.role == "Doctor" %>
+      <% if params[:action] == 'edit' || params[:action] == 'update' %>
+        <%= render partial: 'backgrounds', locals: { f: f, record: @record } %>
+      <% end %>
     <% end %>
 
     <div class='form-group center'>

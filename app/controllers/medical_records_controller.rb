@@ -58,14 +58,16 @@ class MedicalRecordsController < ApplicationController
 
   def update
     MedicalRecord.transaction do
-      @record.update_background("family", params["bg_family"])
-      @record.update_background("allergy", params["bg_allergy"])
-      @record.update_background("diabetes", params["bg_diabetes"])
-      @record.update_background("asthma", params["bg_asthma"])
-      @record.update_background("heart", params["bg_heart"])
-      @record.update_background("medicine", params["bg_medicine"])
-      @record.update_background("surgical", params["bg_surgical"])
-      @record.update_background("other", params["bg_other"])
+      if current_user == "Doctor"
+        @record.update_background("family", params["bg_family"])
+        @record.update_background("allergy", params["bg_allergy"])
+        @record.update_background("diabetes", params["bg_diabetes"])
+        @record.update_background("asthma", params["bg_asthma"])
+        @record.update_background("heart", params["bg_heart"])
+        @record.update_background("medicine", params["bg_medicine"])
+        @record.update_background("surgical", params["bg_surgical"])
+        @record.update_background("other", params["bg_other"])
+      end
 
       if @record.update(record_params)
         flash[:success] = "Historia Médica actualizada exitósamente"
