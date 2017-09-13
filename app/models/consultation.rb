@@ -2,8 +2,11 @@ class Consultation < ApplicationRecord
   belongs_to :medical_record
 
   has_many :physical_exams
+  has_many :consultation_diagnostics
+  has_many :diagnostics, through: :consultation_diagnostics
+
   belongs_to :reason, optional: true
-  belongs_to :diagnostic, optional: true
+
   has_one :plan
 
   # Recibo un array con todos los examenes fisicos.

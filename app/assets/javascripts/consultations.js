@@ -1,6 +1,7 @@
 var consultation_update_reasons;
 var consultation_update_diagnostics;
 var consultation_update_procedures;
+var consultation_add_diagnostics_to_list;
 var consultation_add_procedures_to_list;
 var init_imc_calculator;
 
@@ -53,7 +54,7 @@ consultation_update_diagnostics = function() {
   });
 
   $('#new-diagnostic-form').on('ajax:success', function(event, data, status){
-    $('#consultation_diagnostic_id').append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
+    $('#diagnostics_select').append("<option value='"+ data.id +"' selected>"+ data.description +"</option>");
     $('#new-diagnostic-modal').modal('hide');
     $('#new-diagnostic-form').find('input:text').val('');
     $('#new-diagnostic-form').find('input').css('border-color', '#ccc');
@@ -121,6 +122,42 @@ consultation_update_procedures = function() {
   });
 }
 
+consultation_add_diagnostics_to_list = function() {
+    var wrapper         = $(".consultation_diagnostics_wrap");
+    var data_wrapper    = $(".consultation_diagnostics_data_wrap");
+    var add_button      = $(".consultation_add_diagnostic_button");
+    var x = 0;
+
+    $(add_button).click(function(e){
+        e.preventDefault();
+        var value = $( "#diagnostics_select" ).val();
+        var name = $( "#diagnostics_select option:selected" ).text();
+
+        if (value.length > 0){
+          var field_html = "<div id='UIdiagnostic"+ value +"'>"
+                              +"<div class='col-md-8 form-group' style='margin-right:0; margin-left:0'>"
+                                  +"<input type='text' name='diagnostics_name[]' value='"+ name +"' class='form-control' disabled></div>"
+                              +"<div class='col-md-1 form-group'>"
+                                  +"<button type='button' name='button' value='"+ value +"' class='btn btn-danger remove_diagnostic_button'>X</button></div>"
+                            +"</div>";
+
+          $(data_wrapper).append("<input type='hidden' id='DATAdiagnostic"+ value +"' name='diagnostics[]' value='"+ value +"' class='form-control'>");
+          $(wrapper).append(field_html);
+          x++;
+        }
+    });
+
+    $(wrapper).on("click",".remove_diagnostic_button", function(e){
+        e.preventDefault();
+
+        var val = $(this).val();
+
+        $("#UIdiagnostic"+ val +"").remove();
+        $("#DATAdiagnostic"+ val +"").remove();
+        x--;
+    });
+}
+
 consultation_add_procedures_to_list = function() {
     var wrapper         = $(".consultation_procedures_wrap");
     var data_wrapper    = $(".consultation_procedures_data_wrap");
@@ -154,8 +191,6 @@ consultation_add_procedures_to_list = function() {
         $("#UIprocedure"+ val +"").remove();
         $("#DATAprocedure"+ val +"").remove();
         x--;
-
-        update_cost();
     });
 }
 
@@ -202,6 +237,7 @@ $(document).ready(function functionName() {
   consultation_update_reasons();
   consultation_update_diagnostics();
   consultation_update_procedures();
+  consultation_add_diagnostics_to_list();
   consultation_add_procedures_to_list();
   init_imc_calculator();
 })

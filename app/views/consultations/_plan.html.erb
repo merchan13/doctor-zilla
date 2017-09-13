@@ -22,7 +22,7 @@
   <div class="col-md-12"><br></div>
 
   <div class="col-md-12">
-    <h4><i>Agregar un Procedimiento</i></h4>
+    <h4>Agregar un Procedimiento <span style="font-size: 12px; color:#cc0000">(Recuerde seleccionar un procedimiento y luego presionar "Agregar a la lista")</span></h4>
     <div class="col-md-10">
       <%= select_tag "procedures_select",
           options_from_collection_for_select(Procedure.all.order(name: :asc), :id, :name),
@@ -43,7 +43,7 @@
     </div>
     <div class="col-md-10 consultation_procedures_wrap">
       <div class="col-md-12">
-        <%= label(:procedure, :title, "Procedimiento(s):", class: 'form-control-label') %>
+        <%= label(:procedure, :title, "Procedimientos agregados:", class: 'form-control-label') %>
       </div>
       <!-- inputs -->
     </div>

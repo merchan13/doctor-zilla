@@ -1,7 +1,31 @@
 <div class="form-group col-md-12">
   <div class="col-md-12">
-    <h4>Diagnóstico</h4>
-    <%= f.select :diagnostic_id, options_from_collection_for_select(Diagnostic.order(description: :asc), :id, :description, @consultation.diagnostic_id), {include_blank: 'N/A'}, class: 'form-control' %>
-    <a href="#" data-toggle="modal" data-target="#new-diagnostic-modal">Agregar nuevo</a>
+    <h4>Diagnóstico <span style="font-size: 12px; color:#cc0000">(Recuerde seleccionar un diagnóstico y luego presionar "Agregar a la lista")</span></h4>
+    <div class="col-md-10">
+      <%= select_tag "diagnostics_select",
+          options_from_collection_for_select(Diagnostic.all.order(description: :asc), :id, :description),
+          include_blank: 'N/A',
+          class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-success consultation_add_diagnostic_button">Agregar a la lista</button>
+    </div>
+    <div class="col-md-12">
+      <a href="#" data-toggle="modal" data-target="#new-diagnostic-modal">Agregar nuevo diagnóstico</a>
+    </div>
+  </div>
+
+  <div class="col-md-12"><br></div> <!-- separador -->
+
+  <div class="col-md-12">
+    <div class="consultation_diagnostics_data_wrap">
+      <!-- hidden inputs -->
+    </div>
+    <div class="col-md-10 consultation_diagnostics_wrap">
+      <div class="col-md-12">
+        <%= label(:diagnostic, :title, "Diagnósticos agregados:", class: 'form-control-label') %>
+      </div>
+      <!-- inputs -->
+    </div>
   </div>
 </div>

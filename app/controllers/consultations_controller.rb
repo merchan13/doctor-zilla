@@ -31,6 +31,12 @@ class ConsultationsController < ApplicationController
       @consultation.add_backgrounds(params[:background])
       @consultation.add_physical_exams(params[:physical], params[:physical_description])
 
+      if !params["diagnostics"].nil?
+        params["diagnostics"].each do |d|
+            @consultation.consultation_diagnostics.create(diagnostic_id: d)
+        end
+      end
+
       if !params[:plan][:description].blank?
         @consultation.add_plan(params[:plan])
         if params[:procedures].present?
@@ -78,7 +84,7 @@ class ConsultationsController < ApplicationController
   private
     def consultation_params
       params.require(:consultation).permit( :evolution, :note, :affliction, :weight, :height, :pressure_s,
-                                            :pressure_d, :diagnostic_id, :reason_id )
+                                            :pressure_d, :reason_id )
     end
 
     def set_consultation

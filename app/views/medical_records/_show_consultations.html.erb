@@ -81,9 +81,12 @@
           <% end %>
 
           <!-- Diagnóstico -->
-          <% if consultation.diagnostic.present?  %>
+          <% if consultation.diagnostics.count > 0  %>
             <div class="col-md-4">
-              <p><i><u><strong>Diagnóstico:<br></strong></u></i><%= consultation.diagnostic.description %></p>
+              <p><i><u><strong>Diagnóstico:<br></strong></u></i></p>
+              <% consultation.diagnostics.each do |d| %>
+                <p><%= d.description %></p>
+              <% end %>
             </div>
           <% end %>
 

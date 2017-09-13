@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830025153) do
+ActiveRecord::Schema.define(version: 20170912232030) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 20170830025153) do
     t.index ["medical_record_id"], name: "index_budgets_on_medical_record_id"
   end
 
+  create_table "consultation_diagnostics", force: :cascade do |t|
+    t.integer  "consultation_id"
+    t.integer  "diagnostic_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["consultation_id"], name: "index_consultation_diagnostics_on_consultation_id"
+    t.index ["diagnostic_id"], name: "index_consultation_diagnostics_on_diagnostic_id"
+  end
+
   create_table "consultations", force: :cascade do |t|
     t.integer  "medical_record_id"
     t.datetime "created_at",        null: false
@@ -85,12 +94,10 @@ ActiveRecord::Schema.define(version: 20170830025153) do
     t.text     "affliction"
     t.float    "weight"
     t.float    "height"
-    t.integer  "diagnostic_id"
     t.integer  "reason_id"
     t.string   "pressure_s"
     t.string   "pressure_d"
     t.integer  "plan_id"
-    t.index ["diagnostic_id"], name: "index_consultations_on_diagnostic_id"
     t.index ["medical_record_id"], name: "index_consultations_on_medical_record_id"
     t.index ["plan_id"], name: "index_consultations_on_plan_id"
     t.index ["reason_id"], name: "index_consultations_on_reason_id"
