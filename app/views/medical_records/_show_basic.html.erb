@@ -1,65 +1,30 @@
-<!-- Profesion, Telefono, Seguro -->
-<div class="col-md-12">
-  <!-- Profesion -->
-  <div class="col-md-4">
-    <div class="col-md-4">
-      <p><strong>Profesión:</strong></p>
-    </div>
-    <div class="col-md-8">
-      <p><%= record.occupation.name %></p>
-    </div>
-  </div>
-  <!-- Telefonos -->
-  <div class="col-md-4">
-    <div class="col-md-4">
-      <p><strong>Teléfono:</strong></p>
-    </div>
-    <div class="col-md-8">
-      <p><%= record.phone_number %></p>
-      <p><%= record.cellphone_number %></p>
-    </div>
-  </div>
-  <!--  Seguro -->
-  <div class="col-md-4">
-    <div class="col-md-3">
-      <p><strong>Seguro:</strong></p>
-    </div>
-    <div class="col-md-9">
-      <p><%= record.insurance.name if record.insurance.present? %></p>
-    </div>
-  </div>
+<div class="col-md-3">
+  <h4>Profesión</h4>
+  <p><%= record.occupation.name %></p>
 </div>
 
-<!-- Correo, Dirección -->
-<div class="col-md-12">
-  <!-- Correo -->
-  <div class="col-md-4">
-    <div class="col-md-3">
-      <p><strong>Correo:</strong></p>
-    </div>
-    <div class="col-md-9">
-      <p><%= record.email %></p>
-    </div>
-  </div>
-  <!--  Direccion -->
-  <div class="col-md-8">
-    <div class="col-md-2">
-      <p><strong>Dirección:</strong></p>
-    </div>
-    <div class="col-md-10">
-      <p><%= record.address%></p>
-    </div>
-  </div>
+<div class="col-md-3">
+  <h4>Teléfonos</h4>
+  <p><%= record.phone_number %></p>
+  <p><%= record.cellphone_number %></p>
 </div>
 
-<!-- Referencia -->
+<div class="col-md-3">
+  <h4>Correo</h4>
+  <p><%= record.email %></p>
+</div>
+
+<div class="col-md-3">
+  <h4>Seguro</h4>
+  <p><%= record.insurance.name if record.insurance.present? %></p>
+</div>
+
 <div class="col-md-12">
-  <div class="col-md-12">
-    <div class="col-md-2">
-      <p><strong>Referido por:</strong></p>
-    </div>
-    <div class="col-md-10">
-      <p><%= record.referred_by %></p>
-    </div>
-  </div>
+  <h4>Dirección</h4>
+  <p><%= record.address%></p>
+</div>
+
+<div class="col-md-3">
+  <h4>Referido por</h4>
+  <p><%= record.referred_by %></p>
 </div>

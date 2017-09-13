@@ -1,5 +1,5 @@
 <!-- Examen basico -->
-<div class="col-md-6">
+<div class="col-md-4">
   <h4>Datos clínicos</h4>
   <% if record.physic_data.present? %>
     <div class="col-md-2">
@@ -20,23 +20,34 @@
     <div class="col-md-10">
       <p><%= record.imc.round(2) if record.imc > 0 %>.</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <i><strong>Tensión:</strong></i>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <p><%= "#{record.physic_data["pressure_s"]}/#{record.physic_data["pressure_d"]}" %> mm Hg</p>
     </div>
   <% end %>
 </div>
+
 <!-- Antecedentes -->
-<div class="col-md-6">
+<div class="col-md-8">
   <h4>Antecedentes</h4>
   <% record.backgrounds.each do |b| %>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <i><strong><%= "#{b.type_es}:"%></strong></i>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <p><%= b.description %></p>
+    </div>
+  <% end %>
+</div>
+
+<!-- Diagnósticos -->
+<div class="col-md-12">
+  <h4>Diagnósticos</h4>
+  <% record.diagnostics.each do |d| %>
+    <div class="col-md-12">
+      <p><%= "(#{d.created_at.strftime('%d %b %Y')}) - #{d.description}" %></p>
     </div>
   <% end %>
 </div>

@@ -111,6 +111,21 @@ class MedicalRecord < ApplicationRecord
     info
   end
 
+  def diagnostics
+    diagnostics_array = Array.new
+
+    @ordered_consultations = self.consultations.order(created_at: :desc)
+    @ordered_consultations.each do |c|
+
+      @ordered_diagnostics = c.diagnostics.order(created_at: :desc)
+      @ordered_diagnostics.each do  |d|
+        diagnostics_array << d
+      end
+    end
+
+    diagnostics_array
+  end
+
   def operative_notes
     op_notes = Array.new
 
