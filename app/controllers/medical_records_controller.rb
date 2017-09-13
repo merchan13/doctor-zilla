@@ -58,7 +58,7 @@ class MedicalRecordsController < ApplicationController
 
   def update
     MedicalRecord.transaction do
-      if current_user == "Doctor"
+      if current_user.role == "Doctor"
         @record.update_background("family", params["bg_family"])
         @record.update_background("allergy", params["bg_allergy"])
         @record.update_background("diabetes", params["bg_diabetes"])
