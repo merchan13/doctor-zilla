@@ -161,7 +161,7 @@ class ReportsController < ApplicationController
 
       if @options['last_consultation'] == true
         description += "Evolución: #{@record.consultations.last.evolution}\n\n"
-        description += "Diagnóstico: #{@record.consultations.last.diagnostic.description if !@record.consultations.last.diagnostic.nil?}\n\n"
+        description += "Diagnóstico: #{set_diagnostics}\n\n"
       end
 
       if @options['plan'] == true
@@ -272,4 +272,15 @@ class ReportsController < ApplicationController
       attachments_array
     end
 
+    def set_diagnostics
+      diagnostics = "\n"
+
+      if !@record.consultations.last.nil?
+        @record.consultations.last.diagnostics.each do |d|
+          diagnostics += " #{d.description}\n"
+        end
+      end
+
+      diagnostics
+    end
 end
