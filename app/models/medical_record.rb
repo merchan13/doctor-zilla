@@ -5,8 +5,6 @@ class MedicalRecord < ApplicationRecord
   validates_integrity_of  :profile_picture
   validates_processing_of :profile_picture
 
-  #has_many :user_medical_records
-  #has_many :users, through: :user_medical_records
   has_many :backgrounds
   has_many :consultations
   has_many :prescriptions
