@@ -20,12 +20,25 @@
   <div class="col-md-12">
     <div class="consultation_diagnostics_data_wrap">
       <!-- hidden inputs -->
+      <% @consultation.diagnostics.each do |d|  %>
+        <input type="hidden" id="DATAdiagnostic<%= d.id %>" name="diagnostics[]" value="<%= d.id %>" class="form-control">
+      <% end %>
     </div>
     <div class="col-md-10 consultation_diagnostics_wrap">
       <div class="col-md-12">
         <%= label(:diagnostic, :title, "Diagnósticos agregados:", class: 'form-control-label') %>
       </div>
       <!-- inputs -->
+      <% @consultation.diagnostics.each do |d|  %>
+        <div id="UIdiagnostic<%= d.id %>">
+          <div class="col-md-8 form-group" style="margin-right:0; margin-left:0">
+            <input type="text" name="diagnostics_name[]" value="<%= d.description %>" class="form-control" disabled="">
+          </div>
+          <div class="col-md-1 form-group">
+            <button type="button" name="button" value="<%= d.id %>" class="btn btn-danger remove_diagnostic_button">X</button>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

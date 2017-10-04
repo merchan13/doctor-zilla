@@ -45,6 +45,18 @@ class Consultation < ApplicationRecord
     end
   end
 
+  def update_diagnostics(new_diagnostics)
+    old_diagnostics = ConsultationDiagnostic.where(consultation_id: self.id)
+
+    old_diagnostics.each do |od|
+      od.destroy
+    end
+
+    new_diagnostics.each do |d|
+      self.consultation_diagnostics.create(diagnostic_id: d)
+    end
+  end
+
   def white_list_exam_type(pre_type)
     if pre_type == 'cc'
       type = 'Head and Neck'

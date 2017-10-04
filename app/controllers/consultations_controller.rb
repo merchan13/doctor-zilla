@@ -45,7 +45,14 @@ class ConsultationsController < ApplicationController
       end
 
       if @consultation.save
+        record = @consultation.medical_record
+
+        record.updated_at = Time.now.getutc
+
+        record.save
+
         flash[:success] = "Nueva Consulta Médica creada exitósamente"
+
         redirect_to medical_record_path(@consultation.medical_record)
       else
         render 'new'
@@ -54,22 +61,27 @@ class ConsultationsController < ApplicationController
   end
 
   def edit
-    # ...
   end
 
   def update
     Consultation.transaction do
-
-      peModified = @consultation.physical_exams.count
-
       @consultation.update_PE(params[:physical], params[:physical_description])
 
-      if peModified != @consultation.physical_exams.count
-        @consultation.updated_at = Time.now.getutc
+      if !params["diagnostics"].nil?
+        @consultation.update_diagnostics(params["diagnostics"])
       end
 
+      @consultation.updated_at = Time.now.getutc
+
       if @consultation.update(consultation_params)
+        record = @consultation.medical_record
+
+        record.updated_at = Time.now.getutc
+
+        record.save
+
         flash[:success] = "Consulta Médica actualizada exitósamente"
+
         redirect_to medical_record_path(@consultation.medical_record)
       else
         render 'edit'
