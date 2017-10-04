@@ -5,8 +5,8 @@ class MedicalRecord < ApplicationRecord
   validates_integrity_of  :profile_picture
   validates_processing_of :profile_picture
 
-  has_many :user_medical_records
-  has_many :users, through: :user_medical_records
+  #has_many :user_medical_records
+  #has_many :users, through: :user_medical_records
   has_many :backgrounds
   has_many :consultations
   has_many :prescriptions
@@ -14,6 +14,7 @@ class MedicalRecord < ApplicationRecord
   has_many :reports
   has_many :budgets
 
+  belongs_to :user
   belongs_to :insurance, optional: true
   belongs_to :occupation, optional: true
 
@@ -30,7 +31,7 @@ class MedicalRecord < ApplicationRecord
                         :insurance,
                         :message => "es un campo obligatorio."
 
-  validates :document, uniqueness: { scope: :document_type, case_sensitive: false, message: "ya existe en la base de datos." }
+  validates :document, uniqueness: { scope: [:document_type, :user_id], case_sensitive: false, message: "ya existe en la base de datos." }
   validates :old_record_number, uniqueness: true, allow_nil: true
 
   def full_name
@@ -185,8 +186,10 @@ class MedicalRecord < ApplicationRecord
     return MedicalRecord.none if param.blank?
 
     param.strip!
+
     param.downcase!
-    (name_matches(param) + last_name_matches(param) + document_matches(param)).uniq
+
+    name_matches(param).or(last_name_matches(param).or(document_matches(param)))
   end
 
   def self.name_matches(param)

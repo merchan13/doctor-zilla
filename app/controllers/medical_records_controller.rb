@@ -53,7 +53,6 @@ class MedicalRecordsController < ApplicationController
   end
 
   def edit
-    # ...
   end
 
   def update
@@ -79,17 +78,19 @@ class MedicalRecordsController < ApplicationController
   end
 
   def show
-    # ...
   end
 
   def search
     @filter = params[:filter]
 
     if current_user.role == "Doctor"
-      @records = current_user.medical_records.search(params[:search_param])
+      #@records = current_user.medical_records.search(params[:search_param]).order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+      @records = current_user.medical_records.search(params[:search_param]).order(created_at: :desc)
     elsif current_user.role == "Ayudante"
       doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
-      @records = doctor.medical_records.search(params[:search_param])
+
+      #@records = doctor.medical_records.search(params[:search_param]).order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+      @records = doctor.medical_records.search(params[:search_param]).order(created_at: :desc)
     end
 
     if @records
