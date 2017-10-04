@@ -29,6 +29,7 @@ class MedicalRecord < ApplicationRecord
                         :address,
                         :occupation,
                         :insurance,
+                        :user_id,
                         :message => "es un campo obligatorio."
 
   validates :document, uniqueness: { scope: [:document_type, :user_id], case_sensitive: false, message: "ya existe en la base de datos." }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004210746) do
+ActiveRecord::Schema.define(version: 20171004215548) do
 
   create_table "assistantships", force: :cascade do |t|
     t.integer  "user_id"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20171004210746) do
     t.integer  "insurance_id"
     t.date     "birthday"
     t.string   "old_record_number"
-    t.integer  "user_id"
+    t.integer  "user_id",                 null: false
     t.index ["document_type", "document", "user_id"], name: "index_record_identification_uniqueness", unique: true
     t.index ["insurance_id"], name: "index_medical_records_on_insurance_id"
     t.index ["occupation_id"], name: "index_medical_records_on_occupation_id"
