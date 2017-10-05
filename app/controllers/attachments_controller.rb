@@ -29,7 +29,7 @@ class AttachmentsController < ApplicationController
 
       @attachment.destroy
 
-      flash[:success] = "Attachment deleted"
+      flash[:success] = "Anexo eliminado"
       redirect_to attachments_path(record: @record)
     end
   end

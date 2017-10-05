@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   resources :medical_records,   except: :destroy
   resources :medicines,         except: [:destroy, :edit, :update]
   resources :occupations,       except: [:destroy, :edit, :update]
-  resources :operative_notes,   except: [:destroy, :edit, :update]
+  resources :operative_notes,   except: [:edit, :update]
   resources :physical_exams,    except: :destroy
   resources :plans,             only:   :index
   resources :prescriptions,     except: [:destroy, :edit, :update]
   resources :procedures,        except: [:destroy, :edit, :update]
-  resources :reports,           except: [:destroy, :edit, :update]
+  resources :reports,           except: [:edit, :update]
   resources :reasons,           except: [:destroy, :edit, :update]
 
   post 'medical_records/:id/change_important_status', to: 'medical_records#important_status'

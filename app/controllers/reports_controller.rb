@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   before_action :set_medical_record, only: [:new, :create, :select_data, :index]
   before_action :set_selected_options, only: [:new]
-  before_action :set_report, only: [:show, :download]
+  before_action :set_report, only: [:show, :download, :destroy]
   respond_to :docx
 
   def index
@@ -43,6 +43,17 @@ class ReportsController < ApplicationController
   end
 
   def select_data
+  end
+
+  def destroy
+    Report.transaction do
+      @record = @report.medical_record
+
+      @report.destroy
+
+      flash[:success] = "Informe eliminado"
+      redirect_to reports_path(record: @record)
+    end
   end
 
   def download
@@ -161,6 +172,7 @@ class ReportsController < ApplicationController
 
       if @options['last_consultation'] == true
         description += "Evolución: #{@record.consultations.last.evolution}\n\n"
+        description += "Notas: #{@record.consultations.last.note}\n\n"
         description += "Diagnóstico: #{set_diagnostics}\n\n"
       end
 

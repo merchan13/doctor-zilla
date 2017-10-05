@@ -2,7 +2,7 @@
   <%= "Historia ##{@record.id} " %>
   <span id="header_important_status">
     <% if @record.important %>
-      <i id="header_important_star" class="fa fa-star" aria-hidden="true" style="color: gold"></i>
+      <i id="header_important_star" class="fa fa-exclamation-circle" aria-hidden="true" style="color: #e74c3c"></i>
     <% end %>
   </span>
 </h1>
@@ -40,7 +40,7 @@
           <%= "#{@record.name} #{@record.last_name} " %>
           <span id="name_important_status">
             <% if @record.important %>
-              <i id="name_important_star" class="fa fa-star" aria-hidden="true" style="color: gold"></i>
+              <i id="name_important_star" class="fa fa-exclamation-circle" aria-hidden="true" style="color: #e74c3c"></i>
             <% end %>
           </span>
         </h2>

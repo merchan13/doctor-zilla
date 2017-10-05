@@ -1,6 +1,6 @@
 class OperativeNotesController < ApplicationController
   before_action :set_medical_record,  only: [:new, :create, :index]
-  before_action :set_operative_note,  only: [:show, :download]
+  before_action :set_operative_note,  only: [:show, :download, :destroy]
   respond_to :docx
 
   def index
@@ -45,6 +45,17 @@ class OperativeNotesController < ApplicationController
 
   def show
     # ...
+  end
+
+  def destroy
+    OperativeNote.transaction do
+      @record = @operative_note.plan.consultation.medical_record
+
+      @operative_note.destroy
+
+      flash[:success] = "Nota Operatoria eliminada"
+      redirect_to operative_notes_path(record: @record)
+    end
   end
 
   def download

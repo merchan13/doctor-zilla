@@ -16,7 +16,7 @@
       <% if !@report.attachments.empty? %>
         <h3>Anexos</h3>
         <% @report.attachments.each do |a| %>
-          <p><a href="<%= a.url %>" target="_blank"><%= a.description %></a></p>
+          <p><a href="<%= a.url %>" target="_blank" class="btn btn-md btn-default"><%= a.description %></a></p>
         <% end %>
       <% end %>
     </div>

@@ -19,7 +19,10 @@
             <th scope="row" class="col-md-1"><%= report.id %></th>
             <td class="col-md-2"><%= "#{report.created_at.strftime("%d-%b-%Y")}" %></td>
             <td class="col-md-7"><%= report.description.truncate(150) %></td>
-            <td class="col-md-2"><%= link_to "Ver", report_path(report), class: 'btn btn-info' %></td>
+            <td class="col-md-2">
+              <%= link_to "Ver", report_path(report), class: 'btn btn-info' %>
+              <%= link_to "Borrar", report, class: 'btn btn-danger', method: :delete, data: { confirm: "¿Está seguro de que quiere eliminar el informe? La siguiente acción no puede deshacerse." } %>
+            </td>
         </tr>
         <p></p>
       <% end %>

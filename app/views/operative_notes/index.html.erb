@@ -19,7 +19,10 @@
             <th scope="row" class="col-md-1"><%= operative_note.id %></th>
             <td class="col-md-2"><%= "#{operative_note.created_at.strftime("%d-%b-%Y")}" %></td>
             <td class="col-md-7"><%= operative_note.plan.description %></td>
-            <td class="col-md-2"><%= link_to "Ver", operative_note_path(operative_note), class: 'btn btn-info' %></td>
+            <td class="col-md-2">
+              <%= link_to "Ver", operative_note_path(operative_note), class: 'btn btn-info' %>
+              <%= link_to "Borrar", operative_note, class: 'btn btn-danger', method: :delete, data: { confirm: "¿Está seguro de que quiere eliminar el informe de Nota operatoria? La siguiente acción no puede deshacerse." } %>
+            </td>
         </tr>
         <p></p>
       <% end %>

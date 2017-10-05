@@ -145,8 +145,8 @@ record_important_status = function() {
   $('#change_status_button').on('ajax:success', function(event, data, status){
 
     if (data.important == true){
-      $('#header_important_status').append("<i id='header_important_star' class='fa fa-star' aria-hidden='true' style='color: gold'></i>");
-      $('#name_important_status').append("<i id='name_important_star' class='fa fa-star' aria-hidden='true' style='color: gold'></i>");
+      $('#header_important_status').append("<i id='header_important_star' class='fa fa-exclamation-circle' aria-hidden='true' style='color: #e74c3c'></i>");
+      $('#name_important_status').append("<i id='name_important_star' class='fa fa-exclamation-circle' aria-hidden='true' style='color: #e74c3c'></i>");
     }
     else {
       $('#header_important_star').remove();
