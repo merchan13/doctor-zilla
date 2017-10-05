@@ -211,14 +211,18 @@ class MedicalRecord < ApplicationRecord
     end
   end
 
-  def self.twenty_newest
-    latest = MedicalRecord.all.order(created_at: :desc).take(20)
+  def self.twenty_newest(doctor)
+    doctor = User.find(doctor)
+
+    latest = doctor.medical_records.all.order(updated_at: :desc).take(20)
 
     latest
   end
 
-  def self.important_records
-    importants = MedicalRecord.where(important: true).order(updated_at: :desc)
+  def self.important_records(doctor)
+    doctor = User.find(doctor)
+
+    importants = doctor.medical_records.where(important: true).order(updated_at: :desc)
 
     importants
   end

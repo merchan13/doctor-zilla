@@ -16,7 +16,14 @@
         </tr>
       </thead>
       <tbody>
-        <% MedicalRecord.twenty_newest.each do |record| %>
+        <%
+        if current_user.role == "Doctor"
+          doctor = current_user
+        elsif
+          doctor = User.find(Assistantship.where(assistant_id:current_user.id).first.user_id)
+        end
+        %>
+        <% MedicalRecord.twenty_newest(doctor.id).each do |record| %>
           <tr>
             <td><%= record.full_id %></td>
             <td><%= record.full_name %></td>
