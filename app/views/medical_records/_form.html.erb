@@ -40,8 +40,18 @@
 
     <!-- # HV -->
     <div class="col-md-4">
-      <h4>Historia Vieja <input type="checkbox" name="check-hv" value="" onchange="javascript:isOldRecord(this)"></h4></input>
-      <%= f.text_field :old_record_number,
+      <% if @record.old_record_number.present? %>
+        <h4>Historia Vieja <input type="checkbox" name="check-hv" value="" onchange="javascript:isOldRecord(this)" checked="true"></h4></input>
+        <%= f.text_field :old_record_number,
+          class: 'form-control',
+          placeholder: 'Número de guía',
+          autofocus: true,
+          pattern: "^[0-9]{1,4}$",
+          onchange: 'javascript:validateTextField(this)',
+          required: true %>
+      <% else %>
+        <h4>Historia Vieja <input type="checkbox" name="check-hv" value="" onchange="javascript:isOldRecord(this)"></h4></input>
+        <%= f.text_field :old_record_number,
           class: 'form-control',
           placeholder: 'Número de guía',
           style: "display:none",
@@ -49,6 +59,7 @@
           pattern: "^[0-9]{1,4}$",
           onchange: 'javascript:validateTextField(this)',
           disabled: true %>
+      <% end  %>
     </div>
 
     <div class="col-md-12"><br></div>

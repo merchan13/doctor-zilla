@@ -68,6 +68,12 @@ class MedicalRecordsController < ApplicationController
         @record.update_background("other", params["bg_other"])
       end
 
+      if (params[:medical_record])[:old_record_number].nil?
+        @record.old_record_number = nil
+
+        @record.save
+      end
+
       if @record.update(record_params)
         flash[:success] = "Historia Médica actualizada exitósamente"
         redirect_to medical_record_path(@record)
@@ -98,6 +104,20 @@ class MedicalRecordsController < ApplicationController
     else
       render status: :not_found, nothing: true
     end
+  end
+
+  def important_status
+    record = MedicalRecord.find(params[:id])
+
+    if record.important
+      record.important = false
+    else
+      record.important = true
+    end
+
+    record.save
+
+    render json: record
   end
 
   private

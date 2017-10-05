@@ -53,3 +53,15 @@
     </div>
   <% end %>
 </div>
+
+<!-- Operaciones -->
+<div class="col-md-12">
+  <h4>Operaciones</h4>
+  <% record.procedures_history.each do |key, phash| %>
+    <div class="col-md-12">
+      <% phash.each do |p| %>
+        <p><%= "(#{key}) - #{p.description}" %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

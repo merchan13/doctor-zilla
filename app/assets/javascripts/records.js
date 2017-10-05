@@ -3,6 +3,7 @@ var show_consultation;
 var update_occupations;
 var update_insurances;
 var init_age_calculator;
+var record_important_status;
 
 init_record_lookup = function() {
   $('#record-lookup-form').on('ajax:before', function(event, data, status){
@@ -139,6 +140,25 @@ init_age_calculator = function() {
   }
 }
 
+record_important_status = function() {
+
+  $('#change_status_button').on('ajax:success', function(event, data, status){
+
+    if (data.important == true){
+      $('#header_important_status').append("<i id='header_important_star' class='fa fa-star' aria-hidden='true' style='color: gold'></i>");
+      $('#name_important_status').append("<i id='name_important_star' class='fa fa-star' aria-hidden='true' style='color: gold'></i>");
+    }
+    else {
+      $('#header_important_star').remove();
+      $('#name_important_star').remove();
+    }
+  });
+
+  $('#change_status_button').on('ajax:error', function(event, xhr, status, error){
+    alert('Ocurrió un error, por favor vuelva a intentar')
+  });
+}
+
 function documentTypeSelected(docType) {
     var type = docType.value;
 
@@ -159,11 +179,36 @@ function isOldRecord(input) {
   }
   else {
     $("#medical_record_old_record_number").toggle();
-    $("#medical_record_old_record_number").val('');
     $("#medical_record_old_record_number").removeAttr("required");
     $("#medical_record_old_record_number").prop( "disabled", true );
   }
 }
+
+function show_newest(button) {
+
+  if ($("#newest-table").is(':visible')) {
+    $(button).text('[ Ver más... ]');
+  }
+  else {
+    $(button).text('[ Ver menos ]');
+  }
+
+  $("#newest-table").toggle();
+}
+
+function show_importants(button) {
+
+  if ($("#importants-table").is(':visible')) {
+    $(button).text('[ Ver más... ]');
+  }
+  else {
+    $(button).text('[ Ver menos ]');
+  }
+
+  $("#importants-table").toggle();
+
+}
+
 
 $(document).ready(function functionName() {
   init_record_lookup();
@@ -171,4 +216,5 @@ $(document).ready(function functionName() {
   update_occupations();
   update_insurances();
   init_age_calculator();
+  record_important_status();
 })

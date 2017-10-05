@@ -1,0 +1,65 @@
+<div class="results-block col-md-10">
+    <h3>Últimas historias
+      <span>
+        <button type="button" name="button" class="btn btn-link" onclick="javascript:show_newest(this)">
+          [ Ver más... ]
+        </button>
+      </span>
+    </h3>
+    <table id="newest-table" class="table table-hover col-md-12" style="display:none">
+      <thead>
+        <tr>
+          <th>Identificación</th>
+          <th>Nombre completo</th>
+          <th>Última consulta</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% MedicalRecord.twenty_newest.each do |record| %>
+          <tr>
+            <td><%= record.full_id %></td>
+            <td><%= record.full_name %></td>
+            <td><%= record.consultations.last.created_at.strftime("%d-%b-%Y") if !record.consultations.last.nil? %></td>
+            <td>
+              <!-- NUEVA CONSULTA -->
+              <% if @filter == 'new_consultation' %>
+                <%= link_to "Nueva consulta", new_consultation_path(record: record), class: 'btn btn-success modal-link' %>
+
+              <!-- BUSCAR HISTORIA -->
+              <% elsif @filter == 'search_record' %>
+                <%= link_to "Ver", medical_record_path(record), class: 'btn btn-primary modal-link' %>
+                <%= link_to "Editar", edit_medical_record_path(record), class: 'btn btn-success modal-link' %>
+
+              <!-- NUEVO RECIPE -->
+              <% elsif @filter == 'new_prescription' %>
+                <%= link_to "Nuevo récipe", new_prescription_path(record: record), class: 'btn btn-success modal-link' %>
+                <% if record.prescriptions.count > 0 %>
+                  <%= link_to "Ver récipes (#{record.prescriptions.count})", prescriptions_path(record: record), class: 'btn btn-primary modal-link' %>
+                <% end %>
+
+              <!-- NUEVA NOTA OPERATORIA -->
+              <% elsif @filter == 'new_operative_note' %>
+                <%= link_to "Plan de emergencia", new_operative_note_path(record: record), class: 'btn btn-danger modal-link' %>
+
+              <!-- NUEVO INFORME -->
+              <% elsif @filter == 'new_report' %>
+                <%= link_to "Nuevo informe", select_data_path(record: record), class: 'btn btn-success modal-link' %>
+                <% if record.reports.count > 0 %>
+                  <%= link_to "Ver informes (#{record.reports.count})", reports_path(record: record), class: 'btn btn-primary modal-link' %>
+                <% end %>
+
+              <!-- NUEVO PRESUPUESTO -->
+              <% elsif @filter == 'new_budget' %>
+                <%= link_to "Nuevo", new_budget_path(record: record), class: 'btn btn-success modal-link' %>
+                <% if record.budgets.count > 0 %>
+                  <%= link_to "Ver presupuestos (#{record.budgets.count})", budgets_path(record: record), class: 'btn btn-primary modal-link' %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end #@records.each do |record|%>
+      </tbody>
+    </table>
+    <%#= will_paginate @records %>
+  </div>

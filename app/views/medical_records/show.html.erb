@@ -1,4 +1,11 @@
-<h1><%= "Historia ##{@record.id}" %></h1>
+<h1>
+  <%= "Historia ##{@record.id} " %>
+  <span id="header_important_status">
+    <% if @record.important %>
+      <i id="header_important_star" class="fa fa-star" aria-hidden="true" style="color: gold"></i>
+    <% end %>
+  </span>
+</h1>
 <% if !@record.old_record_number.nil? %>
   <h4><%= "[#HV #{@record.old_record_number}]" %></h4>
 <% end %>
@@ -11,6 +18,16 @@
     </div>
 
     <div class="col-md-12">
+      <%= link_to "Importante",
+          "#{@record.id}/change_important_status",
+          id: 'change_status_button',
+          remote: true,
+          method: :post,
+          class: 'btn btn-lg btn-default',
+          style:'float:right; margin-top:10px; width:20%' %>
+    </div>
+
+    <div class="col-md-12">
       <div class="col-md-3">
         <% if @record.profile_picture.url.present? %>
           <%= image_tag(@record.profile_picture.url, class: 'img-responsive img-circle', style: 'margin: 0 auto; width: 80%') %>
@@ -19,7 +36,14 @@
         <% end %>
       </div>
       <div class="col-md-9">
-        <h2><%= "#{@record.name} #{@record.last_name}" %></h2>
+        <h2>
+          <%= "#{@record.name} #{@record.last_name} " %>
+          <span id="name_important_status">
+            <% if @record.important %>
+              <i id="name_important_star" class="fa fa-star" aria-hidden="true" style="color: gold"></i>
+            <% end %>
+          </span>
+        </h2>
         <h4><%= @record.full_id %></h3>
         <h4><%= "Fecha de nacimiento: #{@record.birthday.strftime('%d %b %Y')} " %><strong><%= "(#{@record.age} años)" %></strong></h4>
         <h4><%= "Primera consulta: #{@record.first_consultation_date.strftime('%d %b %Y')}" %></h4>

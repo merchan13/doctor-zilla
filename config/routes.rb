@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   resources :reports,           except: [:destroy, :edit, :update]
   resources :reasons,           except: [:destroy, :edit, :update]
 
+  post 'medical_records/:id/change_important_status', to: 'medical_records#important_status'
+
   get 'search',             to: 'pages#search'
   get 'search_records',     to: 'medical_records#search'
   get 'search_plans',       to: 'plans#search'

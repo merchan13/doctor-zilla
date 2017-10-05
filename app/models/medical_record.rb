@@ -115,12 +115,16 @@ class MedicalRecord < ApplicationRecord
     diagnostics_hash = Hash.new
 
     @ordered_consultations = self.consultations.order(created_at: :desc)
+
     @ordered_consultations.each do |c|
 
       @diagnostics = c.diagnostics
+
       @diagnostics.each do  |d|
         if diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"].nil?
+
           diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] = Array.new
+
           diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] << d
         else
           diagnostics_hash["#{c.created_at.strftime('%d %b %Y')}"] << d
@@ -129,20 +133,6 @@ class MedicalRecord < ApplicationRecord
     end
 
     diagnostics_hash
-  end
-
-  def operative_notes
-    op_notes = Array.new
-
-    self.consultations.each do |c|
-      if !c.plan.nil?
-        if !c.plan.operative_note.nil?
-          op_notes << c.plan.operative_note
-        end
-      end
-    end
-
-    op_notes
   end
 
   def physical_exams
@@ -169,6 +159,46 @@ class MedicalRecord < ApplicationRecord
     plns
   end
 
+  def operative_notes
+    op_notes = Array.new
+
+    self.consultations.each do |c|
+      if !c.plan.nil?
+        if !c.plan.operative_note.nil?
+          op_notes << c.plan.operative_note
+        end
+      end
+    end
+
+    op_notes
+  end
+
+  def procedures_history
+    procedures = Hash.new
+
+    notes = self.operative_notes
+
+    notes.each do |n|
+
+      if n.plan.procedures.any?
+
+        n.plan.procedures.each do |p|
+
+          if procedures["#{n.created_at.strftime('%d %b %Y')}"].nil?
+
+            procedures["#{n.created_at.strftime('%d %b %Y')}"] = Array.new
+
+            procedures["#{n.created_at.strftime('%d %b %Y')}"] << p
+          else
+            procedures["#{n.created_at.strftime('%d %b %Y')}"] << p
+          end
+        end
+      end
+    end
+
+    procedures
+  end
+
   def latest_pe
     self.consultations.last.physical_exams
   end
@@ -179,6 +209,18 @@ class MedicalRecord < ApplicationRecord
     else
       imc = 0
     end
+  end
+
+  def self.twenty_newest
+    latest = MedicalRecord.all.order(created_at: :desc).take(20)
+
+    latest
+  end
+
+  def self.important_records
+    importants = MedicalRecord.where(important: true).order(updated_at: :desc)
+
+    importants
   end
 
   def self.search(param)
