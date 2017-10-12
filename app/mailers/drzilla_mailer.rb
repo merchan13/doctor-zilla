@@ -8,7 +8,7 @@ class DrzillaMailer < ActionMailer::Base
 
     mail(
     			:to => @user.email,
-    			:bcc => 'merchan1395@gmail.com'
+    			:bcc => 'merchan1395@gmail.com',
     			:subject => 'DoctorrZilla - Restauración de contraseña'
     		)
   end
