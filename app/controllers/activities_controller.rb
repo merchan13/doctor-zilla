@@ -2,9 +2,10 @@ class ActivitiesController < ApplicationController
   before_action :set_dates
 
   def general
-    @pacients = MedicalRecord.all
+    @pacients = current_user.medical_records.all
     if @pacients.count > 0
-      @pacients_without_insurance = Insurance.where('lower(name) LIKE ?', 'sin seguro').first.medical_records
+      @all_pacients_without_insurance = Insurance.where('lower(name) LIKE ?', 'sin seguro').first.medical_records
+      @pacients_without_insurance = @pacients.where(id: @all_pacients_without_insurance)
       @pacients_with_insurance = @pacients.where.not(id: @pacients_without_insurance)
       @pacients_female = @pacients.where('gender LIKE ?', 'femenine')
       @pacients_male = @pacients.where('gender LIKE ?', 'masculine')

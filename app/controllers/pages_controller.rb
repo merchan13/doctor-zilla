@@ -40,8 +40,6 @@ class PagesController < ApplicationController
       @user.password = @pass
       @user.save
 
-      puts @pass
-
       DrzillaMailer.send_password_email(@user, @pass).deliver
 
       flash[:success] = "Nueva contraseña enviada exitósamente"
