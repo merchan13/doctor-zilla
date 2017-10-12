@@ -120,6 +120,7 @@ class ActivitiesController < ApplicationController
 
   def set_records_variables
     none = MedicalRecord.none
+    @pacients = none
     @pacients_without_insurance = none
     @pacients_with_insurance = none
     @pacients_female = none
@@ -137,6 +138,7 @@ class ActivitiesController < ApplicationController
 
   def set_consultations_variables
     none = Consultation.none
+    @consultations = none
     @consultations_without_insurance = none
     @consultations_with_insurance = none
     @consultations_female = none
@@ -154,6 +156,7 @@ class ActivitiesController < ApplicationController
 
   def set_procedures_variables
     none = OperativeNote.none
+    @procedures = none
     @procedures_without_insurance = none
     @procedures_with_insurance = none
     @procedures_female = none
@@ -171,6 +174,7 @@ class ActivitiesController < ApplicationController
 
   def set_budgets_variables
     none = Budget.none
+    @budgets = none
     @budgets_without_insurance = none
     @budgets_with_insurance = none
     @budgets_female = none
