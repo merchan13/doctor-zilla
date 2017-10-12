@@ -37,7 +37,10 @@ class PagesController < ApplicationController
     if @user.present?
       @pass = SecureRandom.hex
 
-      puts current_user
+      @user.password = @pass
+      @user.save
+
+      puts @pass
 
       DrzillaMailer.send_password_email(@user, @pass).deliver
 
