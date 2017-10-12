@@ -35,13 +35,15 @@ Rails.application.routes.draw do
 
   post 'medical_records/:id/change_important_status', to: 'medical_records#important_status'
 
-  get 'search',             to: 'pages#search'
-  get 'search_records',     to: 'medical_records#search'
-  get 'search_plans',       to: 'plans#search'
-  get 'select_data',        to: 'reports#select_data'
-  get 'administration',     to: 'pages#administration'
-  get 'activities',         to: 'activities#general'
-  get 'custom_activities',  to: 'activities#custom'
+  get 'search',                 to: 'pages#search'
+  get 'search_records',         to: 'medical_records#search'
+  get 'search_plans',           to: 'plans#search'
+  get 'select_data',            to: 'reports#select_data'
+  get 'administration',         to: 'pages#administration'
+  get 'activities',             to: 'activities#general'
+  get 'custom_activities',      to: 'activities#custom'
+  get 'reset_drzilla_password', to: 'pages#reset_drzilla_password'
+  post 'send_new_password',     to: 'pages#send_drzilla_password'
 
   get 'reports/download/:id',         to: 'reports#download',         as: 'download_report',        format: 'docx'
   get 'prescriptions/download/:id',   to: 'prescriptions#download',   as: 'download_prescription',  format: 'docx'

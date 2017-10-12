@@ -12,5 +12,7 @@
     <%= f.submit  t('.inicar_sesion', default: 'Iniciar sesión'), class: 'btn btn-primary login-button' %>
   <% end %>
   <br>
-  <%= link_to t('.olvido_su_contraseña', default: '¿Olvidó su contraseña?'), new_password_path(resource_name) %><br />
+  <%#= link_to t('.olvido_su_contraseña', default: '¿Olvidó su contraseña?'), new_password_path(resource_name) %>
+  <%= link_to "¿Olvidó su contraseña?", reset_drzilla_password_path %>
+  <br>
 </div>

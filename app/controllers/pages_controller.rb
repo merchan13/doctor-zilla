@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   # bloqueo de secretarias
   before_action :doctors_only, only: [:administration]
+  skip_before_action :authenticate_user!, only: [:reset_drzilla_password, :send_drzilla_password]
 
   def doctors_only
     if current_user.role != "Doctor"
@@ -25,6 +26,30 @@ class PagesController < ApplicationController
 
   def administration
     @assistants = current_user.assistants.paginate(page: params[:page], per_page: 5)
+  end
+
+  def reset_drzilla_password
+  end
+
+  def send_drzilla_password
+    @user = User.where(email: params[:email]).first
+
+    if @user.present?
+      @pass = SecureRandom.hex
+
+      puts current_user
+
+      DrzillaMailer.send_password_email(@user, @pass).deliver
+
+      flash[:success] = "Nueva contraseña enviada exitósamente"
+
+      redirect_to root_path()
+    else
+      flash[:error] = "El correo que ingresó no esta registrado en DoctorZilla"
+
+      redirect_to reset_drzilla_password_path()
+    end
+
   end
 
   private
