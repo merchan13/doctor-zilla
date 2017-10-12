@@ -57,6 +57,9 @@ class ActivitiesController < ApplicationController
           else
             set_procedures_variables
           end
+        else
+          set_procedures_variables
+        end
       else
         set_consultations_variables
         set_procedures_variables
