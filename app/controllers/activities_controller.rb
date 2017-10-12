@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
       @pacients_71_80 = @pacients.where(birthday: 81.years.ago..71.years.ago)
       @pacients_81_plus = @pacients.where('birthday < ?', 81.years.ago)
 
-      @consultations = Consultation.all
+      @consultations = Consultation.where(medical_record: @pacients)
       if @consultations.count > 0
         @consultations_without_insurance = @consultations.where(medical_record: @pacients_without_insurance)
         @consultations_with_insurance = @consultations.where(medical_record: @pacients_with_insurance)
@@ -35,32 +35,34 @@ class ActivitiesController < ApplicationController
         @consultations_71_80 = @consultations.where(medical_record: @pacients_71_80)
         @consultations_81_plus = @consultations.where(medical_record: @pacients_81_plus)
 
-        @procedures = OperativeNote.all
-        if @procedures.count > 0
-          @plans = Plan.all
-          @procedures_without_insurance = @procedures.where(plan: @plans.where(consultation: @consultations_without_insurance))
+        @plans = Plan.where(consultation: @consultations)
+        if @plans.count > 0
+          @procedures = OperativeNote.where(plan: @plans)
 
-          @procedures_with_insurance = @procedures.where(plan: @plans.where(consultation: @consultations_with_insurance))
-          @procedures_female = @procedures.where(plan: @plans.where(consultation: @consultations_female))
-          @procedures_male = @procedures.where(plan: @plans.where(consultation: @consultations_male))
-          @procedures_1_10 = @procedures.where(plan: @plans.where(consultation: @consultations_1_10))
-          @procedures_11_20 = @procedures.where(plan: @plans.where(consultation: @consultations_11_20))
-          @procedures_21_30 = @procedures.where(plan: @plans.where(consultation: @consultations_21_30))
-          @procedures_31_40 = @procedures.where(plan: @plans.where(consultation: @consultations_31_40))
-          @procedures_41_50 = @procedures.where(plan: @plans.where(consultation: @consultations_41_50))
-          @procedures_51_60 = @procedures.where(plan: @plans.where(consultation: @consultations_51_60))
-          @procedures_61_70 = @procedures.where(plan: @plans.where(consultation: @consultations_61_70))
-          @procedures_71_80 = @procedures.where(plan: @plans.where(consultation: @consultations_71_80))
-          @procedures_81_plus = @procedures.where(plan: @plans.where(consultation: @consultations_81_plus))
-        else
-          set_procedures_variables
-        end
+          if @procedures.count > 0
+            @procedures_without_insurance = @procedures.where(plan: @plans.where(consultation: @consultations_without_insurance))
+
+            @procedures_with_insurance = @procedures.where(plan: @plans.where(consultation: @consultations_with_insurance))
+            @procedures_female = @procedures.where(plan: @plans.where(consultation: @consultations_female))
+            @procedures_male = @procedures.where(plan: @plans.where(consultation: @consultations_male))
+            @procedures_1_10 = @procedures.where(plan: @plans.where(consultation: @consultations_1_10))
+            @procedures_11_20 = @procedures.where(plan: @plans.where(consultation: @consultations_11_20))
+            @procedures_21_30 = @procedures.where(plan: @plans.where(consultation: @consultations_21_30))
+            @procedures_31_40 = @procedures.where(plan: @plans.where(consultation: @consultations_31_40))
+            @procedures_41_50 = @procedures.where(plan: @plans.where(consultation: @consultations_41_50))
+            @procedures_51_60 = @procedures.where(plan: @plans.where(consultation: @consultations_51_60))
+            @procedures_61_70 = @procedures.where(plan: @plans.where(consultation: @consultations_61_70))
+            @procedures_71_80 = @procedures.where(plan: @plans.where(consultation: @consultations_71_80))
+            @procedures_81_plus = @procedures.where(plan: @plans.where(consultation: @consultations_81_plus))
+          else
+            set_procedures_variables
+          end
       else
         set_consultations_variables
         set_procedures_variables
       end
 
-      @budgets = Budget.all
+      @budgets = Budget.where(medical_record: @pacients)
       if @budgets.count > 0
         @budgets_without_insurance = @budgets.where(medical_record: @pacients_without_insurance)
         @budgets_with_insurance = @budgets.where(medical_record: @pacients_with_insurance)
