@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.5'
 #CUSTOM
 gem 'bcrypt'
 gem 'devise'
+gem 'devise_security_extension'
 gem 'devise-i18n'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
