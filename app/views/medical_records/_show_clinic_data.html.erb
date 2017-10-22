@@ -6,25 +6,41 @@
       <i><strong>Peso:</strong></i>
     </div>
     <div class="col-md-10">
-      <p><%= "#{record.physic_data["weight"]} kg" if record.physic_data["weight"] > 0 %></p>
+      <% if record.physic_data["weight"] > 0 %>
+        <p><%= "#{record.physic_data["weight"]} kg" %></p>
+      <% else %>
+        <p>N/A</p>
+      <% end %>
     </div>
     <div class="col-md-2">
       <i><strong>Talla:</strong></i>
     </div>
     <div class="col-md-10">
-      <p><%= "#{record.physic_data["height"]/100} m" if record.physic_data["height"] > 0 %></p>
+      <% if record.physic_data["height"] > 0 %>
+        <p><%= "#{record.physic_data["height"]/100} m" %></p>
+      <% else %>
+        <p>N/A</p>
+      <% end %>
     </div>
     <div class="col-md-2">
       <i><strong>IMC:</strong></i>
     </div>
     <div class="col-md-10">
-      <p><%= record.imc.round(2) if record.imc > 0 %></p>
+      <% if record.imc > 0 %>
+        <p><%= record.imc.round(2) %></p>
+      <% else %>
+        <p>N/A</p>
+      <% end %>
     </div>
     <div class="col-md-3">
       <i><strong>Tensión:</strong></i>
     </div>
     <div class="col-md-9">
-      <p><%= "#{record.physic_data["pressure_s"]}/#{record.physic_data["pressure_d"]} mmHg" %></p>
+      <% if record.physic_data["pressure_s"].present? && record.physic_data["pressure_d"].present? %>
+        <p><%= "#{record.physic_data["pressure_s"]}/#{record.physic_data["pressure_d"]} mmHg" %></p>
+      <% else %>
+        <p>N/A</p>
+      <% end %>
     </div>
   <% end %>
 </div>
