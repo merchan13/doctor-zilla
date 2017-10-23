@@ -5,7 +5,7 @@ class ReasonsController < ApplicationController
       @reason = Reason.create(reason_params)
 
       if @reason.save
-        flash[:success] = "Nuevo Seguro agregado"
+        flash[:success] = "Nuevo Motivo de Consulta agregado"
         render json: @reason
       else
         if @reason.errors.full_messages.first.include? "blank"
