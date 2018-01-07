@@ -87,7 +87,7 @@
             class: 'form-control',
             placeholder: 'Nombres del paciente',
             autofocus: true,
-            pattern: "^[a-zA-Záäéëíïóöúüñ ,.'-]{2,}$",
+            pattern: NAME_FIELD_REGEX,
             title: "Debe introducir un nombre válido",
             onchange: 'javascript:validateTextField(this)',
             required: true %>
@@ -98,7 +98,7 @@
             class: 'form-control',
             placeholder: 'Apellidos del paciente',
             autofocus: true,
-            pattern: "^[a-zA-Záäéëíïóöúüñ ,.'-]{2,}$",
+            pattern: NAME_FIELD_REGEX,
             title: "Debe introducir un apellido válido",
             onchange: 'javascript:validateTextField(this)',
             required: true %>
@@ -215,7 +215,7 @@
         <%= f.text_field :referred_by,
             class: 'form-control',
             placeholder: 'Persona que refirió al paciente',
-            pattern: "^[a-zA-Záäéëíïóöúüñ ,.'-]{2,}$",
+            pattern: NAME_FIELD_REGEX,
             title: "Debe introducir un nombre válido",
             onchange: 'javascript:validateTextField(this)' %>
       </div>
